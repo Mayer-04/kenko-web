@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import BaseHead from "@components/BaseHead.astro";
+import DesktopHeader from "@components/headers/DesktopHeader.astro";
 import MobileHeader from "@components/headers/MobileHeader.astro";
 
 interface Props {
@@ -20,6 +21,7 @@ const { title, description } = Astro.props;
   </head>
   <body>
     <MobileHeader />
+    <DesktopHeader />
     <main>
       <slot />
     </main>
