@@ -1,0 +1,24 @@
+---
+import { ClientRouter } from "astro:transitions";
+import { Font } from "astro:assets";
+
+import Favicons from "@components/Favicons.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<Favicons />
+<meta name="generator" content={Astro.generator} />
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<!-- View transitions -->
+<ClientRouter />
+
+<Font cssVariable="--font-manrope" preload />
+<Font cssVariable="--font-figtree" />
