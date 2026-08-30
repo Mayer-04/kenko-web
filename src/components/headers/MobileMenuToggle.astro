@@ -1,0 +1,42 @@
+---
+import MenuCloseIcon from "@assets/icons/menu-close.svg";
+import MenuIcon from "@assets/icons/menu.svg";
+---
+
+<button
+  type="button"
+  class="group inline-flex min-h-12 cursor-pointer flex-col items-center justify-center gap-1 rounded-lg px-1 text-sm font-semibold text-primary transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+  aria-label="Abrir menú"
+  aria-controls="mobile-navigation"
+  aria-expanded="false"
+  data-mobile-menu-toggle
+>
+  <span hidden data-menu-close-label>Cerrar</span>
+  <span
+    class="flex size-10 items-center justify-center rounded-lg border-2 border-transparent text-primary transition-colors group-focus-visible:border-primary group-focus-visible:bg-primary group-focus-visible:text-on-primary group-active:border-primary group-active:bg-primary group-active:text-on-primary hover:border-primary hover:bg-primary hover:text-on-primary"
+    data-menu-control-icon
+  >
+    <MenuIcon
+      class="size-6"
+      aria-hidden="true"
+      focusable="false"
+      data-menu-open-icon
+    />
+    <MenuCloseIcon
+      class="size-6"
+      aria-hidden="true"
+      focusable="false"
+      data-menu-close-icon
+    />
+  </span>
+</button>
+
+<style is:global>
+  mobile-header [data-menu-close-icon] {
+    display: none;
+  }
+
+  mobile-header[data-menu-open="true"] [data-menu-close-icon] {
+    display: block;
+  }
+</style>

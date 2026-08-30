@@ -1,0 +1,71 @@
+---
+import ChevronDownIcon from "@assets/icons/chevron-down.svg";
+import ChevronRightIcon from "@assets/icons/chevron-right.svg";
+
+interface NavigationItem {
+  href: string;
+  label: string;
+}
+
+interface Props {
+  id: string;
+  label: string;
+  items: NavigationItem[];
+}
+
+const { id, label, items } = Astro.props;
+const submenuId = `${id}-submenu`;
+---
+
+<li
+  class="border-b border-primary/30 py-1 last:border-b-0"
+  data-navigation-section
+>
+  <button
+    type="button"
+    class="flex min-h-14 w-full cursor-pointer items-center justify-between rounded-xl px-3 py-3 text-left font-display text-xl font-semibold text-content transition hover:bg-primary/5 focus-visible:bg-primary/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary active:bg-primary/10"
+    aria-expanded="false"
+    aria-controls={submenuId}
+    data-navigation-section-trigger
+  >
+    <span>{label}</span>
+    <span
+      class="flex size-8 items-center justify-center text-primary"
+      aria-hidden="true"
+    >
+      <ChevronRightIcon class="size-7" data-chevron-right />
+      <ChevronDownIcon class="size-7" data-chevron-down />
+    </span>
+  </button>
+  <ul
+    id={submenuId}
+    class="ml-3 border-s border-primary/35 py-0 ps-4"
+    aria-label={`Opciones de ${label}`}
+    aria-hidden="true"
+    inert
+    data-navigation-submenu
+  >
+    {
+      items.map((item) => (
+        <li>
+          <a
+            class="flex min-h-11 cursor-pointer items-center rounded-lg px-2 py-2 font-body text-sm leading-5 font-medium text-content transition hover:bg-primary/5 hover:text-primary focus-visible:bg-primary/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary active:bg-primary/10"
+            href={item.href}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</li>
+
+<style>
+  [data-chevron-down] {
+    display: none;
+  }
+
+  [data-navigation-section][data-expanded="true"] [data-chevron-down] {
+    display: block;
+  }
+</style>

@@ -1,0 +1,62 @@
+---
+import MobileNavigationSection from "@components/headers/MobileNavigationSection.astro";
+import PortalAccessCta from "@components/headers/PortalAccessCta.astro";
+
+const affiliateItems = [
+  {
+    label: "Rutas integrales de atención en salud",
+    href: "/afiliados/rutas-integrales-de-atencion-en-salud",
+  },
+  {
+    label: "Puntos de atención",
+    href: "/afiliados/puntos-de-atencion",
+  },
+  {
+    label: "Preguntas frecuentes",
+    href: "/afiliados/preguntas-frecuentes",
+  },
+];
+
+const aboutItems = [
+  { label: "Historia", href: "/nosotros/historia" },
+  { label: "Misión y visión", href: "/nosotros/mision-y-vision" },
+  { label: "Objetivos estratégicos", href: "/nosotros/objetivos-estrategicos" },
+  { label: "Valores", href: "/nosotros/valores" },
+  { label: "Organigrama", href: "/nosotros/organigrama" },
+  {
+    label: "Plan de modernización y saneamiento financiero",
+    href: "/nosotros/plan-de-modernizacion-y-saneamiento-financiero",
+  },
+];
+---
+
+<nav
+  id="mobile-navigation"
+  class="mx-4 mt-3 mb-4 rounded-[1.75rem] border border-content/15 bg-background px-5 py-4 shadow-sm"
+  aria-label="Navegación principal"
+  aria-hidden="true"
+  inert
+  data-mobile-navigation
+>
+  <ul>
+    <li class="border-b border-primary/30 py-1">
+      <a
+        class="flex min-h-14 cursor-pointer items-center rounded-xl px-3 py-3 font-display text-xl font-semibold text-content transition hover:bg-primary/5 hover:text-primary focus-visible:bg-primary/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary active:bg-primary/10"
+        href="/"
+      >
+        Inicio
+      </a>
+    </li>
+    <MobileNavigationSection
+      id="afiliados"
+      label="Afiliados"
+      items={affiliateItems}
+    />
+    <MobileNavigationSection
+      id="nosotros"
+      label="Nosotros"
+      items={aboutItems}
+    />
+  </ul>
+  <PortalAccessCta />
+</nav>
