@@ -7,10 +7,12 @@ test.describe("header móvil", () => {
     await page.goto("/");
 
     const toggle = page.getByRole("button", { name: "Abrir menú" });
-    const navigation = page.getByRole("navigation", {
+    const navigation = page.locator("mobile-header").getByRole("navigation", {
       name: "Navegación principal",
     });
-    const header = page.getByRole("banner", { name: "Encabezado principal" });
+    const header = page
+      .locator("mobile-header")
+      .getByRole("banner", { name: "Encabezado principal" });
     const iconContainer = toggle.locator("[data-menu-control-icon]");
 
     await expect(header).toHaveCSS("position", "sticky");
@@ -127,6 +129,13 @@ test("el header móvil se oculta desde 768 px", async ({ page }) => {
   await page.goto("/");
 
   await expect(
-    page.getByRole("banner", { name: "Encabezado principal" }),
+    page.locator("mobile-header").getByRole("banner", {
+      name: "Encabezado principal",
+    }),
   ).toBeHidden();
+  await expect(
+    page.locator("desktop-header").getByRole("banner", {
+      name: "Encabezado principal",
+    }),
+  ).toBeVisible();
 });
