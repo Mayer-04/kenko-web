@@ -21,6 +21,10 @@ export const affiliateItems: NavigationItem[] = [
     label: "Preguntas frecuentes",
     href: "/afiliados/preguntas-frecuentes",
   },
+  {
+    label: "Triage",
+    href: "/afiliados/triage",
+  },
 ];
 
 export const aboutItems: NavigationItem[] = [
