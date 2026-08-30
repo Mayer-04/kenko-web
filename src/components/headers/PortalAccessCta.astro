@@ -1,25 +1,9 @@
 ---
-interface Props {
-  href?: string;
-}
-
-const { href } = Astro.props;
-const actionClass =
-  "inline-flex min-h-12 w-full items-center justify-center rounded-xl border-2 border-primary bg-background px-6 font-display text-lg font-semibold text-primary transition hover:bg-primary hover:text-on-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary disabled:cursor-not-allowed disabled:opacity-100";
+import IngresaButton from "@components/headers/IngresaButton.astro";
 ---
 
 <div class="pt-7">
   <div class="mx-auto max-w-72">
-    {
-      href ? (
-        <a class={actionClass} href={href}>
-          Ingresar
-        </a>
-      ) : (
-        <button class={actionClass} type="button" disabled>
-          Ingresar
-        </button>
-      )
-    }
+    <IngresaButton variant="mobile" />
   </div>
 </div>

@@ -1,33 +1,7 @@
 ---
 import MobileNavigationSection from "@components/headers/MobileNavigationSection.astro";
 import PortalAccessCta from "@components/headers/PortalAccessCta.astro";
-
-const affiliateItems = [
-  {
-    label: "Rutas integrales de atención en salud",
-    href: "/afiliados/rutas-integrales-de-atencion-en-salud",
-  },
-  {
-    label: "Puntos de atención",
-    href: "/afiliados/puntos-de-atencion",
-  },
-  {
-    label: "Preguntas frecuentes",
-    href: "/afiliados/preguntas-frecuentes",
-  },
-];
-
-const aboutItems = [
-  { label: "Historia", href: "/nosotros/historia" },
-  { label: "Misión y visión", href: "/nosotros/mision-y-vision" },
-  { label: "Objetivos estratégicos", href: "/nosotros/objetivos-estrategicos" },
-  { label: "Valores", href: "/nosotros/valores" },
-  { label: "Organigrama", href: "/nosotros/organigrama" },
-  {
-    label: "Plan de modernización y saneamiento financiero",
-    href: "/nosotros/plan-de-modernizacion-y-saneamiento-financiero",
-  },
-];
+import { aboutItems, affiliateItems } from "@components/headers/navigation";
 ---
 
 <nav
