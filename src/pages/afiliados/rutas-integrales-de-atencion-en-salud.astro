@@ -1,0 +1,278 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Dropdown from "@components/afiliados/Dropdown.astro";
+import RiasRoutePanel from "@components/afiliados/RiasRoutePanel.astro";
+import ChevronIcon from "../../assets/icons/rias/chevron_right.svg";
+import doctorWorkingImage from "../../assets/scrapings-content/Savia-salud Afiliados/imagenes/doctor-haciendo-su-trabajo-oficina-pediatria.jpg";
+import doctorReviewingImage from "../../assets/scrapings-content/Savia-salud Afiliados/imagenes/joven-doctora-usando-estetoscopio-escuchar-latidos-corazon-paciente-toma-doctora-dandole-chequeo-paciente-varon.jpg";
+
+const markdownModule = await import(
+  "../../assets/scrapings-content/Savia-salud Afiliados/afiliados-savia.md?raw"
+);
+const rawMarkdown = typeof markdownModule.default === "string" ? markdownModule.default : String(markdownModule);
+
+const whatAreRias =
+  "Son el conjunto de acciones de promoción de la salud y prevención de la enfermedad de carácter colectivo e individual; de búsqueda activa para diagnóstico precoz y tratamiento oportuno; de suministro de medicamentos, insumos y dispositivos médicos; de hospitalización y cirugía; de rehabilitación y cuidados paliativos; que requiere un paciente que padece una patología específica, un síndrome o una condición de salud; que deben ser ofrecidas de manera integral, oportuna y completa; por un conjunto de prestadores de servicios organizados como una red integrada; que tiene como objetivo mantenerlo sano y satisfecho, diagnosticarlo rápidamente, recuperar su salud, rehabilitarlo o mantener controlada su enfermedad y reducir el daño, para que pueda tener una vida productiva e independiente hasta donde sea posible.";
+
+const constitutionItems = [
+  {
+    title: "Ruta integral de atención para la promoción y mantenimiento de la salud",
+    text:
+      "Dirigida a promover la salud, prevenir el riesgo, prevenir la enfermedad y generar cultura del cuidado de la salud en las personas, familias y comunidades; incluye valoración integral, detección temprana, protección específica y educación para la salud.",
+  },
+  {
+    title: "Rutas integrales de atención para grupos de riesgo",
+    text:
+      "Intervenciones individuales y colectivas dirigidas a la identificación oportuna de factores de riesgo y su intervención, ya sea para evitar la aparición de una condición específica en salud o para realizar un diagnóstico y una derivación oportuna para el tratamiento.",
+  },
+  {
+    title: "Rutas integrales de atención específica para eventos",
+    text:
+      "Intervenciones individuales y colectivas dirigidas principalmente al diagnóstico oportuno, tratamiento, rehabilitación y paliación de los eventos o condiciones específicas de salud priorizadas.",
+  },
+];
+
+const routeData = [
+  {
+    id: "cancer-de-mama",
+    label: "Ruta Cáncer de Mama",
+    title: "Ruta Cáncer de Mama",
+    description:
+      "Realizamos jornadas de mamografías por toda Antioquia, con acompañamiento especial y transporte. En algunas jornadas se ofrecen servicios de citología para detectar a tiempo el cáncer de mama y el cáncer de cuello uterino.",
+    interventions: [
+      "Jornadas de mamografías por toda Antioquia.",
+      "Atención especializada, centrada e integral.",
+      "Sin necesidad de autorizaciones previas.",
+      "Articulación con instituciones y hospitales de I nivel.",
+    ],
+    note:
+      "Ningún usuario requiere autorizaciones para iniciar el tratamiento y la atención se articula con el sistema de salud regional.",
+  },
+  {
+    id: "vih",
+    label: "Ruta VIH",
+    title: "Ruta VIH",
+    description:
+      "La ruta VIH ofrece atención ambulatoria, urgencias, hospitalización, transporte asistencial, cuidados paliativos, servicio farmacéutico, toma de muestras, atención extramural y telemedicina.",
+    interventions: [
+      "Atención ambulatoria, urgencias y hospitalización.",
+      "Transporte asistencial básico medicalizado.",
+      "Cuidados paliativos y servicio farmacéutico.",
+      "Toma de muestras, medicina domiciliaria y telemedicina.",
+    ],
+    note:
+      "La ruta cuenta con canales de atención por correo electrónico y teléfono para asegurar continuidad en la atención.",
+  },
+  {
+    id: "visual",
+    label: "Ruta Visual",
+    title: "Ruta Visual",
+    description:
+      "La Ruta Visual ofrece consulta externa, apoyo diagnóstico y complementación terapéutica, servicio quirúrgico, suministro de lentes y prótesis oculares, y apoyo en banco de sangre y tejidos.",
+    interventions: [
+      "Consulta externa: optometría y oftalmología.",
+      "Radiología, laboratorio, toma de muestras y patología.",
+      "Cirugía oftalmológica y trasplante de tejidos oculares.",
+      "Lentes, monturas, prótesis oculares y ayudas visuales.",
+    ],
+    note:
+      "La IPS encargada de la atención es por municipio de afiliación del usuario y no por el municipio de residencia, y no presta servicio de urgencias.",
+  },
+  {
+    id: "mental",
+    label: "Ruta Mental",
+    title: "Ruta Mental",
+    description:
+      "Para Kenko EPS es importante garantizar la atención de la población mediante la Ruta Mental, que permita integralidad, accesibilidad, oportunidad y pertinencia en la red de prestadores.",
+    interventions: [
+      "Urgencias, hospitalización y psiquiatría.",
+      "Psicología, neuropsicología y terapia ocupacional.",
+      "Laboratorio clínico, ayudas diagnósticas y trabajo social.",
+      "Dispensación de medicamentos a todo Antioquia.",
+    ],
+    note:
+      "La ruta integra servicios del nivel primario y complementario para gestionar el riesgo y alcanzar resultados en salud mental.",
+  },
+  {
+    id: "autoinmune",
+    label: "Ruta Autoinmune",
+    title: "Ruta Autoinmune",
+    description:
+      "La ruta autoinmune brinda atención integral con urgencias, hospitalización, transporte, reemplazos articulares y ortesis, imagenología, laboratorio, albergues, vacunación y terapias biológicas.",
+    interventions: [
+      "Urgencias, hospitalización y transporte.",
+      "Reemplazos articulares, ortesis y medicamentos.",
+      "Imagenología, laboratorio y albergues.",
+      "Terapias biológicas y apoyo de salud.",
+    ],
+    note:
+      "El personal de la salud apoya con fisiatría, fisioterapia, enfermería, psicología, trabajo social y farmacéutico.",
+  },
+  {
+    id: "renal",
+    label: "Ruta Renal",
+    title: "Ruta Renal",
+    description:
+      "La ruta renal ofrece atención médica integral para la enfermedad renal crónica, nefroprotección, terapia de reemplazo renal, TMND y cuidado paliativo, además de apoyo en trasplante renal.",
+    interventions: [
+      "Enfermedad renal crónica y nefroprotección.",
+      "Terapia de reemplazo renal y cuidado paliativo.",
+      "Médico experto, nefrólogo, endocrinología y nutrición.",
+      "Cirugía vascular, psicología y trabajo social.",
+    ],
+    note:
+      "La ruta contempla la atención integral para ERC, HTA y DM como precursoras de la enfermedad renal.",
+  },
+  {
+    id: "hemofilia",
+    label: "Ruta Hemofilia",
+    title: "Ruta Hemofilia",
+    description:
+      "La ruta de Hemofilia ofrece atención ambulatoria, domiciliaria, urgencias, apoyo diagnóstico y terapéutico, laboratorio, atención de eventos de sangrado y servicio farmacéutico.",
+    interventions: [
+      "Atención ambulatoria y domiciliaria.",
+      "Apoyo de urgencias, diagnóstico y terapéutico.",
+      "Especialidades complementarias y laboratorio.",
+      "Suministro de factor antihemofílico y albergue.",
+    ],
+    note:
+      "La ruta incluye caracterización, plan de intervención individual, seguimiento del riesgo y gestión de eficiencias y gasto evitable.",
+  },
+  {
+    id: "cancer-de-cervix",
+    label: "Ruta Cáncer de Cérvix",
+    title: "Ruta Cáncer de Cérvix",
+    description:
+      "El cáncer de cérvix se atiende con valoración por especialistas, cirugía, tratamiento neoadyuvante, rehabilitación y cuidados paliativos, apoyados por la continuidad del tratamiento y el seguimiento clínico.",
+    interventions: [
+      "Valoración por especialistas y cirugía.",
+      "Tratamiento neoadyuvante y rehabilitación.",
+      "Cuidados paliativos y soporte integral.",
+      "Seguimiento según programación de consultas y tratamiento.",
+    ],
+    note:
+      "El acceso al programa se realiza a partir del diagnóstico y no requiere ningún trámite adicional.",
+  },
+];
+
+const programs = [
+  {
+    title: "Programa de Cáncer infantil",
+    description:
+      "El ciclo de atención incluye diagnóstico, tratamiento, seguimiento, rehabilitación, metástasis y paliación. Además, ofrece laboratorio clínico, patología, medicina nuclear, apoyo diagnóstico, quimioterapia, radioterapia, entrega de medicamentos, urgencias, hospitalización, rehabilitación oncológica, transplante de médula ósea y procedimientos quirúrgicos e intervencionistas.",
+  },
+  {
+    title: "Programa de Rehabilitación por Consumo de Sustancias",
+    description:
+      "Acompañamos a personas con consumo problemático de sustancias con un proceso integral de valoración, tratamiento, seguimiento y reinserción social. Se trabaja con intervenciones terapéuticas, apoyo psicológico, orientación familiar y actividades de recuperación sostenible para reducir recaídas y fortalecer la salud mental.",
+  },
+  {
+    title: "Programa de Atención Integral para la Mujer y la Familia",
+    description:
+      "Incluye orientación en salud sexual y reproductiva, prevención, seguimiento prenatal y postnatal, apoyo psicosocial, educación en autocuidado y promoción de la salud familiar. Su enfoque es prevenir complicaciones, fortalecer el vínculo familiar y mejorar la calidad de vida de la madre, el recién nacido y la familia.",
+  },
+];
+---
+
+<Layout title="Rutas integrales de atención en salud - Kenko EPS" description="Conoce las rutas integrales de atención en salud, sus componentes, objetivos y programas de acompañamiento para la población afiliada.">
+  <main class="mx-auto max-w-6xl px-4 py-12 md:px-8 lg:px-12">
+    <header class="mb-12 text-center">
+      <h1 class="font-display text-4xl font-bold tracking-[-0.04em] text-primary md:text-5xl">
+        Rutas Integrales de Atención en Salud
+      </h1>
+    </header>
+
+    <section class="mb-14 grid gap-8 md:grid-cols-12 md:items-center">
+      <div class="md:col-span-7">
+        <h2 class="mb-4 font-display text-3xl font-bold tracking-[-0.04em] text-primary md:text-4xl">
+          ¿Qué son?
+        </h2>
+        <p class="mb-4 font-body text-base leading-7 text-content/80 md:text-lg">
+          {whatAreRias}
+        </p>
+      </div>
+
+      <div class="md:col-span-5">
+        <div class="overflow-hidden rounded-[20px] border border-content/10 bg-background shadow-[0_12px_30px_rgba(24,24,27,0.08)]">
+          <img
+            src={doctorWorkingImage.src}
+            alt="Doctor realizando trabajo en una oficina de pediatría"
+            class="h-72 w-full object-cover md:h-80"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-14 grid gap-8 md:grid-cols-12 md:items-center">
+      <div class="md:order-2 md:col-span-5">
+        <div class="overflow-hidden rounded-[20px] border border-content/10 bg-background shadow-[0_12px_30px_rgba(24,24,27,0.08)]">
+          <img
+            src={doctorReviewingImage.src}
+            alt="Doctora revisando el corazón de un paciente con un estetoscopio"
+            class="h-72 w-full object-cover md:h-80"
+          />
+        </div>
+      </div>
+
+      <div class="md:order-1 md:col-span-7">
+        <h2 class="mb-4 font-display text-3xl font-bold tracking-[-0.04em] text-primary md:text-4xl">
+          ¿Cómo están constituidas?
+        </h2>
+        <ul class="list-disc space-y-3 pl-6 font-body text-base leading-7 text-content/80 md:text-lg">
+          {
+            constitutionItems.map((item) => (
+              <li>
+                <strong class="font-semibold text-content">{item.title}:</strong> {item.text}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section class="mb-14">
+      <h2 class="mb-5 font-display text-3xl font-bold tracking-[-0.04em] text-primary md:text-4xl">
+        ¿Cuáles son sus objetivos?
+      </h2>
+      <ul class="list-disc space-y-3 pl-6 font-body text-base leading-7 text-content/80 md:text-lg">
+        <li>Población sana.</li>
+        <li>Usuario controlado.</li>
+        <li>Reducir prevalencia.</li>
+        <li>Reducir incidencia.</li>
+        <li>Reducir eventos adversos.</li>
+        <li>Sin PQRS.</li>
+        <li>Sin tutelas.</li>
+      </ul>
+    </section>
+
+    <section class="mb-14">
+      <h2 class="mb-5 font-display text-3xl font-bold tracking-[-0.04em] text-primary md:text-4xl">
+        Panel de rutas
+      </h2>
+      <RiasRoutePanel routes={routeData} defaultRouteId="cancer-de-mama" />
+    </section>
+
+    <section>
+      <h2 class="mb-5 font-display text-3xl font-bold tracking-[-0.04em] text-primary md:text-4xl">
+        Programas de Atención en Salud
+      </h2>
+
+      <div class="space-y-4">
+        {
+          programs.map((program, index) => (
+            <Dropdown
+              id={`programa-${index}`}
+              title={program.title}
+              chevronIcon={ChevronIcon}
+              defaultOpen={index === 1}
+            >
+              <div class="space-y-3 font-body text-base leading-7 text-content/80 md:text-lg">
+                <p>{program.description}</p>
+              </div>
+            </Dropdown>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+</Layout>
