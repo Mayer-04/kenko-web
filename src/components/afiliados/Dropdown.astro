@@ -1,0 +1,138 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+  id: string;
+  title: string;
+  subtitle: string;
+  icon: any;
+  defaultOpen?: boolean;
+  iconStyle?: string;
+}
+
+const {
+  id,
+  title,
+  subtitle,
+  icon: Icon,
+  defaultOpen = false,
+  iconStyle = "background-color: var(--primary);",
+  ...rest
+} = Astro.props;
+
+const panelId = `${id}-panel`;
+const triggerId = `${id}-trigger`;
+---
+
+<div
+  class="rounded-2xl border border-content/10 bg-background shadow-sm transition-all duration-200 ease-out"
+  data-dropdown
+  data-open={defaultOpen ? "true" : "false"}
+  {...rest}
+>
+  <h2 class="m-0">
+    <button
+      id={triggerId}
+      type="button"
+      class="flex w-full items-center justify-between gap-4 px-4 py-4 text-left transition duration-200 hover:bg-primary/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary md:px-5"
+      aria-expanded={defaultOpen ? "true" : "false"}
+      aria-controls={panelId}
+      data-dropdown-trigger
+    >
+      <span class="flex min-w-0 items-center gap-3 md:gap-4">
+        <span
+          class="flex size-12 shrink-0 items-center justify-center rounded-full text-on-primary md:size-14"
+          style={iconStyle}
+          aria-hidden="true"
+        >
+          <Icon class="size-5 md:size-6" />
+        </span>
+
+        <span class="min-w-0">
+          <span class="block font-display text-lg font-semibold text-content md:text-xl">{title}</span>
+          <span class="mt-1 block font-body text-sm leading-5 text-content/70 md:text-base">
+            {subtitle}
+          </span>
+        </span>
+      </span>
+
+      <span
+        class="flex size-9 shrink-0 items-center justify-center rounded-full border border-content/10 bg-background text-content/60"
+        aria-hidden="true"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          class="size-5 transition-transform duration-200 ease-out"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          data-dropdown-chevron
+        >
+          <path d="m6 9 6 6 6-6"></path>
+        </svg>
+      </span>
+    </button>
+  </h2>
+
+  <div
+    id={panelId}
+    class="grid overflow-hidden px-4 pb-4 transition-all duration-200 ease-out md:px-5"
+    data-dropdown-panel
+    aria-hidden={defaultOpen ? "false" : "true"}
+    hidden={!defaultOpen}
+  >
+    <div class="border-t border-content/10 pt-4">
+      <slot />
+    </div>
+  </div>
+</div>
+
+<script>
+  const dropdowns = document.querySelectorAll("[data-dropdown]");
+
+  dropdowns.forEach((dropdown) => {
+    const trigger = dropdown.querySelector("[data-dropdown-trigger]");
+    const panel = dropdown.querySelector("[data-dropdown-panel]");
+    const chevron = dropdown.querySelector("[data-dropdown-chevron]");
+
+    if (!trigger || !panel || !chevron) {
+      return;
+    }
+
+    const syncState = (isOpen) => {
+      const expanded = String(isOpen);
+      dropdown.dataset.open = expanded;
+      trigger.setAttribute("aria-expanded", expanded);
+      panel.setAttribute("aria-hidden", String(!isOpen));
+      panel.hidden = !isOpen;
+      chevron.style.transform = isOpen ? "rotate(180deg)" : "rotate(0deg)";
+    };
+
+    syncState(dropdown.dataset.open === "true");
+
+    trigger.addEventListener("click", () => {
+      const isOpen = dropdown.dataset.open === "true";
+      const allOpen = document.querySelectorAll("[data-dropdown]");
+
+      allOpen.forEach((otherDropdown) => {
+        if (otherDropdown !== dropdown) {
+          const otherTrigger = otherDropdown.querySelector("[data-dropdown-trigger]");
+          const otherPanel = otherDropdown.querySelector("[data-dropdown-panel]");
+          const otherChevron = otherDropdown.querySelector("[data-dropdown-chevron]");
+
+          if (otherTrigger && otherPanel && otherChevron) {
+            otherDropdown.dataset.open = "false";
+            otherTrigger.setAttribute("aria-expanded", "false");
+            otherPanel.setAttribute("aria-hidden", "true");
+            otherPanel.hidden = true;
+            otherChevron.style.transform = "rotate(0deg)";
+          }
+        }
+      });
+
+      syncState(!isOpen);
+    });
+  });
+</script>

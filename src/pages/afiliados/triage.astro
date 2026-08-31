@@ -1,0 +1,79 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Dropdown from "@components/afiliados/Dropdown.astro";
+import { getTriageIntro, parseTriageDefinitions } from "../../utils/triage";
+
+import emergencyIcon from "../../assets/icons/triage/emergency.svg";
+import emergencyHomeIcon from "../../assets/icons/triage/emergency_home.svg";
+import healthCrossIcon from "../../assets/icons/triage/health_cross.svg";
+import healthSafetyIcon from "../../assets/icons/triage/health_and_safety.svg";
+import calendarIcon from "../../assets/icons/triage/calendar_month.svg";
+
+const markdownModule = await import(
+  "../../assets/scrapings-content/Savia-salud Afiliados/afiliados-savia.md?raw"
+);
+const rawMarkdown = typeof markdownModule.default === "string" ? markdownModule.default : String(markdownModule);
+const intro = getTriageIntro(rawMarkdown);
+const triageLevels = parseTriageDefinitions(rawMarkdown);
+
+const iconMap = [
+  emergencyIcon,
+  emergencyHomeIcon,
+  healthCrossIcon,
+  healthSafetyIcon,
+  calendarIcon,
+];
+
+const toneMap = [
+  "background-color: #d32f2f;",
+  "background-color: #ffb51b;",
+  "background-color: #2e7d32;",
+  "background-color: #1e5bd7;",
+  "background-color: #e5e7eb; color: var(--content);",
+];
+---
+
+<Layout title="¿Qué es el triage? - Kenko EPS" description="Sistema de priorización de atención por niveles de triage en urgencias.">
+  <section class="mx-auto max-w-5xl px-4 py-12 md:px-8 lg:px-12">
+    <div class="mb-8 max-w-3xl">
+      <h1 class="mb-5 font-display text-4xl font-bold tracking-[-0.04em] text-primary md:text-5xl">
+        ¿Qué es el triage?
+      </h1>
+      <p class="font-body text-base leading-7 text-content/80 md:text-lg">
+        {intro}
+      </p>
+    </div>
+
+    <div class="space-y-4">
+      {
+        triageLevels.map((level, index) => {
+          const Icon = iconMap[index] ?? iconMap[0];
+          const title = level.title || `Triage ${index + 1}`;
+          const subtitle = level.subtitle || "Atención según prioridad clínica.";
+
+          return (
+            <Dropdown
+              id={`triage-${level.level}`}
+              title={title}
+              subtitle={subtitle}
+              icon={Icon}
+              iconStyle={toneMap[index] ?? toneMap[0]}
+              defaultOpen={index === 0}
+            >
+              <div class="space-y-4">
+                <p class="font-body text-base leading-7 text-content/80">
+                  {subtitle}
+                </p>
+                <ul class="space-y-2 pl-5 font-body text-base leading-7 text-content/80">
+                  {level.symptoms.map((symptom) => (
+                    <li class="list-disc marker:text-primary">{symptom}</li>
+                  ))}
+                </ul>
+              </div>
+            </Dropdown>
+          );
+        })
+      }
+    </div>
+  </section>
+</Layout>
