@@ -1,0 +1,48 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Dropdown from "@components/afiliados/Dropdown.astro";
+import { parseFaqSections } from "../../utils/faq";
+import ChevronIcon from "../../assets/icons/preguntas-frecuentes/arrow_drop_down.svg";
+
+const markdownModule = await import(
+  "../../assets/scrapings-content/Savia-salud Afiliados/afiliados-savia.md?raw"
+);
+const rawMarkdown = typeof markdownModule.default === "string" ? markdownModule.default : String(markdownModule);
+const faqSections = parseFaqSections(rawMarkdown);
+---
+
+<Layout title="Preguntas frecuentes - Kenko EPS" description="Respuestas a las dudas más comunes sobre afiliación, trámites y servicios de Kenko Salud EPS.">
+  <section class="mx-auto max-w-5xl px-4 py-12 md:px-8 lg:px-12">
+    <header class="mb-8 text-center">
+      <h1 class="font-display text-4xl font-bold tracking-[-0.04em] text-primary md:text-5xl">
+        Preguntas frecuentes
+      </h1>
+    </header>
+
+    <div class="mx-auto max-w-3xl space-y-4">
+      {
+        faqSections.map((section, index) => (
+          <Dropdown
+            id={`faq-section-${index}`}
+            title={section.title}
+            chevronIcon={ChevronIcon}
+            defaultOpen={index === 0}
+          >
+            <div class="space-y-5">
+              {section.questions.map((item) => (
+                <article class="rounded-xl border border-content/10 bg-background p-4 md:p-5">
+                  <h2 class="mb-3 font-display text-lg font-semibold text-primary md:text-xl">
+                    {item.question}
+                  </h2>
+                  <div class="whitespace-pre-line font-body text-base leading-7 text-content/80">
+                    {item.answer}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </Dropdown>
+        ))
+      }
+    </div>
+  </section>
+</Layout>

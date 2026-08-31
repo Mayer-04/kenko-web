@@ -4,8 +4,9 @@ import type { HTMLAttributes } from "astro/types";
 interface Props extends HTMLAttributes<"div"> {
   id: string;
   title: string;
-  subtitle: string;
-  icon: any;
+  subtitle?: string;
+  icon?: any;
+  chevronIcon?: any;
   defaultOpen?: boolean;
   iconStyle?: string;
 }
@@ -13,8 +14,9 @@ interface Props extends HTMLAttributes<"div"> {
 const {
   id,
   title,
-  subtitle,
+  subtitle = "",
   icon: Icon,
+  chevronIcon: ChevronIcon,
   defaultOpen = false,
   iconStyle = "background-color: var(--primary);",
   ...rest
@@ -40,19 +42,27 @@ const triggerId = `${id}-trigger`;
       data-dropdown-trigger
     >
       <span class="flex min-w-0 items-center gap-3 md:gap-4">
-        <span
-          class="flex size-12 shrink-0 items-center justify-center rounded-full text-on-primary md:size-14"
-          style={iconStyle}
-          aria-hidden="true"
-        >
-          <Icon class="size-5 md:size-6" />
-        </span>
+        {
+          Icon && (
+            <span
+              class="flex size-12 shrink-0 items-center justify-center rounded-full text-on-primary md:size-14"
+              style={iconStyle}
+              aria-hidden="true"
+            >
+              <Icon class="size-5 md:size-6" />
+            </span>
+          )
+        }
 
         <span class="min-w-0">
           <span class="block font-display text-lg font-semibold text-content md:text-xl">{title}</span>
-          <span class="mt-1 block font-body text-sm leading-5 text-content/70 md:text-base">
-            {subtitle}
-          </span>
+          {
+            subtitle && (
+              <span class="mt-1 block font-body text-sm leading-5 text-content/70 md:text-base">
+                {subtitle}
+              </span>
+            )
+          }
         </span>
       </span>
 
@@ -60,18 +70,27 @@ const triggerId = `${id}-trigger`;
         class="flex size-9 shrink-0 items-center justify-center rounded-full border border-content/10 bg-background text-content/60"
         aria-hidden="true"
       >
-        <svg
-          viewBox="0 0 24 24"
-          class="size-5 transition-transform duration-200 ease-out"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          data-dropdown-chevron
-        >
-          <path d="m6 9 6 6 6-6"></path>
-        </svg>
+        {
+          ChevronIcon ? (
+            <ChevronIcon
+              class="size-5 transition-transform duration-200 ease-out"
+              data-dropdown-chevron
+            />
+          ) : (
+            <svg
+              viewBox="0 0 24 24"
+              class="size-5 transition-transform duration-200 ease-out"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              data-dropdown-chevron
+            >
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
+          )
+        }
       </span>
     </button>
   </h2>
