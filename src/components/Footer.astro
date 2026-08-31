@@ -1,0 +1,129 @@
+---
+import { Image } from "astro:assets";
+
+import Logo from "@assets/icons/kenko.svg";
+import SupersaludLogo from "@assets/icons/logo-supersalud.svg";
+import minSaludLogo from "@assets/images/min-salud-logo.png";
+import { aboutItems, affiliateItems } from "@components/headers/navigation";
+
+const aboutPrimaryItems = aboutItems.slice(0, 3);
+const aboutSecondaryItems = aboutItems.slice(3);
+---
+
+<footer class="bg-white px-4 py-10 sm:px-6 sm:py-14 lg:px-10">
+  <div
+    class="mx-auto max-w-[1280px] rounded-[1.75rem] border border-content/80 bg-linear-to-br from-primary to-[#193a56] px-6 py-8 text-on-primary sm:px-10 sm:py-10 lg:px-12 lg:py-12"
+  >
+    <div
+      class="grid gap-10 md:grid-cols-[minmax(11rem,1fr)_minmax(13rem,1fr)_minmax(22rem,2fr)] md:gap-8 lg:gap-12"
+    >
+      <a
+        href="/"
+        class="flex w-fit items-center rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary"
+        aria-label="Kenko EPS, inicio"
+      >
+        <Logo
+          class="h-auto w-44 max-w-full"
+          aria-hidden="true"
+          focusable="false"
+        />
+      </a>
+
+      <nav aria-labelledby="footer-affiliates-title">
+        <h2
+          id="footer-affiliates-title"
+          class="font-display text-sm font-bold tracking-[0.14em] text-secondary uppercase"
+        >
+          Afiliados
+        </h2>
+        <ul class="mt-4 space-y-1">
+          {
+            affiliateItems.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="flex min-h-11 items-center rounded-lg px-3 py-2 font-body text-sm leading-5 text-on-primary/85 transition hover:bg-white/10 hover:text-on-primary focus-visible:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <nav aria-labelledby="footer-about-title">
+        <h2
+          id="footer-about-title"
+          class="font-display text-sm font-bold tracking-[0.14em] text-secondary uppercase"
+        >
+          Nosotros
+        </h2>
+        <div class="mt-4 grid gap-6 md:grid-cols-2 md:gap-0">
+          <ul class="space-y-1 md:pr-6">
+            {
+              aboutPrimaryItems.map((item) => (
+                <li>
+                  <a
+                    href={item.href}
+                    class="flex min-h-11 items-center rounded-lg px-3 py-2 font-body text-sm leading-5 text-on-primary/85 transition hover:bg-white/10 hover:text-on-primary focus-visible:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+          <ul
+            class="space-y-1 border-t border-white/20 pt-5 md:border-t-0 md:border-l md:pt-0 md:pl-6"
+          >
+            {
+              aboutSecondaryItems.map((item) => (
+                <li>
+                  <a
+                    href={item.href}
+                    class="flex min-h-11 items-center rounded-lg px-3 py-2 font-body text-sm leading-5 text-on-primary/85 transition hover:bg-white/10 hover:text-on-primary focus-visible:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="mt-12 border-t border-white/30 pt-7 sm:mt-14 sm:pt-8">
+      <div
+        class="flex flex-col-reverse items-start gap-7 sm:flex-row sm:items-center sm:justify-between sm:gap-8"
+      >
+        <p class="font-body text-xs text-on-primary/75">
+          @2026 Kenko EPS. Todos los derechos reservados
+        </p>
+        <div class="flex flex-wrap items-center gap-5 sm:gap-7">
+          <div
+            class="flex h-16 w-44 items-center justify-center rounded-md bg-white px-3 py-2 sm:w-48"
+          >
+            <Image
+              src={minSaludLogo}
+              alt="Ministerio de Salud y Protección Social"
+              width={192}
+              class="h-auto max-h-full w-full object-contain"
+            />
+          </div>
+          <div
+            class="flex h-16 w-44 items-center justify-center rounded-md bg-white px-3 py-2 sm:w-48"
+          >
+            <SupersaludLogo
+              role="img"
+              aria-label="Vigilado Superintendencia Nacional de Salud"
+              class="h-auto max-h-full w-full"
+              focusable="false"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
