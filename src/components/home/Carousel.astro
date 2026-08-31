@@ -1,0 +1,308 @@
+---
+import ArrowBack from "@assets/icons/home/arrow back.svg";
+import ArrowForward from "@assets/icons/home/arrow forward.svg";
+
+interface CarouselAction {
+  label: string;
+  href?: string;
+}
+
+interface CarouselSlide {
+  title: string;
+  description: string;
+  image: string;
+  alt: string;
+  action: CarouselAction;
+}
+
+const slides: CarouselSlide[] = [
+  {
+    title: "Nuestros puntos de atención",
+    description:
+      "Encuentra la sede más cercana a ti con infraestructura de vanguardia.",
+    image:
+      "https://lh3.googleusercontent.com/aida/AEtjO1WbLWEUtwhBMZR0usW5zAOpXl8LVEp47yIlQBVSyyM23NsZjfFM6jJqfp03Ps2atmewlrHRZNPP3SgvTOlM3BiMORk7IZAu-RpEvHBCBDmL8GbbxAWjILRl_H_TKZdJKmfvmY5zCX5a9G0I3fFJbgbFsgejXHv8kKfdcaL_rncOyNk7nVfUEHrM9Se6ALj0c2zU01cJpwoAXUlipQZdrDXad6z4vf3Mk7IeYZFmv7yRPzi5n6CKxobRoeI",
+    alt: "Centro médico de Kenko EPS en Bogotá",
+    action: {
+      label: "Ver sedes",
+      href: "/afiliados/puntos-de-atencion",
+    },
+  },
+  {
+    title: "Líderes en atención inclusiva",
+    description:
+      "Respetamos y somos líderes en atención a la mujer y población LGBTI con un enfoque humano.",
+    image:
+      "https://lh3.googleusercontent.com/aida/AEtjO1Wo_KEuU7kI8tEyEmX2buWW3fQGv5TdovHSEIt06e7EVt52y-S1tDNsShPTll5XfN9Sw0fqC7vZ13lle6mUKFVPAO6buandMXQQ9t_RPrgWRtDVG8HNWP-Mi2VwSyBwqG9JHhhtze3WY0Pp4apdUUmeK6WrEYfJxt36nhU80R2DtTKToKPZG_LCq-FgGSoPxdHosxeZH2DVMUpVHmSjWGWTsnlf2jX0gbHj1pmKdb-iSPtZbzJtnd7XiZOd",
+    alt: "Profesional de salud brindando atención inclusiva",
+    action: {
+      label: "Saber más",
+    },
+  },
+  {
+    title: "La segunda EPS preferida por los colombianos",
+    description:
+      "Comprometidos con la salud y el bienestar de millones de familias en todo el país.",
+    image:
+      "https://lh3.googleusercontent.com/aida/AEtjO1WFFkIvEfLGQGlph-rEDxVlVM7p9Od3lJaZCUZ7Ldv1Fw32zmmmWDoajIhIdxxHjcBdyngU-DBJrRWjJ-kIqoxbSD5-x5h_6bG_iyTi_vB34Pi2Xy4z4VYA3VcCN5lGRR19roDjldKkd1NuN-CofdpWotfCtnOrWPQOzjhUCnd1cPL7rHjaQqTkP3Xj9XBdrepQ0reS_l6kDKicW5YhzUaux2YyySIFco-YXd4zXvLqXM2RmK0X8A9Evw6d",
+    alt: "Familia colombiana compartiendo un momento de bienestar",
+    action: {
+      label: "Afíliate ya",
+    },
+  },
+];
+
+const carouselId = "inicio-carousel";
+---
+
+<home-carousel>
+  <section
+    id={carouselId}
+    class="group relative isolate min-h-[32rem] overflow-hidden bg-primary sm:min-h-[34rem] lg:h-[600px] lg:min-h-0"
+    aria-label="Destacados de Kenko EPS"
+    aria-roledescription="carrusel"
+    data-carousel
+    tabindex="0"
+  >
+    <div class="relative h-full min-h-[inherit]" aria-live="off">
+      {
+        slides.map((slide, index) => {
+          const isActive = index === 0;
+          const slideId = `${carouselId}-slide-${index + 1}`;
+
+          return (
+            <article
+              id={slideId}
+              class:list={[
+                "absolute inset-0 grid items-center transition-opacity duration-700 motion-reduce:transition-none",
+                isActive
+                  ? "z-10 opacity-100"
+                  : "pointer-events-none z-0 opacity-0",
+              ]}
+              aria-hidden={isActive ? "false" : "true"}
+              aria-label={`Diapositiva ${index + 1} de ${slides.length}: ${slide.title}`}
+              aria-roledescription="diapositiva"
+              data-carousel-slide
+              inert={isActive ? undefined : true}
+              role="group"
+            >
+              <img
+                alt={slide.alt}
+                class="absolute inset-0 h-full w-full object-cover"
+                decoding={isActive ? "sync" : "async"}
+                fetchpriority={isActive ? "high" : "low"}
+                loading={isActive ? "eager" : "lazy"}
+                src={slide.image}
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/65 to-primary/10 sm:via-primary/55 sm:to-transparent"
+                aria-hidden="true"
+              />
+
+              <div class="relative z-10 mx-auto w-full max-w-[1280px] px-6 lg:px-8">
+                <div class="max-w-xl text-on-primary">
+                  {isActive ? (
+                    <h1 class="font-display text-4xl font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl">
+                      {slide.title}
+                    </h1>
+                  ) : (
+                    <h2 class="font-display text-4xl font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl">
+                      {slide.title}
+                    </h2>
+                  )}
+                  <p class="mt-5 max-w-lg font-body text-lg leading-8 text-on-primary/90 sm:text-xl">
+                    {slide.description}
+                  </p>
+                  <div class="mt-8">
+                    {slide.action.href ? (
+                      <a
+                        class="inline-flex min-h-12 items-center justify-center rounded-lg bg-secondary px-7 py-3 font-display font-semibold text-on-secondary shadow-lg shadow-primary/20 transition hover:bg-secondary/90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary"
+                        href={slide.action.href}
+                      >
+                        {slide.action.label}
+                      </a>
+                    ) : (
+                      <button
+                        class="inline-flex min-h-12 cursor-not-allowed items-center justify-center rounded-lg bg-secondary/65 px-7 py-3 font-display font-semibold text-on-secondary/75"
+                        disabled
+                        title="Próximamente disponible"
+                        type="button"
+                      >
+                        {slide.action.label}
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+
+    <button
+      class="absolute top-1/2 left-4 z-20 inline-flex size-12 -translate-y-1/2 items-center justify-center rounded-full border border-on-primary/35 bg-primary/35 text-2xl text-on-primary opacity-100 backdrop-blur-sm transition hover:bg-primary/65 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary sm:opacity-0 sm:group-hover:opacity-100 lg:left-8"
+      aria-controls={`${carouselId}-slide-1`}
+      aria-label="Mostrar diapositiva anterior"
+      data-carousel-previous
+      type="button"
+    >
+      <ArrowBack aria-hidden="true" class="size-6" focusable="false" />
+    </button>
+    <button
+      class="absolute top-1/2 right-4 z-20 inline-flex size-12 -translate-y-1/2 items-center justify-center rounded-full border border-on-primary/35 bg-primary/35 text-2xl text-on-primary opacity-100 backdrop-blur-sm transition hover:bg-primary/65 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary sm:opacity-0 sm:group-hover:opacity-100 lg:right-8"
+      aria-controls={`${carouselId}-slide-1`}
+      aria-label="Mostrar diapositiva siguiente"
+      data-carousel-next
+      type="button"
+    >
+      <ArrowForward aria-hidden="true" class="size-6" focusable="false" />
+    </button>
+
+    <div
+      class="absolute bottom-7 left-1/2 z-20 flex -translate-x-1/2 items-center gap-3"
+      aria-label="Seleccionar diapositiva"
+      role="group"
+    >
+      {
+        slides.map((slide, index) => (
+          <button
+            class:list={[
+              "size-3 rounded-full border border-on-primary/70 bg-on-primary/55 transition hover:scale-125 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary",
+              index === 0 && "bg-secondary",
+            ]}
+            aria-controls={`${carouselId}-slide-${index + 1}`}
+            aria-current={index === 0 ? "true" : undefined}
+            aria-label={`Mostrar diapositiva ${index + 1}: ${slide.title}`}
+            data-carousel-dot
+            data-slide-index={index}
+            type="button"
+          />
+        ))
+      }
+    </div>
+
+    <p
+      class="sr-only"
+      aria-atomic="true"
+      aria-live="polite"
+      data-carousel-status
+    >
+      Diapositiva 1 de {slides.length}: {slides[0].title}
+    </p>
+  </section>
+</home-carousel>
+
+<style>
+  home-carousel {
+    display: block;
+  }
+
+  home-carousel > section:focus-visible {
+    outline: 2px solid var(--secondary);
+    outline-offset: -4px;
+  }
+
+  @media (hover: none) {
+    home-carousel [data-carousel-previous],
+    home-carousel [data-carousel-next] {
+      opacity: 1;
+    }
+  }
+</style>
+
+<script>
+  class HomeCarousel extends HTMLElement {
+    private currentSlide = 0;
+
+    connectedCallback() {
+      if (this.dataset.ready === "true") return;
+      this.dataset.ready = "true";
+
+      this.addEventListener("click", (event) => {
+        const target = event.target as Element | null;
+        if (!target) return;
+
+        if (target.closest<HTMLButtonElement>("[data-carousel-previous]")) {
+          this.showSlide(this.currentSlide - 1);
+          return;
+        }
+
+        if (target.closest<HTMLButtonElement>("[data-carousel-next]")) {
+          this.showSlide(this.currentSlide + 1);
+          return;
+        }
+
+        const dot = target.closest<HTMLButtonElement>("[data-carousel-dot]");
+        const slideIndex = dot?.dataset.slideIndex;
+        if (slideIndex !== undefined) this.showSlide(Number(slideIndex));
+      });
+
+      this.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          this.showSlide(this.currentSlide - 1);
+        }
+
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          this.showSlide(this.currentSlide + 1);
+        }
+      });
+    }
+
+    private showSlide(index: number) {
+      const slides = Array.from(
+        this.querySelectorAll<HTMLElement>("[data-carousel-slide]"),
+      );
+      const dots = Array.from(
+        this.querySelectorAll<HTMLButtonElement>("[data-carousel-dot]"),
+      );
+      const status = this.querySelector<HTMLElement>("[data-carousel-status]");
+      const previous = this.querySelector<HTMLButtonElement>(
+        "[data-carousel-previous]",
+      );
+      const next = this.querySelector<HTMLButtonElement>(
+        "[data-carousel-next]",
+      );
+
+      if (slides.length === 0) return;
+
+      this.currentSlide = (index + slides.length) % slides.length;
+
+      slides.forEach((slide, slideIndex) => {
+        const isActive = slideIndex === this.currentSlide;
+        slide.classList.toggle("z-10", isActive);
+        slide.classList.toggle("opacity-100", isActive);
+        slide.classList.toggle("z-0", !isActive);
+        slide.classList.toggle("opacity-0", !isActive);
+        slide.classList.toggle("pointer-events-none", !isActive);
+        slide.setAttribute("aria-hidden", String(!isActive));
+        slide.inert = !isActive;
+      });
+
+      dots.forEach((dot, dotIndex) => {
+        const isActive = dotIndex === this.currentSlide;
+        dot.classList.toggle("bg-secondary", isActive);
+        dot.classList.toggle("bg-on-primary/55", !isActive);
+        if (isActive) {
+          dot.setAttribute("aria-current", "true");
+        } else {
+          dot.removeAttribute("aria-current");
+        }
+      });
+
+      const activeSlide = slides[this.currentSlide];
+      const label = activeSlide.getAttribute("aria-label");
+      if (label && status) status.textContent = label;
+
+      const activeSlideId = activeSlide.id;
+      previous?.setAttribute("aria-controls", activeSlideId);
+      next?.setAttribute("aria-controls", activeSlideId);
+    }
+  }
+
+  if (!customElements.get("home-carousel")) {
+    customElements.define("home-carousel", HomeCarousel);
+  }
+</script>
