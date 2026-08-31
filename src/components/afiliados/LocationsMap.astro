@@ -1,0 +1,25 @@
+---
+interface Props {
+  lat: number;
+  lng: number;
+  address: string;
+  city: string;
+}
+
+const { lat, lng, address, city } = Astro.props;
+
+// Generate Google Maps embed URL
+const mapUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.8417469381777!2d${lng}!3d${lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s!2s${lat},${lng}!5e0!3m2!1ses!2sco!4v1234567890`;
+---
+
+<div class="h-full min-h-[220px] w-full overflow-hidden rounded-xl border border-zinc-200">
+  <iframe
+    title={`Mapa de ${city} - ${address}`}
+    width="100%"
+    height="100%"
+    loading="lazy"
+    allowfullscreen=""
+    referrerpolicy="no-referrer-when-downgrade"
+    src={mapUrl}
+  ></iframe>
+</div>
