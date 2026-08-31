@@ -29,3 +29,6 @@ bun.lock
 
 .agents
 .codex
+.vscode
+test-results
+playwright-report
