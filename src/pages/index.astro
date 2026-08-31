@@ -1,9 +1,16 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import BentoGrid from "@components/home/BentoGrid.astro";
+import Carousel from "@components/home/Carousel.astro";
+import Team from "@components/home/Team.astro";
+import TrustAndStats from "@components/home/TrustAndStats.astro";
+
 const title = "Kenko EPS - Inicio";
 ---
 
 <Layout title={title}>
-  <h1>Bienvenido a Kenko EPS</h1>
-  <p>Esta es la página de inicio de Kenko EPS.</p>
+  <Carousel />
+  <BentoGrid />
+  <Team />
+  <TrustAndStats />
 </Layout>
