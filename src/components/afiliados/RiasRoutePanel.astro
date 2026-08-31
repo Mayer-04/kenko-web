@@ -224,14 +224,14 @@ const {
 </div>
 
 <script>
-  const panels = document.querySelectorAll("[data-rias-panel]");
+  const panels = document.querySelectorAll<HTMLElement>("[data-rias-panel]");
 
-  panels.forEach((panel) => {
-    const buttons = panel.querySelectorAll("[data-route-trigger]");
-    const sections = panel.querySelectorAll("[data-route-panel]");
+  panels.forEach((panel: HTMLElement) => {
+    const buttons = panel.querySelectorAll<HTMLButtonElement>("[data-route-trigger]");
+    const sections = panel.querySelectorAll<HTMLElement>("[data-route-panel]");
 
-    const setActiveRoute = (routeId) => {
-      buttons.forEach((button) => {
+    const setActiveRoute = (routeId: string) => {
+      buttons.forEach((button: HTMLButtonElement) => {
         const isActive = button.dataset.routeId === routeId;
         button.setAttribute("aria-selected", String(isActive));
         button.setAttribute("tabindex", isActive ? "0" : "-1");
@@ -241,26 +241,26 @@ const {
         button.classList.toggle("hover:bg-content/5", !isActive);
       });
 
-      sections.forEach((section) => {
+      sections.forEach((section: HTMLElement) => {
         const isActive = section.dataset.routeId === routeId;
         section.hidden = !isActive;
         section.setAttribute("aria-hidden", String(!isActive));
       });
     };
 
-    buttons.forEach((button, index) => {
+    buttons.forEach((button: HTMLButtonElement) => {
       button.addEventListener("click", () => {
-        setActiveRoute(button.dataset.routeId);
+        setActiveRoute(button.dataset.routeId ?? "");
       });
 
-      button.addEventListener("keydown", (event) => {
+      button.addEventListener("keydown", (event: KeyboardEvent) => {
         if (!["ArrowDown", "ArrowUp", "Home", "End", "ArrowRight", "ArrowLeft"].includes(event.key)) {
           return;
         }
 
         event.preventDefault();
 
-        const items = [...buttons];
+        const items = Array.from(buttons);
         const currentIndex = items.indexOf(button);
 
         let nextIndex = currentIndex;
@@ -283,7 +283,10 @@ const {
 
         const nextButton = items[nextIndex];
         nextButton?.focus();
-        setActiveRoute(nextButton.dataset.routeId);
+
+        if (nextButton?.dataset.routeId) {
+          setActiveRoute(nextButton.dataset.routeId);
+        }
       });
     });
   });
