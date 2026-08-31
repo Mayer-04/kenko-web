@@ -1,0 +1,293 @@
+---
+import ChevronRightIcon from "../../assets/icons/rias/chevron_right.svg";
+
+interface RouteItem {
+  id: string;
+  label: string;
+  title: string;
+  description: string;
+  interventions: string[];
+  note?: string;
+}
+
+interface Props {
+  routes?: RouteItem[];
+  defaultRouteId?: string;
+}
+
+const {
+  routes = [
+    {
+      id: "cancer-de-mama",
+      label: "Ruta Cáncer de Mama",
+      title: "Ruta Cáncer de Mama",
+      description:
+        "Realizamos jornadas de mamografías por toda Antioquia con acompañamiento especial y transporte. En algunas jornadas se ofrecen servicios de citología para detectar tempranamente el cáncer de mama y de cuello uterino.",
+      interventions: [
+        "Jornadas de mamografías por toda Antioquia.",
+        "Atención especializada, centrada e integral.",
+        "No requieren autorizaciones previas.",
+        "Articulación con hospitales de I nivel y entes territoriales.",
+      ],
+      note:
+        "Nuestros usuarios diagnosticados con cáncer de mama no deben acudir a medicina general para iniciar tratamiento y cuentan con atención especializada y oportuna.",
+    },
+    {
+      id: "vih",
+      label: "Ruta VIH",
+      title: "Ruta VIH",
+      description:
+        "Nuestra ruta VIH ofrece atención ambulatoria, urgencias, hospitalización, transporte asistencial, cuidados paliativos, servicio farmacéutico, toma de muestras, medicina domiciliaria y telemedicina para la población en riesgo o con diagnóstico confirmado.",
+      interventions: [
+        "Atención ambulatoria, urgencias y hospitalización.",
+        "Transporte asistencial básico medicalizado.",
+        "Cuidados paliativos y servicio farmacéutico.",
+        "Toma de muestras de laboratorio y telemedicina.",
+      ],
+      note:
+        "Los canales de atención están habilitados para acompañar la continuidad del tratamiento y la atención integral.",
+    },
+    {
+      id: "visual",
+      label: "Ruta Visual",
+      title: "Ruta Visual",
+      description:
+        "La ruta visual incluye consulta externa, apoyo diagnóstico, quirúrgico, suministros, banco de sangre y tejidos, y complementos para garantizar la atención integral de afecciones oftalmológicas.",
+      interventions: [
+        "Consulta externa de optometría y oftalmología.",
+        "Apoyo diagnóstico y complementación terapéutica.",
+        "Cirugía oftalmológica, lentes, monturas y prótesis oculares.",
+        "Banco de sangre y tejidos con suministro de hemoderivados.",
+      ],
+      note:
+        "La IPS encargada de la atención es por municipio de afiliación del usuario y no por el municipio de residencia. No presta urgencias.",
+    },
+    {
+      id: "mental",
+      label: "Ruta Mental",
+      title: "Ruta Mental",
+      description:
+        "Para Kenko EPS es importante garantizar la atención de su población mediante la Ruta Mental, con integralidad, accesibilidad, oportunidad y pertinencia en su red de prestadores.",
+      interventions: [
+        "Urgencias, hospitalización y psiquiatría.",
+        "Psicología, neuropsicología y terapia ocupacional.",
+        "Laboratorio, ayudas diagnósticas y trabajo social.",
+        "Dispensación de medicamentos en Antioquia.",
+      ],
+      note:
+        "La ruta incluye criterios de ingreso y coordinación entre el nivel primario y complementario para gestionar el riesgo y lograr resultados en salud mental.",
+    },
+    {
+      id: "autoinmune",
+      label: "Ruta Autoinmune",
+      title: "Ruta Autoinmune",
+      description:
+        "La ruta autoinmune brinda atención integral con urgencias, hospitalización, transporte, reemplazos articulares, ortesis, imagenología, laboratorio, albergues, vacunación y terapias biológicas.",
+      interventions: [
+        "Urgencias y hospitalización.",
+        "Reemplazos articulares y ortesis.",
+        "Laboratorio, imagenología y albergues.",
+        "Terapias biológicas y medicamentos.",
+      ],
+      note:
+        "Cuenta con apoyo de personal de salud como fisiatría, fisioterapia, enfermería, psicología, trabajo social y farmacéutico.",
+    },
+    {
+      id: "renal",
+      label: "Ruta Renal",
+      title: "Ruta Renal",
+      description:
+        "La ruta renal ofrece atención médica integral para la enfermedad renal crónica, su nefroprotección, terapia de reemplazo renal, TMND y cuidado paliativo, y en algunos casos, trasplante renal.",
+      interventions: [
+        "Enfermedad renal crónica y nefroprotección.",
+        "Terapia de reemplazo renal y cuidado paliativo.",
+        "Médico experto, nefrólogo y psicología.",
+        "Endocrinología, nutrición y cirugía vascular.",
+      ],
+      note:
+        "La ruta está orientada a tratamiento integral para ERC, hipertensión y diabetes como precursoras de la enfermedad renal.",
+    },
+    {
+      id: "hemofilia",
+      label: "Ruta Hemofilia",
+      title: "Ruta Hemofilia",
+      description:
+        "La ruta de hemofilia ofrece atención ambulatoria, domiciliaria, urgencias, diagnóstico, terapéutica, laboratorio, eventos de sangrado, remisión y servicio farmacéutico con mayor cobertura para la población con esta condición.",
+      interventions: [
+        "Atención ambulatoria y domiciliaria.",
+        "Apoyo de urgencias, diagnóstico y terapéutico.",
+        "Especialidades complementarias y laboratorio.",
+        "Suministro de factor antihemofílico y albergue.",
+      ],
+      note:
+        "Sus propósitos superiores incluyen caracterización, intervención individual, seguimiento del riesgo y gestión de eficiencias y gastos evitables.",
+    },
+    {
+      id: "cancer-de-cervix",
+      label: "Ruta Cáncer de Cérvix",
+      title: "Ruta Cáncer de Cérvix",
+      description:
+        "La ruta de cáncer de cérvix ofrece valoración por especialistas, cirugía, tratamiento neoadyuvante, rehabilitación y cuidados paliativos con seguimiento directo del diagnóstico y del tratamiento.",
+      interventions: [
+        "Valoración por especialistas y cirugía.",
+        "Tratamiento neoadyuvante y rehabilitación.",
+        "Cuidados paliativos y soporte integral.",
+        "Seguimiento según el plan del tratamiento.",
+      ],
+      note:
+        "El acceso al programa se realiza a partir del diagnóstico, sin trámite adicional, y se recomienda seguir cuidadosamente las indicaciones médicas y de enfermería.",
+    },
+  ],
+  defaultRouteId = "cancer-de-mama",
+} = Astro.props;
+---
+
+<div data-rias-panel class="overflow-hidden rounded-[20px] border border-content/10 bg-background shadow-[0_12px_30px_rgba(24,24,27,0.08)]" aria-label="Panel de rutas integrales de atención en salud">
+  <div class="flex flex-col md:flex-row">
+    <nav class="w-full md:w-[32%] lg:w-[28%] border-b border-content/10 bg-slate-100/80 md:border-b-0 md:border-r" aria-label="Navegación de rutas" role="tablist" aria-orientation="vertical">
+      {
+        routes.map((route) => {
+          const isActive = route.id === defaultRouteId;
+
+          return (
+            <button
+              type="button"
+              data-route-trigger
+              data-route-id={route.id}
+              id={`${route.id}-tab`}
+              role="tab"
+              aria-selected={isActive ? "true" : "false"}
+              aria-controls={`${route.id}-panel`}
+              tabindex={isActive ? 0 : -1}
+              class:list={[
+                "flex w-full items-center justify-between gap-3 border-b border-content/10 px-4 py-4 text-left text-sm font-semibold transition-colors duration-200 ease-out last:border-b-0 md:px-5 md:text-base",
+                isActive
+                  ? "bg-primary text-on-primary"
+                  : "text-content/80 hover:bg-content/5 hover:text-content",
+              ]}
+            >
+              <span>{route.label}</span>
+              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-current/20" aria-hidden="true">
+                <ChevronRightIcon class:list={["h-4 w-4 transition-transform duration-200", isActive ? "text-on-primary" : "text-current"]} />
+              </span>
+            </button>
+          );
+        })
+      }
+    </nav>
+
+    <div class="w-full flex-1 bg-background p-5 md:p-7 lg:p-8">
+      {
+        routes.map((route) => {
+          const isActive = route.id === defaultRouteId;
+
+          return (
+            <article
+              data-route-panel
+              data-route-id={route.id}
+              id={`${route.id}-panel`}
+              role="tabpanel"
+              aria-labelledby={`${route.id}-tab`}
+              aria-hidden={isActive ? "false" : "true"}
+              hidden={!isActive}
+              class="space-y-4"
+            >
+              <h3 class="font-display text-2xl font-bold tracking-[-0.04em] text-primary md:text-[28px]">
+                {route.title}
+              </h3>
+
+              <p class="font-body text-base leading-7 text-content/80 md:text-lg">{route.description}</p>
+
+              <div>
+                <h4 class="mb-3 font-display text-lg font-semibold text-primary md:text-xl">Intervenciones clave:</h4>
+                <ul class="space-y-2 pl-5 font-body text-base leading-7 text-content/80">
+                  {route.interventions.map((intervention) => (
+                    <li class="list-disc marker:text-primary">{intervention}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="mt-6 flex gap-3 rounded-2xl border border-primary/15 bg-primary/5 p-4 text-sm leading-6 text-content/80 md:text-base">
+                <span class="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary text-on-primary" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current" aria-hidden="true">
+                    <path d="M12 2a10 10 0 1 0 10 10A10.01 10.01 0 0 0 12 2Zm1 15h-2v-2h2Zm0-4h-2V7h2Z"/>
+                  </svg>
+                </span>
+                <p>{route.note}</p>
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+  </div>
+</div>
+
+<script>
+  const panels = document.querySelectorAll<HTMLElement>("[data-rias-panel]");
+
+  panels.forEach((panel: HTMLElement) => {
+    const buttons = panel.querySelectorAll<HTMLButtonElement>("[data-route-trigger]");
+    const sections = panel.querySelectorAll<HTMLElement>("[data-route-panel]");
+
+    const setActiveRoute = (routeId: string) => {
+      buttons.forEach((button: HTMLButtonElement) => {
+        const isActive = button.dataset.routeId === routeId;
+        button.setAttribute("aria-selected", String(isActive));
+        button.setAttribute("tabindex", isActive ? "0" : "-1");
+        button.classList.toggle("bg-primary", isActive);
+        button.classList.toggle("text-on-primary", isActive);
+        button.classList.toggle("text-content/80", !isActive);
+        button.classList.toggle("hover:bg-content/5", !isActive);
+      });
+
+      sections.forEach((section: HTMLElement) => {
+        const isActive = section.dataset.routeId === routeId;
+        section.hidden = !isActive;
+        section.setAttribute("aria-hidden", String(!isActive));
+      });
+    };
+
+    buttons.forEach((button: HTMLButtonElement) => {
+      button.addEventListener("click", () => {
+        setActiveRoute(button.dataset.routeId ?? "");
+      });
+
+      button.addEventListener("keydown", (event: KeyboardEvent) => {
+        if (!["ArrowDown", "ArrowUp", "Home", "End", "ArrowRight", "ArrowLeft"].includes(event.key)) {
+          return;
+        }
+
+        event.preventDefault();
+
+        const items = Array.from(buttons);
+        const currentIndex = items.indexOf(button);
+
+        let nextIndex = currentIndex;
+
+        if (event.key === "ArrowDown" || event.key === "ArrowRight") {
+          nextIndex = (currentIndex + 1) % items.length;
+        }
+
+        if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
+          nextIndex = (currentIndex - 1 + items.length) % items.length;
+        }
+
+        if (event.key === "Home") {
+          nextIndex = 0;
+        }
+
+        if (event.key === "End") {
+          nextIndex = items.length - 1;
+        }
+
+        const nextButton = items[nextIndex];
+        nextButton?.focus();
+
+        if (nextButton?.dataset.routeId) {
+          setActiveRoute(nextButton.dataset.routeId);
+        }
+      });
+    });
+  });
+</script>
