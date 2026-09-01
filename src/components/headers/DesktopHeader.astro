@@ -3,8 +3,6 @@ import Logo from "@assets/icons/logo-kenko.svg";
 import DesktopDropdown from "@components/headers/DesktopDropdown.astro";
 import IngresaButton from "@components/headers/IngresaButton.astro";
 import {
-  aboutItems,
-  aboutMeta,
   affiliateItems,
   affiliateMeta,
 } from "@components/headers/navigation";
@@ -53,12 +51,12 @@ import {
             />
           </li>
           <li>
-            <DesktopDropdown
-              id="nosotros-desktop"
-              label="Nosotros"
-              meta={aboutMeta}
-              items={aboutItems}
-            />
+            <a
+              href="/nosotros"
+              class="inline-flex min-h-10 cursor-pointer items-center rounded-lg px-3.5 py-2 font-display text-[16px] font-semibold text-content transition hover:bg-primary/5 hover:text-primary focus-visible:bg-primary/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary lg:px-4 lg:text-[17px]"
+            >
+              Nosotros
+            </a>
           </li>
         </ul>
       </nav>

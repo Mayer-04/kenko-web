@@ -8,9 +8,17 @@
   --secondary: #ffb51b;
   --accent: #1e5bd7;
 
+  --about-primary: #466883;
+  --about-secondary: #dbbc78;
+  --about-accent: #6386cd;
+
   --on-primary: #f9fafb;
   --on-secondary: #18181b;
   --on-accent: #f9fafb;
+
+  --on-about-primary: #f9fafb;
+  --on-about-secondary: #18181b;
+  --on-about-accent: #f9fafb;
 }
 
 @theme inline {
@@ -26,6 +34,13 @@
   --color-on-primary: var(--on-primary);
   --color-on-secondary: var(--on-secondary);
   --color-on-accent: var(--on-accent);
+
+  --color-about-primary: var(--about-primary);
+  --color-about-secondary: var(--about-secondary);
+  --color-about-accent: var(--about-accent);
+  --color-on-about-primary: var(--on-about-primary);
+  --color-on-about-secondary: var(--on-about-secondary);
+  --color-on-about-accent: var(--on-about-accent);
 }
 
 @layer base {
