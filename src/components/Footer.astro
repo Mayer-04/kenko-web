@@ -1,13 +1,38 @@
 ---
 import { Image } from "astro:assets";
 
-import Logo from "@assets/icons/kenko.svg";
+import KenkoLimpio from "@assets/icons/kenko_limpio.svg";
 import SupersaludLogo from "@assets/icons/logo-supersalud.svg";
 import minSaludLogo from "@assets/images/min-salud-logo.png";
 import { affiliateItems } from "@components/header/navigation";
+
+const creators = [
+  {
+    name: "Mayer Andres Chaves",
+    handle: "Mayer-04",
+    href: "https://github.com/Mayer-04",
+    initial: "M",
+  },
+  {
+    name: "Juan Pablo Rojas",
+    handle: "jprojas87",
+    href: "https://github.com/jprojas87",
+    initial: "J",
+  },
+  {
+    name: "José Rodriguez",
+    handle: "jdanrr",
+    href: "https://github.com/jdanrr",
+    initial: "J",
+  },
+];
 ---
 
-<footer class="bg-white px-4 py-10 sm:px-6 sm:py-14 lg:px-10">
+<footer
+  class="relative w-full overflow-hidden bg-[#0d2136] text-on-primary"
+  aria-labelledby="footer-title"
+>
+  {/* Fondo degradado + meshes */}
   <div
     class="mx-auto max-w-[1280px] rounded-[1.75rem] border border-content/80 bg-linear-to-br from-primary to-[#193a56] px-6 py-8 text-on-primary sm:px-10 sm:py-10 lg:px-12 lg:py-12"
   >
