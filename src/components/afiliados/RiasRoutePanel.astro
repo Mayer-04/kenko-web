@@ -160,7 +160,7 @@ const {
               aria-controls={`${route.id}-panel`}
               tabindex={isActive ? 0 : -1}
               class:list={[
-                "flex w-full items-center justify-between gap-3 border-b border-content/10 px-4 py-4 text-left text-sm font-semibold transition-colors duration-200 ease-out last:border-b-0 md:px-5 md:text-base",
+                "flex w-full cursor-pointer items-center justify-between gap-3 border-b border-content/10 px-4 py-4 text-left text-sm font-semibold transition-colors duration-200 ease-out last:border-b-0 md:px-5 md:text-base",
                 isActive
                   ? "bg-secondary text-white"
                   : "text-content/80 hover:bg-content/5 hover:text-content",
@@ -168,7 +168,7 @@ const {
             >
               <span>{route.label}</span>
               <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-current/20" aria-hidden="true">
-                <ChevronRightIcon class:list={["h-4 w-4 transition-transform duration-200", isActive ? "text-white" : "text-current"]} />
+                <ChevronRightIcon class:list={["h-4 w-4 cursor-pointer transition-transform duration-200", isActive ? "text-white" : "text-current"]} />
               </span>
             </button>
           );
