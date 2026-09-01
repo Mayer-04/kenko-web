@@ -3,8 +3,8 @@ import Layout from "@layouts/Layout.astro";
 import Dropdown from "@components/afiliados/Dropdown.astro";
 import RiasRoutePanel from "@components/afiliados/RiasRoutePanel.astro";
 import ChevronIcon from "../../assets/icons/rias/chevron_right.svg";
-import doctorWorkingImage from "../../assets/scrapings-content/Savia-salud Afiliados/imagenes/doctor-haciendo-su-trabajo-oficina-pediatria.jpg";
-import doctorReviewingImage from "../../assets/scrapings-content/Savia-salud Afiliados/imagenes/joven-doctora-usando-estetoscopio-escuchar-latidos-corazon-paciente-toma-doctora-dandole-chequeo-paciente-varon.jpg";
+import doctorsImage from "../../assets/scrapings-content/Savia-salud Afiliados/imagenes/doctores.webp";
+import medicineImage from "../../assets/scrapings-content/Savia-salud Afiliados/imagenes/medicina.webp";
 
 const markdownModule = await import(
   "../../assets/scrapings-content/Savia-salud Afiliados/afiliados-savia.md?raw"
@@ -195,8 +195,8 @@ const programs = [
       <div class="md:col-span-5">
         <div class="overflow-hidden rounded-[20px] border border-content/10 bg-background shadow-[0_12px_30px_rgba(24,24,27,0.08)]">
           <img
-            src={doctorWorkingImage.src}
-            alt="Doctor realizando trabajo en una oficina de pediatría"
+            src={doctorsImage.src}
+            alt="Equipo de doctores brindando atención en salud"
             class="h-72 w-full object-cover md:h-80"
           />
         </div>
@@ -207,8 +207,8 @@ const programs = [
       <div class="md:order-2 md:col-span-5">
         <div class="overflow-hidden rounded-[20px] border border-content/10 bg-background shadow-[0_12px_30px_rgba(24,24,27,0.08)]">
           <img
-            src={doctorReviewingImage.src}
-            alt="Doctora revisando el corazón de un paciente con un estetoscopio"
+            src={medicineImage.src}
+            alt="Profesional de la salud y elementos de medicina"
             class="h-72 w-full object-cover md:h-80"
           />
         </div>
