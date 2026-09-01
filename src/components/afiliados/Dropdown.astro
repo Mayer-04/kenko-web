@@ -9,6 +9,7 @@ interface Props extends HTMLAttributes<"div"> {
   chevronIcon?: any;
   defaultOpen?: boolean;
   iconStyle?: string;
+  iconClass?: string;
 }
 
 const {
@@ -19,11 +20,13 @@ const {
   chevronIcon: ChevronIcon,
   defaultOpen = false,
   iconStyle = "background-color: var(--primary);",
+  iconClass = "",
   ...rest
 } = Astro.props;
 
 const panelId = `${id}-panel`;
 const triggerId = `${id}-trigger`;
+const initialOpen = false;
 ---
 
 <div
@@ -36,8 +39,8 @@ const triggerId = `${id}-trigger`;
     <button
       id={triggerId}
       type="button"
-      class="flex w-full items-center justify-between gap-4 px-4 py-4 text-left transition duration-200 hover:bg-primary/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary md:px-5"
-      aria-expanded={defaultOpen ? "true" : "false"}
+      class="flex w-full cursor-pointer items-center justify-between gap-4 px-4 py-4 text-left transition duration-200 hover:bg-primary/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary md:px-5"
+      aria-expanded={initialOpen ? "true" : "false"}
       aria-controls={panelId}
       data-dropdown-trigger
     >
@@ -49,13 +52,16 @@ const triggerId = `${id}-trigger`;
               style={iconStyle}
               aria-hidden="true"
             >
-              <Icon class="size-5 md:size-6" />
+              <Icon class:list={["size-5 md:size-6", iconClass]} />
             </span>
           )
         }
 
         <span class="min-w-0">
-          <span class="block font-display text-lg font-semibold text-content md:text-xl">{title}</span>
+          <span
+            class="block font-display text-lg font-semibold text-content md:text-xl"
+            >{title}</span
+          >
           {
             subtitle && (
               <span class="mt-1 block font-body text-sm leading-5 text-content/70 md:text-base">
@@ -67,7 +73,7 @@ const triggerId = `${id}-trigger`;
       </span>
 
       <span
-        class="flex size-9 shrink-0 items-center justify-center rounded-full border border-content/10 bg-background text-content/60"
+        class="flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-content/10 bg-background text-primary"
         aria-hidden="true"
       >
         {
@@ -87,7 +93,7 @@ const triggerId = `${id}-trigger`;
               stroke-linejoin="round"
               data-dropdown-chevron
             >
-              <path d="m6 9 6 6 6-6"></path>
+              <path d="m6 9 6 6 6-6" />
             </svg>
           )
         }
@@ -97,13 +103,14 @@ const triggerId = `${id}-trigger`;
 
   <div
     id={panelId}
-    class="grid overflow-hidden px-4 pb-4 transition-all duration-200 ease-out md:px-5"
+    class="grid grid-rows-[0fr] overflow-hidden opacity-0 transition-[grid-template-rows,opacity] duration-300 ease-out"
     data-dropdown-panel
-    aria-hidden={defaultOpen ? "false" : "true"}
-    hidden={!defaultOpen}
+    aria-hidden={initialOpen ? "false" : "true"}
   >
-    <div class="border-t border-content/10 pt-4">
-      <slot />
+    <div class="min-h-0 overflow-hidden px-4 pb-4 md:px-5">
+      <div class="border-t border-content/10 pt-4">
+        <slot />
+      </div>
     </div>
   </div>
 </div>
@@ -119,9 +126,15 @@ const triggerId = `${id}-trigger`;
 
       dropdown.dataset.dropdownInitialized = "true";
 
-      const trigger = dropdown.querySelector<HTMLButtonElement>("[data-dropdown-trigger]");
-      const panel = dropdown.querySelector<HTMLElement>("[data-dropdown-panel]");
-      const chevron = dropdown.querySelector<HTMLElement>("[data-dropdown-chevron]");
+      const trigger = dropdown.querySelector<HTMLButtonElement>(
+        "[data-dropdown-trigger]",
+      );
+      const panel = dropdown.querySelector<HTMLElement>(
+        "[data-dropdown-panel]",
+      );
+      const chevron = dropdown.querySelector<HTMLElement>(
+        "[data-dropdown-chevron]",
+      );
 
       if (!trigger || !panel || !chevron) {
         return;
@@ -132,7 +145,11 @@ const triggerId = `${id}-trigger`;
         dropdown.dataset.open = expanded;
         trigger.setAttribute("aria-expanded", expanded);
         panel.setAttribute("aria-hidden", String(!isOpen));
-        panel.hidden = !isOpen;
+        panel.inert = !isOpen;
+        panel.classList.toggle("grid-rows-[1fr]", isOpen);
+        panel.classList.toggle("grid-rows-[0fr]", !isOpen);
+        panel.classList.toggle("opacity-100", isOpen);
+        panel.classList.toggle("opacity-0", !isOpen);
         chevron.style.transform = isOpen ? "rotate(180deg)" : "rotate(0deg)";
       };
 
@@ -140,20 +157,29 @@ const triggerId = `${id}-trigger`;
 
       trigger.addEventListener("click", () => {
         const isOpen = dropdown.dataset.open === "true";
-        const allOpen = document.querySelectorAll<HTMLElement>("[data-dropdown]");
+        const allOpen =
+          document.querySelectorAll<HTMLElement>("[data-dropdown]");
 
         allOpen.forEach((otherDropdown) => {
           if (otherDropdown !== dropdown) {
-            const otherTrigger = otherDropdown.querySelector<HTMLButtonElement>("[data-dropdown-trigger]");
-            const otherPanel = otherDropdown.querySelector<HTMLElement>("[data-dropdown-panel]");
-            const otherChevron = otherDropdown.querySelector<HTMLElement>("[data-dropdown-chevron]");
+            const otherTrigger = otherDropdown.querySelector<HTMLButtonElement>(
+              "[data-dropdown-trigger]",
+            );
+            const otherPanel = otherDropdown.querySelector<HTMLElement>(
+              "[data-dropdown-panel]",
+            );
+            const otherChevron = otherDropdown.querySelector<HTMLElement>(
+              "[data-dropdown-chevron]",
+            );
 
             if (otherTrigger && otherPanel && otherChevron) {
               otherDropdown.dataset.open = "false";
               otherDropdown.dataset.dropdownInitialized = "true";
               otherTrigger.setAttribute("aria-expanded", "false");
               otherPanel.setAttribute("aria-hidden", "true");
-              otherPanel.hidden = true;
+              otherPanel.inert = true;
+              otherPanel.classList.remove("grid-rows-[1fr]", "opacity-100");
+              otherPanel.classList.add("grid-rows-[0fr]", "opacity-0");
               otherChevron.style.transform = "rotate(0deg)";
             }
           }
@@ -165,7 +191,9 @@ const triggerId = `${id}-trigger`;
   };
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initializeDropdowns, { once: true });
+    document.addEventListener("DOMContentLoaded", initializeDropdowns, {
+      once: true,
+    });
   } else {
     initializeDropdowns();
   }

@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Login - Kenko Health</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-primary-fixed-variant": "#224a6b",
+              "on-background": "#1b1b1e",
+              "on-primary-container": "#92b8de",
+              "on-primary": "#ffffff",
+              "primary-fixed-dim": "#a5caf1",
+              tertiary: "#422c00",
+              "surface-container": "#f0edf1",
+              "on-surface": "#1b1b1e",
+              "on-error": "#ffffff",
+              surface: "#fbf8fc",
+              "outline-variant": "#c2c7ce",
+              "on-primary-fixed": "#001d33",
+              primary: "#013252",
+              outline: "#72777e",
+              "surface-variant": "#e4e1e6",
+              "on-secondary-container": "#6a4800",
+              background: "#fbf8fc",
+              "on-error-container": "#93000a",
+              "secondary-fixed": "#ffdead",
+              "on-surface-variant": "#42474e",
+              "error-container": "#ffdad6",
+              "on-secondary-fixed-variant": "#604100",
+              error: "#ba1a1a",
+              "on-tertiary-fixed": "#281900",
+              "on-tertiary-fixed-variant": "#5e4106",
+              "surface-bright": "#fbf8fc",
+              "inverse-primary": "#a5caf1",
+              "tertiary-fixed-dim": "#ebc07b",
+              "tertiary-container": "#5e4106",
+              "secondary-fixed-dim": "#ffba39",
+              "surface-tint": "#3c6184",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-high": "#eae7eb",
+              "inverse-on-surface": "#f3f0f4",
+              "on-secondary-fixed": "#281900",
+              "primary-fixed": "#cee5ff",
+              "on-tertiary-container": "#d7ae6b",
+              "surface-container-low": "#f6f2f7",
+              "primary-container": "#21496a",
+              "on-secondary": "#ffffff",
+              "surface-dim": "#dcd9dd",
+              "inverse-surface": "#303033",
+              "tertiary-fixed": "#ffdeac",
+              "on-tertiary": "#ffffff",
+              "surface-container-highest": "#e4e1e6",
+              secondary: "#7e5700",
+              "secondary-container": "#fdb318",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              xs: "4px",
+              "margin-desktop": "64px",
+              base: "8px",
+              md: "24px",
+              sm: "12px",
+              xl: "80px",
+              gutter: "24px",
+              lg: "48px",
+              "margin-mobile": "16px",
+            },
+            fontFamily: {
+              "headline-lg-mobile": ["Figtree"],
+              "display-lg": ["Figtree"],
+              "headline-lg": ["Figtree"],
+              "headline-md": ["Figtree"],
+              "body-md": ["Manrope"],
+              "body-lg": ["Manrope"],
+              "label-md": ["Manrope"],
+              caption: ["Manrope"],
+            },
+            fontSize: {
+              "headline-lg-mobile": [
+                "28px",
+                {
+                  lineHeight: "36px",
+                  fontWeight: "700",
+                },
+              ],
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "56px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "40px",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-md": [
+                "24px",
+                {
+                  lineHeight: "32px",
+                  fontWeight: "600",
+                },
+              ],
+              "body-md": [
+                "16px",
+                {
+                  lineHeight: "24px",
+                  fontWeight: "400",
+                },
+              ],
+              "body-lg": [
+                "18px",
+                {
+                  lineHeight: "28px",
+                  fontWeight: "400",
+                },
+              ],
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  fontWeight: "600",
+                },
+              ],
+              caption: [
+                "12px",
+                {
+                  lineHeight: "16px",
+                  fontWeight: "400",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&family=Manrope:wght@400;500;600&display=swap");
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&family=Manrope:wght@400;500;600&display=swap"
+      data-snapdom="injected-import"
+    /></head
+  >
+  <body
+    class="text-on-background font-body-md flex min-h-screen items-center justify-center bg-background"
+  >
+    <div
+      class="px-margin-mobile md:px-margin-desktop py-lg md:py-xl bg-surface-container-lowest mx-auto grid w-full max-w-6xl grid-cols-1 gap-0 overflow-hidden rounded-xl shadow-[0_4px_20px_rgba(24,24,27,0.05)] md:grid-cols-2"
+    >
+      <!-- Form Section -->
+      <div class="p-md md:p-xl flex h-full flex-col justify-center">
+        <div class="mb-lg">
+          <img
+            alt="Kenko Health Logo"
+            class="mb-md h-16 w-auto"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3aL1vyPgWD7_rfQTs1rrl_FQs2m_Y4-GVPR8_JqhmU-8HIkC4laQ2WfLVgdMyLlQ6UZfFMu-gODfJt_PTNQ1pjpvLrmHwklkkVQsW86L1fkLa2hjMEmFGBUx2vc57d8s_EzqNsF0svPuRCkealEm38pBzN4cPudufzjhjGxTpXzCgCL6oH86qlVCxTfU8gwOcsWk0ApdTRpf5LizoY5SdD--Cs22ozcrpD2CV65b-4ZuGrZ4e1Wh7K73RLOgiyzlo-Q"
+          />
+          <h1
+            class="font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-xs text-primary"
+          >
+            Bienvenido
+          </h1>
+          <p class="font-body-md text-body-md text-on-surface-variant">
+            Inicie sesión en su portal para pacientes.
+          </p>
+        </div>
+        <form class="space-y-md">
+          <div>
+            <label
+              class="font-label-md text-label-md text-on-surface mb-base block"
+              for="username">Nombre de usuario o identificación</label
+            >
+            <div class="relative">
+              <span
+                class="pl-sm text-outline pointer-events-none absolute inset-y-0 left-0 flex items-center"
+              >
+                <span class="material-symbols-outlined">person</span>
+              </span>
+              <input
+                class="pr-sm py-sm bg-surface-container-low border-outline-variant font-body-md text-body-md text-on-surface w-full rounded-lg border pl-10 transition-shadow focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none"
+                id="username"
+                placeholder="Ingrese su identificación"
+                type="text"
+              />
+            </div>
+          </div>
+          <div>
+            <label
+              class="font-label-md text-label-md text-on-surface mb-base block"
+              for="password">Contraseña</label
+            >
+            <div class="relative">
+              <span
+                class="pl-sm text-outline pointer-events-none absolute inset-y-0 left-0 flex items-center"
+              >
+                <span class="material-symbols-outlined">lock</span>
+              </span>
+              <input
+                class="pr-sm py-sm bg-surface-container-low border-outline-variant font-body-md text-body-md text-on-surface w-full rounded-lg border pl-10 transition-shadow focus:border-transparent focus:ring-2 focus:ring-primary focus:outline-none"
+                id="password"
+                placeholder="Ingrese su contraseña"
+                type="password"
+              />
+            </div>
+            <div class="mt-sm flex justify-end">
+              <a
+                class="font-label-md text-label-md hover:text-secondary-container text-primary transition-colors"
+                href="#">¿Olvidó su contraseña?</a
+              >
+            </div>
+          </div>
+          <div class="pt-base">
+            <button
+              class="bg-primary-container py-sm font-label-md text-label-md gap-sm flex w-full items-center justify-center rounded-lg text-on-primary transition-colors hover:bg-primary"
+              type="button"
+            >
+              Iniciar Sesión
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </button>
+          </div>
+        </form>
+        <div
+          class="mt-lg font-body-md text-body-md text-on-surface-variant text-center"
+        >
+          ¿No tiene una cuenta? <a
+            class="font-label-md text-label-md hover:text-secondary-container text-primary transition-colors"
+            href="#">Crear una cuenta</a
+          >
+        </div>
+      </div>
+      <!-- Illustration/Image Section -->
+      <div
+        class="bg-primary-fixed-dim relative hidden h-full min-h-[600px] md:block"
+      >
+        <img
+          class="absolute inset-0 h-full w-full object-cover"
+          data-alt="A bright, modern light-mode photograph showing a caring healthcare professional interacting warmly with a patient in a pristine, state-of-the-art clinic. The lighting is soft and high-key, emphasizing a clean, reassuring environment. Dominant colors are soft whites, subtle grays, and calm medical blues. The mood is empathetic, professional, and trustworthy, perfectly aligning with a premium health service."
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuANGIk9tYsTE0V8jKzd6EjqzrGgsOYYN-BbYL98Sd8nbF9wGZpLoHUwPqHKw3aBy3rkCv_MviBgxk48iFtd-jrRR2CItwEkB29vXTwVc5th04XPX7D0SWrkEiQe47WqRI4t-8zJ6sp5R_l2Wfx2_bXzEoSFjdS7ceYsCUYG0KgZG_7VE_9HWOBD0d2KHlyRmFl-5U0Ww2AJnvDrtWIJVZapZ8bJ2QtqZlAwMZeQd9kRGK0abuFBNxk7"
+        />
+        <!-- Overlay gradient for better text legibility if needed, or just visual depth -->
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"
+        >
+        </div>
+        <div class="bottom-xl left-lg right-lg absolute text-on-primary">
+          <h2 class="font-headline-md text-headline-md mb-sm">
+            Su salud, nuestra prioridad.
+          </h2>
+          <p class="font-body-md text-body-md opacity-90">
+            Acceda a sus resultados, agende citas y comuníquese con sus
+            especialistas desde un solo lugar.
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

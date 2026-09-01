@@ -24,14 +24,17 @@ const stripMarkdownFormatting = (value: string): string =>
 
 const getTriageSection = (markdown: string): string => {
   const lines = markdown.split(/\r?\n/);
-  const startIndex = lines.findIndex((line) => /^##\s*Triage\s*$/i.test(line.trim()));
+  const startIndex = lines.findIndex((line) =>
+    /^##\s*Triage\s*$/i.test(line.trim()),
+  );
 
   if (startIndex === -1) {
     return "";
   }
 
   const endIndex = lines.findIndex(
-    (line, index) => index > startIndex && /^##\s*Preguntas frecuentes\s*$/i.test(line.trim()),
+    (line, index) =>
+      index > startIndex && /^##\s*Preguntas frecuentes\s*$/i.test(line.trim()),
   );
 
   return lines
@@ -75,7 +78,9 @@ export function parseTriageDefinitions(markdown: string): TriageLevel[] {
     }
 
     const block = current.join("\n");
-    const subtitleMatch = block.match(/\*Tiempo de espera:\*\s*\n\s*([\s\S]*?)(?=\n\s*\*Síntomas\*)/i);
+    const subtitleMatch = block.match(
+      /\*Tiempo de espera:\*\s*\n\s*([\s\S]*?)(?=\n\s*\*Síntomas\*)/i,
+    );
     const subtitle = subtitleMatch
       ? normalizeWhitespace(stripMarkdownFormatting(subtitleMatch[1]))
       : "";

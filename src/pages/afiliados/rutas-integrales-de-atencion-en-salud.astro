@@ -3,32 +3,32 @@ import Layout from "@layouts/Layout.astro";
 import Dropdown from "@components/afiliados/Dropdown.astro";
 import RiasRoutePanel from "@components/afiliados/RiasRoutePanel.astro";
 import ChevronIcon from "../../assets/icons/rias/chevron_right.svg";
-import doctorWorkingImage from "../../assets/scrapings-content/Savia-salud Afiliados/imagenes/doctor-haciendo-su-trabajo-oficina-pediatria.jpg";
-import doctorReviewingImage from "../../assets/scrapings-content/Savia-salud Afiliados/imagenes/joven-doctora-usando-estetoscopio-escuchar-latidos-corazon-paciente-toma-doctora-dandole-chequeo-paciente-varon.jpg";
+import doctorsImage from "../../assets/scrapings-content/Savia-salud Afiliados/imagenes/doctores.webp";
+import medicineImage from "../../assets/scrapings-content/Savia-salud Afiliados/imagenes/medicina.webp";
 
-const markdownModule = await import(
-  "../../assets/scrapings-content/Savia-salud Afiliados/afiliados-savia.md?raw"
-);
-const rawMarkdown = typeof markdownModule.default === "string" ? markdownModule.default : String(markdownModule);
+const markdownModule =
+  await import("../../assets/scrapings-content/Savia-salud Afiliados/afiliados-savia.md?raw");
+const rawMarkdown =
+  typeof markdownModule.default === "string"
+    ? markdownModule.default
+    : String(markdownModule);
 
 const whatAreRias =
   "Son el conjunto de acciones de promoción de la salud y prevención de la enfermedad de carácter colectivo e individual; de búsqueda activa para diagnóstico precoz y tratamiento oportuno; de suministro de medicamentos, insumos y dispositivos médicos; de hospitalización y cirugía; de rehabilitación y cuidados paliativos; que requiere un paciente que padece una patología específica, un síndrome o una condición de salud; que deben ser ofrecidas de manera integral, oportuna y completa; por un conjunto de prestadores de servicios organizados como una red integrada; que tiene como objetivo mantenerlo sano y satisfecho, diagnosticarlo rápidamente, recuperar su salud, rehabilitarlo o mantener controlada su enfermedad y reducir el daño, para que pueda tener una vida productiva e independiente hasta donde sea posible.";
 
 const constitutionItems = [
   {
-    title: "Ruta integral de atención para la promoción y mantenimiento de la salud",
-    text:
-      "Dirigida a promover la salud, prevenir el riesgo, prevenir la enfermedad y generar cultura del cuidado de la salud en las personas, familias y comunidades; incluye valoración integral, detección temprana, protección específica y educación para la salud.",
+    title:
+      "Ruta integral de atención para la promoción y mantenimiento de la salud",
+    text: "Dirigida a promover la salud, prevenir el riesgo, prevenir la enfermedad y generar cultura del cuidado de la salud en las personas, familias y comunidades; incluye valoración integral, detección temprana, protección específica y educación para la salud.",
   },
   {
     title: "Rutas integrales de atención para grupos de riesgo",
-    text:
-      "Intervenciones individuales y colectivas dirigidas a la identificación oportuna de factores de riesgo y su intervención, ya sea para evitar la aparición de una condición específica en salud o para realizar un diagnóstico y una derivación oportuna para el tratamiento.",
+    text: "Intervenciones individuales y colectivas dirigidas a la identificación oportuna de factores de riesgo y su intervención, ya sea para evitar la aparición de una condición específica en salud o para realizar un diagnóstico y una derivación oportuna para el tratamiento.",
   },
   {
     title: "Rutas integrales de atención específica para eventos",
-    text:
-      "Intervenciones individuales y colectivas dirigidas principalmente al diagnóstico oportuno, tratamiento, rehabilitación y paliación de los eventos o condiciones específicas de salud priorizadas.",
+    text: "Intervenciones individuales y colectivas dirigidas principalmente al diagnóstico oportuno, tratamiento, rehabilitación y paliación de los eventos o condiciones específicas de salud priorizadas.",
   },
 ];
 
@@ -45,8 +45,7 @@ const routeData = [
       "Sin necesidad de autorizaciones previas.",
       "Articulación con instituciones y hospitales de I nivel.",
     ],
-    note:
-      "Ningún usuario requiere autorizaciones para iniciar el tratamiento y la atención se articula con el sistema de salud regional.",
+    note: "Ningún usuario requiere autorizaciones para iniciar el tratamiento y la atención se articula con el sistema de salud regional.",
   },
   {
     id: "vih",
@@ -60,8 +59,7 @@ const routeData = [
       "Cuidados paliativos y servicio farmacéutico.",
       "Toma de muestras, medicina domiciliaria y telemedicina.",
     ],
-    note:
-      "La ruta cuenta con canales de atención por correo electrónico y teléfono para asegurar continuidad en la atención.",
+    note: "La ruta cuenta con canales de atención por correo electrónico y teléfono para asegurar continuidad en la atención.",
   },
   {
     id: "visual",
@@ -75,8 +73,7 @@ const routeData = [
       "Cirugía oftalmológica y trasplante de tejidos oculares.",
       "Lentes, monturas, prótesis oculares y ayudas visuales.",
     ],
-    note:
-      "La IPS encargada de la atención es por municipio de afiliación del usuario y no por el municipio de residencia, y no presta servicio de urgencias.",
+    note: "La IPS encargada de la atención es por municipio de afiliación del usuario y no por el municipio de residencia, y no presta servicio de urgencias.",
   },
   {
     id: "mental",
@@ -90,8 +87,7 @@ const routeData = [
       "Laboratorio clínico, ayudas diagnósticas y trabajo social.",
       "Dispensación de medicamentos a todo Antioquia.",
     ],
-    note:
-      "La ruta integra servicios del nivel primario y complementario para gestionar el riesgo y alcanzar resultados en salud mental.",
+    note: "La ruta integra servicios del nivel primario y complementario para gestionar el riesgo y alcanzar resultados en salud mental.",
   },
   {
     id: "autoinmune",
@@ -105,8 +101,7 @@ const routeData = [
       "Imagenología, laboratorio y albergues.",
       "Terapias biológicas y apoyo de salud.",
     ],
-    note:
-      "El personal de la salud apoya con fisiatría, fisioterapia, enfermería, psicología, trabajo social y farmacéutico.",
+    note: "El personal de la salud apoya con fisiatría, fisioterapia, enfermería, psicología, trabajo social y farmacéutico.",
   },
   {
     id: "renal",
@@ -120,8 +115,7 @@ const routeData = [
       "Médico experto, nefrólogo, endocrinología y nutrición.",
       "Cirugía vascular, psicología y trabajo social.",
     ],
-    note:
-      "La ruta contempla la atención integral para ERC, HTA y DM como precursoras de la enfermedad renal.",
+    note: "La ruta contempla la atención integral para ERC, HTA y DM como precursoras de la enfermedad renal.",
   },
   {
     id: "hemofilia",
@@ -135,8 +129,7 @@ const routeData = [
       "Especialidades complementarias y laboratorio.",
       "Suministro de factor antihemofílico y albergue.",
     ],
-    note:
-      "La ruta incluye caracterización, plan de intervención individual, seguimiento del riesgo y gestión de eficiencias y gasto evitable.",
+    note: "La ruta incluye caracterización, plan de intervención individual, seguimiento del riesgo y gestión de eficiencias y gasto evitable.",
   },
   {
     id: "cancer-de-cervix",
@@ -150,8 +143,7 @@ const routeData = [
       "Cuidados paliativos y soporte integral.",
       "Seguimiento según programación de consultas y tratamiento.",
     ],
-    note:
-      "El acceso al programa se realiza a partir del diagnóstico y no requiere ningún trámite adicional.",
+    note: "El acceso al programa se realiza a partir del diagnóstico y no requiere ningún trámite adicional.",
   },
 ];
 
@@ -174,55 +166,75 @@ const programs = [
 ];
 ---
 
-<Layout title="Rutas integrales de atención en salud - Kenko EPS" description="Conoce las rutas integrales de atención en salud, sus componentes, objetivos y programas de acompañamiento para la población afiliada.">
+<Layout
+  title="Rutas integrales de atención en salud - Kenko EPS"
+  description="Conoce las rutas integrales de atención en salud, sus componentes, objetivos y programas de acompañamiento para la población afiliada."
+>
   <main class="mx-auto max-w-6xl px-4 py-12 md:px-8 lg:px-12">
     <header class="mb-12 text-center">
-      <h1 class="font-display text-4xl font-bold tracking-[-0.04em] text-primary md:text-5xl">
+      <h1
+        class="font-display text-4xl font-bold tracking-[-0.04em] text-primary md:text-5xl"
+      >
         Rutas Integrales de Atención en Salud
       </h1>
     </header>
 
-    <section class="mb-14 grid gap-8 md:grid-cols-12 md:items-center">
+    <section class="mb-24 grid gap-8 md:grid-cols-12 md:items-center">
       <div class="md:col-span-7">
-        <h2 class="mb-4 font-display text-3xl font-bold tracking-[-0.04em] text-primary md:text-4xl">
+        <h2
+          class="mb-4 font-display text-3xl font-bold tracking-[-0.04em] text-primary md:text-4xl"
+        >
           ¿Qué son?
         </h2>
-        <p class="mb-4 font-body text-base leading-7 text-content/80 md:text-lg">
+        <p
+          class="mb-4 max-w-[65ch] font-body text-base leading-7 text-content/80 md:text-lg"
+        >
           {whatAreRias}
         </p>
       </div>
 
       <div class="md:col-span-5">
-        <div class="overflow-hidden rounded-[20px] border border-content/10 bg-background shadow-[0_12px_30px_rgba(24,24,27,0.08)]">
+        <div
+          class="overflow-hidden rounded-[20px] border border-content/10 bg-background shadow-[0_12px_30px_rgba(24,24,27,0.08)]"
+        >
           <img
-            src={doctorWorkingImage.src}
-            alt="Doctor realizando trabajo en una oficina de pediatría"
+            src={doctorsImage.src}
+            alt="Equipo de doctores brindando atención en salud"
             class="h-72 w-full object-cover md:h-80"
           />
         </div>
       </div>
     </section>
 
-    <section class="mb-14 grid gap-8 md:grid-cols-12 md:items-center">
+    <section class="mb-24 grid gap-8 md:grid-cols-12 md:items-center">
       <div class="md:order-2 md:col-span-5">
-        <div class="overflow-hidden rounded-[20px] border border-content/10 bg-background shadow-[0_12px_30px_rgba(24,24,27,0.08)]">
+        <div
+          class="overflow-hidden rounded-[20px] border border-content/10 bg-background shadow-[0_12px_30px_rgba(24,24,27,0.08)]"
+        >
           <img
-            src={doctorReviewingImage.src}
-            alt="Doctora revisando el corazón de un paciente con un estetoscopio"
+            src={medicineImage.src}
+            alt="Profesional de la salud y elementos de medicina"
             class="h-72 w-full object-cover md:h-80"
           />
         </div>
       </div>
 
       <div class="md:order-1 md:col-span-7">
-        <h2 class="mb-4 font-display text-3xl font-bold tracking-[-0.04em] text-primary md:text-4xl">
+        <h2
+          class="mb-4 font-display text-3xl font-bold tracking-[-0.04em] text-primary md:text-4xl"
+        >
           ¿Cómo están constituidas?
         </h2>
-        <ul class="list-disc space-y-3 pl-6 font-body text-base leading-7 text-content/80 md:text-lg">
+        <ul
+          class="max-w-[65ch] list-disc space-y-3 pl-6 font-body text-base leading-7 text-content/80 md:text-lg"
+        >
           {
             constitutionItems.map((item) => (
               <li>
-                <strong class="font-semibold text-content">{item.title}:</strong> {item.text}
+                <strong class="font-semibold text-content">
+                  {item.title}:
+                </strong>{" "}
+                {item.text}
               </li>
             ))
           }
@@ -230,11 +242,15 @@ const programs = [
       </div>
     </section>
 
-    <section class="mb-14">
-      <h2 class="mb-5 font-display text-3xl font-bold tracking-[-0.04em] text-primary md:text-4xl">
+    <section class="mb-24">
+      <h2
+        class="mb-5 font-display text-3xl font-bold tracking-[-0.04em] text-primary md:text-4xl"
+      >
         ¿Cuáles son sus objetivos?
       </h2>
-      <ul class="list-disc space-y-3 pl-6 font-body text-base leading-7 text-content/80 md:text-lg">
+      <ul
+        class="max-w-[65ch] list-disc space-y-3 pl-6 font-body text-base leading-7 text-content/80 md:text-lg"
+      >
         <li>Población sana.</li>
         <li>Usuario controlado.</li>
         <li>Reducir prevalencia.</li>
@@ -245,15 +261,19 @@ const programs = [
       </ul>
     </section>
 
-    <section class="mb-14">
-      <h2 class="mb-5 font-display text-3xl font-bold tracking-[-0.04em] text-primary md:text-4xl">
+    <section class="mb-24">
+      <h2
+        class="mb-5 font-display text-3xl font-bold tracking-[-0.04em] text-primary md:text-4xl"
+      >
         Panel de rutas
       </h2>
       <RiasRoutePanel routes={routeData} defaultRouteId="cancer-de-mama" />
     </section>
 
     <section>
-      <h2 class="mb-5 font-display text-3xl font-bold tracking-[-0.04em] text-primary md:text-4xl">
+      <h2
+        class="mb-5 font-display text-3xl font-bold tracking-[-0.04em] text-primary md:text-4xl"
+      >
         Programas de Atención en Salud
       </h2>
 
@@ -266,8 +286,8 @@ const programs = [
               chevronIcon={ChevronIcon}
               defaultOpen={index === 1}
             >
-              <div class="space-y-3 font-body text-base leading-7 text-content/80 md:text-lg">
-                <p>{program.description}</p>
+              <div class="max-w-[65ch] space-y-3 font-body text-base leading-7 text-content/80 md:text-lg">
+                <p class="max-w-[65ch]">{program.description}</p>
               </div>
             </Dropdown>
           ))

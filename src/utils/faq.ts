@@ -35,7 +35,8 @@ const cleanAnswer = (value: string): string =>
 
 export function parseFaqSections(markdown: string): FaqSection[] {
   const faqStartIndex = markdown.search(/^##\s*Preguntas frecuentes\s*$/m);
-  const content = faqStartIndex === -1 ? markdown : markdown.slice(faqStartIndex);
+  const content =
+    faqStartIndex === -1 ? markdown : markdown.slice(faqStartIndex);
   const lines = content.split(/\r?\n/);
 
   const sections: FaqSection[] = [];
@@ -49,7 +50,9 @@ export function parseFaqSections(markdown: string): FaqSection[] {
       return;
     }
 
-    const answer = cleanAnswer(stripMarkdownFormatting(currentAnswer.join("\n")));
+    const answer = cleanAnswer(
+      stripMarkdownFormatting(currentAnswer.join("\n")),
+    );
 
     if (answer) {
       currentQuestions.push({

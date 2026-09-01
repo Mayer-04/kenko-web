@@ -1,233 +1,818 @@
-<!DOCTYPE html><html lang="en" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={theme:{extend:{"colors":{"outline-variant":"#c2c7ce","surface-tint":"#3c6184","medical-error":"#EF4444","error":"#ba1a1a","error-container":"#ffdad6","on-primary-container":"#92b8de","primary-fixed-dim":"#a5caf1","tertiary-fixed":"#dbe1ff","surface-variant":"#e4e1e6","on-tertiary-fixed":"#00184a","primary-fixed":"#cee5ff","surface-container-lowest":"#ffffff","secondary-container":"#fdb318","surface-white":"#FFFFFF","on-secondary":"#ffffff","on-secondary-container":"#6a4800","on-background":"#1b1b1e","tertiary":"#002a75","on-tertiary":"#ffffff","on-error-container":"#93000a","surface-container-highest":"#e4e1e6","surface-bright":"#fbf8fc","primary-container":"#21496a","inverse-surface":"#303033","secondary":"#7e5700","medical-success":"#10B981","surface":"#fbf8fc","tertiary-fixed-dim":"#b3c5ff","inverse-on-surface":"#f3f0f4","on-primary-fixed":"#001d33","on-surface":"#1b1b1e","on-secondary-fixed":"#281900","on-surface-variant":"#42474e","inverse-primary":"#a5caf1","on-error":"#ffffff","on-primary":"#ffffff","surface-container-low":"#f6f2f7","surface-container":"#f0edf1","surface-container-high":"#eae7eb","on-secondary-fixed-variant":"#604100","background":"#fbf8fc","secondary-fixed-dim":"#ffba39","surface-dim":"#dcd9dd","on-tertiary-container":"#98b2ff","secondary-fixed":"#ffdead","tertiary-container":"#003ea4","on-tertiary-fixed-variant":"#003fa5","on-primary-fixed-variant":"#224a6b","border-muted":"#E4E4E7","outline":"#72777e","background-subtle":"#F9FAFB","primary":"#013252"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"margin-mobile":"16px","unit":"4px","margin-desktop":"64px","container-max":"1280px","bento-gap":"16px","gutter":"24px"},"fontFamily":{"label-md":["Inter"],"display-lg":["Hanken Grotesk"],"body-md":["Inter"],"headline-md":["Hanken Grotesk"],"headline-lg":["Hanken Grotesk"],"headline-lg-mobile":["Hanken Grotesk"],"body-lg":["Inter"],"caption":["Inter"]},"fontSize":{"label-md":["14px",{"lineHeight":"20px","letterSpacing":"0.05em","fontWeight":"500"}],"display-lg":["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"700"}],"body-md":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-md":["24px",{"lineHeight":"32px","fontWeight":"600"}],"headline-lg":["32px",{"lineHeight":"40px","fontWeight":"600"}],"headline-lg-mobile":["28px",{"lineHeight":"36px","fontWeight":"600"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"caption":["12px",{"lineHeight":"16px","fontWeight":"400"}]}}}}</script><link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700&amp;family=Inter:wght@400;500&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/symbols/outlined" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"></head><body class="bg-background font-body-md text-on-surface"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop flex items-center justify-between"><div class="flex items-center gap-4"><img alt="logo-kenko.jpg" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UfwoHUJu43IWjjUVT-sxfNg4oefpw9A3VqExdk4vi0nfQwdGqXWmSJ8rw3yZz30deUTAVMhZ3C6UL9qOe7xkmY079Gd3xBI3MRw70a4vWjdaECYQTrQCBSexe99eFegAG5GrVVIUOHQq5WNw_BGXITmqhJLk93-N3ythL4FxWCA-AE1Zf_qXL-2ssx1wLe7MG3uwT-iGMk4NQcicrD_-W-bO6eRnKWo7n21EjrS-MdsrR7eBjaCPl1PuU6u0z_202H8EFaqA_ZZhU"><span class="font-headline-md text-headline-md text-primary tracking-tight">Kenko EPS</span></div><nav class="hidden md:flex items-center gap-gutter" data-active-classes="text-primary font-semibold"><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="afiliados" href="#">Afiliados</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="nosotros" href="#">Nosotros</a><a class="inline-flex items-center justify-center px-6 py-2.5 bg-primary text-on-primary font-label-md text-label-md rounded-lg hover:bg-primary-container transition-all" data-path="login" href="#">Acceso</a><div class="ml-4 w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></nav></div></header><main class="w-full pt-20 bg-background"><div class="flex flex-col w-full bg-background-subtle">
-<!-- Hero / Header Section -->
-<section class="w-full bg-surface-white border-b border-border-muted pt-12 pb-16">
-<div class="max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop">
-<div class="max-w-2xl">
-<span class="inline-flex items-center gap-2 text-primary font-label-md text-label-md uppercase tracking-wider mb-4">
-<span class="material-symbols-outlined text-[18px]">location_on</span>
-                    Nuestra Red
-                </span>
-<h1 class="font-display-lg text-display-lg text-on-background mb-4">Puntos de Atención</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant mb-8">Encuentra el centro médico Kenko más cercano a ti. Ofrecemos instalaciones modernas y atención integral en las principales ciudades de Colombia.</p>
-<!-- Search & Filter -->
-<div class="relative flex flex-col md:flex-row gap-4 w-full">
-<div class="relative flex-grow">
-<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
-<input class="w-full h-12 pl-12 pr-4 bg-surface-container-lowest border border-border-muted rounded-lg font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" id="searchInput" placeholder="Buscar por ciudad o sede..." type="text">
-</div>
-<button class="h-12 px-6 bg-primary text-on-primary font-label-md text-label-md rounded-lg hover:bg-primary-container transition-all flex items-center justify-center gap-2 whitespace-nowrap">
-<span class="material-symbols-outlined text-[18px]">filter_list</span>
-                        Filtros
-                    </button>
-</div>
-</div>
-</div>
-</section>
-<!-- Main Content -->
-<section class="w-full py-16">
-<div class="max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop">
-<div class="flex flex-col gap-12" id="locationsContainer">
-<!-- Bogotá -->
-<div class="location-card flex flex-col lg:flex-row gap-8 bg-surface-container-lowest rounded-xl border border-border-muted overflow-hidden hover:border-primary transition-all duration-300 shadow-sm hover:shadow-md group">
-<!-- Image -->
-<div class="w-full lg:w-1/3 relative overflow-hidden min-h-[240px]">
-<img alt="Bogotá Medical Center" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6pDV6C7k6MZhOtNIDhzr4CjKE5MH7LzA1958ZUYuSGgFpPd4wLDRMHAJErhtusVYbs4dgdmlZ4FXCgN9rcBxf64SIyusLhaXBlkon-V7Fa5Yt4CNsWJOXjXRK6zIyez2Zcphu1e12m1oqAHuMNwLm40j6sM4UQ-svCEemVZU6v1R5KvDWUudK9SYMsNlmsrtdEOyA6tq2ftk4nlazSQOv6ybscbdPW45AgRA8_lNeC5qTg0odpgLQKA">
-<div class="absolute top-4 left-4">
-<span class="px-3 py-1 bg-surface-white/90 backdrop-blur-sm rounded-full font-label-md text-caption text-primary flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">medical_services</span> Sede Principal
-                            </span>
-</div>
-</div>
-<!-- Content -->
-<div class="w-full lg:w-1/3 p-6 flex flex-col justify-center">
-<h2 class="font-headline-lg text-headline-lg text-on-background mb-4">Bogotá</h2>
-<div class="space-y-4">
-<div class="flex items-start gap-3">
-<span class="material-symbols-outlined text-primary mt-1">pin_drop</span>
-<div>
-<p class="font-label-md text-label-md text-on-surface">Centro Médico Kenko Chicó</p>
-<p class="font-body-md text-body-md text-on-surface-variant">Cra. 11 # 94-05, Edificio Kenko Tower</p>
-</div>
-</div>
-<div class="flex items-start gap-3">
-<span class="material-symbols-outlined text-primary mt-1">schedule</span>
-<div>
-<p class="font-body-md text-body-md text-on-surface-variant">Lunes a Viernes: 6:00 AM - 8:00 PM</p>
-<p class="font-body-md text-body-md text-on-surface-variant">Sábados: 7:00 AM - 2:00 PM</p>
-<p class="font-body-md text-body-md text-medical-error">Urgencias 24/7</p>
-</div>
-</div>
-<div class="flex items-start gap-3">
-<span class="material-symbols-outlined text-primary mt-1">call</span>
-<p class="font-body-md text-body-md text-on-surface-variant">(601) 345 6789</p>
-</div>
-</div>
-<div class="mt-8 flex gap-3">
-<button class="px-6 py-2.5 bg-secondary-container text-on-secondary-container font-label-md text-label-md rounded-lg hover:bg-secondary-fixed-dim transition-all">Agendar Cita</button>
-</div>
-</div>
-<!-- Map -->
-<div class="w-full lg:w-1/3 p-4">
-<div class="w-full h-full min-h-[200px] rounded-lg bg-surface-variant bg-cover bg-center" data-alt="A detailed map view of northern Bogota, showing streets and blocks, clean modern map styling, light mode colors with blue accents for roads, professional cartography aesthetic." data-location="Cra. 11 # 94-05, Bogota, Colombia" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBdI68Cqy7xjIk9ufBNiv3zR-29lFfU3nFbGjcp2MoJ77dFQ1y4ZNqY1tUW8IYoe8ktoJd0majnEo1pxyKAB8FCQO1nciLtwUzw4P5Z7jsIQ6YhRN_K2VLX_hvLDQrAjV39s77STrkFpeLiiAeTT98o9gezq4CJ6N0BbeLsI8xz2BfTLhVEDPvG9UVdm7u8eRI5IIEnycUotQV1rof45y5kRlTE_xhkrDrs3mbHiNQhS0oOvXfWNgzRyw')"></div>
-</div>
-</div>
-<!-- Medellín -->
-<div class="location-card flex flex-col lg:flex-row gap-8 bg-surface-container-lowest rounded-xl border border-border-muted overflow-hidden hover:border-primary transition-all duration-300 shadow-sm hover:shadow-md group">
-<div class="w-full lg:w-1/3 relative overflow-hidden min-h-[240px]">
-<img alt="Medellín Medical Center" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHkZixQirQtYF_UdZ3F2QaB3de-zJkJ6eJfy9LpXdpHSCcw_e2MeaUSJfPOyw3g22-1WQlHaxbM8Im9TdITV2uyVAgc6tUEMbqXkK1TS65cF5n3b0s4F5oTKzjxBP0K3fFFJB0viPifBGw8lQP1mgrU3cOpoCCeCIdqlY7T6FD0MkXNflyIa8oXk8-Fa6S1rkJ6qbFeaNd9h4nNOsy3MNB74pgASXWazAfDXXXUIaknc06tHr4JV7UAw">
-</div>
-<div class="w-full lg:w-1/3 p-6 flex flex-col justify-center">
-<h2 class="font-headline-lg text-headline-lg text-on-background mb-4">Medellín</h2>
-<div class="space-y-4">
-<div class="flex items-start gap-3">
-<span class="material-symbols-outlined text-primary mt-1">pin_drop</span>
-<div>
-<p class="font-label-md text-label-md text-on-surface">Clínica Kenko Poblado</p>
-<p class="font-body-md text-body-md text-on-surface-variant">Cra. 43A # 1-50, San Fernando Plaza</p>
-</div>
-</div>
-<div class="flex items-start gap-3">
-<span class="material-symbols-outlined text-primary mt-1">schedule</span>
-<div>
-<p class="font-body-md text-body-md text-on-surface-variant">Lunes a Viernes: 7:00 AM - 7:00 PM</p>
-<p class="font-body-md text-body-md text-on-surface-variant">Sábados: 8:00 AM - 1:00 PM</p>
-</div>
-</div>
-<div class="flex items-start gap-3">
-<span class="material-symbols-outlined text-primary mt-1">call</span>
-<p class="font-body-md text-body-md text-on-surface-variant">(604) 444 1234</p>
-</div>
-</div>
-<div class="mt-8 flex gap-3">
-<button class="px-6 py-2.5 bg-secondary-container text-on-secondary-container font-label-md text-label-md rounded-lg hover:bg-secondary-fixed-dim transition-all">Ver Detalles</button>
-</div>
-</div>
-<div class="w-full lg:w-1/3 p-4">
-<div class="w-full h-full min-h-[200px] rounded-lg bg-surface-variant bg-cover bg-center" data-alt="A clean modern map view of the Poblado neighborhood in Medellin, Colombia, showing main avenues and green areas, light mode map styling with blue accents." data-location="San Fernando Plaza, Medellin, Colombia" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCJB4JaSw18kTOIWY3r7jGf39LtYu2NHg2k2QImVaIn6C55hlccy7Aql_hHORscbuwCu2kRiHhXyap17xSH4V18rnHxOvs8qzH6uH6-aMkaDEAZcPhTGAiEjVnR0ZE3Qh7NfTSRDLAt0U2hGtB7nz11x3AMLuOVQjk8QCjIlYjeu_3mSlnH1OfCFiZpLlUwOWxvylxSeHxfq_4ZFSKgAK1sfCvzaAx57JJhVji1irBkxvPxLpsBhyPYgw')"></div>
-</div>
-</div>
-<!-- Cali -->
-<div class="location-card flex flex-col lg:flex-row gap-8 bg-surface-container-lowest rounded-xl border border-border-muted overflow-hidden hover:border-primary transition-all duration-300 shadow-sm hover:shadow-md group">
-<div class="w-full lg:w-1/3 relative overflow-hidden min-h-[240px]">
-<img alt="Cali Medical Center" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-ckeMrSpZRmb00RQX-24D25JIiG-jAoRPO6tYCKNv_pD1qYr0sz4EAgYILl2896TPAl0u57irEIqi3cwiS0gW1WZP_hUR8YauEL_xS0B0kEJIhiMZ5ABiCWKcxh78aQLTvtkgiGQyJqJVcJhFrMs1-jl_hF_bqX5JtcEgucwqwpicLY-NEYzgiQaBXqdb-_l8-dkScGqSanvIHxpbA1bgeenWoEmhsPF0kW8kH5YwI9Pxv494yJbkRQ">
-</div>
-<div class="w-full lg:w-1/3 p-6 flex flex-col justify-center">
-<h2 class="font-headline-lg text-headline-lg text-on-background mb-4">Cali</h2>
-<div class="space-y-4">
-<div class="flex items-start gap-3">
-<span class="material-symbols-outlined text-primary mt-1">pin_drop</span>
-<div>
-<p class="font-label-md text-label-md text-on-surface">Centro de Especialistas Kenko</p>
-<p class="font-body-md text-body-md text-on-surface-variant">Calle 5 # 38-12, Imbanaco</p>
-</div>
-</div>
-<div class="flex items-start gap-3">
-<span class="material-symbols-outlined text-primary mt-1">schedule</span>
-<div>
-<p class="font-body-md text-body-md text-on-surface-variant">Lunes a Viernes: 7:00 AM - 6:00 PM</p>
-<p class="font-body-md text-body-md text-on-surface-variant">Sábados: 8:00 AM - 12:00 PM</p>
-</div>
-</div>
-<div class="flex items-start gap-3">
-<span class="material-symbols-outlined text-primary mt-1">call</span>
-<p class="font-body-md text-body-md text-on-surface-variant">(602) 888 5678</p>
-</div>
-</div>
-<div class="mt-8 flex gap-3">
-<button class="px-6 py-2.5 bg-secondary-container text-on-secondary-container font-label-md text-label-md rounded-lg hover:bg-secondary-fixed-dim transition-all">Ver Detalles</button>
-</div>
-</div>
-<div class="w-full lg:w-1/3 p-4">
-<div class="w-full h-full min-h-[200px] rounded-lg bg-surface-variant bg-cover bg-center" data-alt="A clean, professional map view of southern Cali near Imbanaco, showing the layout of streets, parks, light mode with subtle blue highlights for key routes." data-location="Calle 5 # 38-12, Cali, Colombia" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBk_XCvP8BO6aFOubC95Krz-ldigYYw7N9ff--JmjV6lEWjUXI9VlSDSse2w2734NpL8DvhL6yWYK5rtcOA58XzyerGbugBTek7rVhNEWmXbnJAc78G1yUFALNu2qpJx5zd7JtJYAD3hAkEnrFMLD38_Qn6cV8oYsBsOz1asps8CwanfcmxH3kdWiSo0ElgHJkHzj7iUSDLFYT8uubpQHuTz4E8ITNJ4-AyNcdzYeqqAM7000yt8a-_rQ')"></div>
-</div>
-</div>
-<!-- Barranquilla -->
-<div class="location-card flex flex-col lg:flex-row gap-8 bg-surface-container-lowest rounded-xl border border-border-muted overflow-hidden hover:border-primary transition-all duration-300 shadow-sm hover:shadow-md group">
-<div class="w-full lg:w-1/3 relative overflow-hidden min-h-[240px]">
-<img alt="Barranquilla Medical Center" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiXSREqs1UZyJF49emSWKdQKhynmj5VNFmqhwH7IOR4dZ7vjITSaleODQBXayBIHYzadqDMyusSBJJSympKcYdIsqKxUD1st4NAZt-KHC3He1ZKOgETkCxzTIGFuLg3NLIejslL_-q0qRiKCSxaqyRJ6OJl32uUtH-2pMGnbmt8oS0md1nmfWNQPpry8fiqtkt4L2JoSZAy4mjqI7_vgl5rBQ-5wP_H_a_kW_kHtQsj7nsy7xIU99HTw">
-</div>
-<div class="w-full lg:w-1/3 p-6 flex flex-col justify-center">
-<h2 class="font-headline-lg text-headline-lg text-on-background mb-4">Barranquilla</h2>
-<div class="space-y-4">
-<div class="flex items-start gap-3">
-<span class="material-symbols-outlined text-primary mt-1">pin_drop</span>
-<div>
-<p class="font-label-md text-label-md text-on-surface">Sede Médica Buenavista</p>
-<p class="font-body-md text-body-md text-on-surface-variant">Cra. 53 # 99-80, Norte-Centro Histórico</p>
-</div>
-</div>
-<div class="flex items-start gap-3">
-<span class="material-symbols-outlined text-primary mt-1">schedule</span>
-<div>
-<p class="font-body-md text-body-md text-on-surface-variant">Lunes a Viernes: 7:00 AM - 7:00 PM</p>
-<p class="font-body-md text-body-md text-on-surface-variant">Sábados: 8:00 AM - 1:00 PM</p>
-</div>
-</div>
-<div class="flex items-start gap-3">
-<span class="material-symbols-outlined text-primary mt-1">call</span>
-<p class="font-body-md text-body-md text-on-surface-variant">(605) 333 9012</p>
-</div>
-</div>
-<div class="mt-8 flex gap-3">
-<button class="px-6 py-2.5 bg-secondary-container text-on-secondary-container font-label-md text-label-md rounded-lg hover:bg-secondary-fixed-dim transition-all">Ver Detalles</button>
-</div>
-</div>
-<div class="w-full lg:w-1/3 p-4">
-<div class="w-full h-full min-h-[200px] rounded-lg bg-surface-variant bg-cover bg-center" data-alt="Map view of northern Barranquilla near Buenavista, clear modern cartography, light gray and blue tones, showing major roads and nearby blocks." data-location="Cra. 53 # 99-80, Barranquilla, Colombia" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCvtw0zpu-ksQy6tFMIva3nYuvlicBHuxumjRid8bea6YrAoBtjENcnI5ZCFpACPvovYqx9R8wPG8dTBv00FGNvqth1Thp8Ww7-2-WjfY84sHnRobnANpR-MtqJdAyhxhXy7XIArE4UAFa96CbKUXwqrFXGT5-UsusJWYbVP0a-KXcZybp2yHHk8no9KFxb-SH4z2rqWe7zpVf6TO-8OcNnDMROKyvSICUlWxyVT_s1CJUznIrhbu93VQ')"></div>
-</div>
-</div>
-<!-- Bucaramanga -->
-<div class="location-card flex flex-col lg:flex-row gap-8 bg-surface-container-lowest rounded-xl border border-border-muted overflow-hidden hover:border-primary transition-all duration-300 shadow-sm hover:shadow-md group">
-<div class="w-full lg:w-1/3 relative overflow-hidden min-h-[240px]">
-<img alt="Bucaramanga Medical Center" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZ-37UKIOmV2Tvin4XB2BjiOhFbB0D6s7A_DJazjl16FqHr7RuT3B8P4mcV84z1AA3avsmotpWX_RtkvmWkmbXyxMlMP-6PR0-OE2ZCu_t_ZkYZvzYR6LYnEZ2oHXnw5hyPIJtxM6bxI4nQMuUFGhfSbbTqzZbMnBn_tASMejcwTDXuMZExvZyqaNzc6we18-7fBuf4OXGGAK4hIOQi54jAoTtuxjGaEVin2YmnvRUhpnW4nzmfnh17A">
-</div>
-<div class="w-full lg:w-1/3 p-6 flex flex-col justify-center">
-<h2 class="font-headline-lg text-headline-lg text-on-background mb-4">Bucaramanga</h2>
-<div class="space-y-4">
-<div class="flex items-start gap-3">
-<span class="material-symbols-outlined text-primary mt-1">pin_drop</span>
-<div>
-<p class="font-label-md text-label-md text-on-surface">Centro Integral Kenko</p>
-<p class="font-body-md text-body-md text-on-surface-variant">Calle 52 # 31-15, Cabecera</p>
-</div>
-</div>
-<div class="flex items-start gap-3">
-<span class="material-symbols-outlined text-primary mt-1">schedule</span>
-<div>
-<p class="font-body-md text-body-md text-on-surface-variant">Lunes a Viernes: 7:00 AM - 6:00 PM</p>
-<p class="font-body-md text-body-md text-on-surface-variant">Sábados: 8:00 AM - 12:00 PM</p>
-</div>
-</div>
-<div class="flex items-start gap-3">
-<span class="material-symbols-outlined text-primary mt-1">call</span>
-<p class="font-body-md text-body-md text-on-surface-variant">(607) 645 2345</p>
-</div>
-</div>
-<div class="mt-8 flex gap-3">
-<button class="px-6 py-2.5 bg-secondary-container text-on-secondary-container font-label-md text-label-md rounded-lg hover:bg-secondary-fixed-dim transition-all">Ver Detalles</button>
-</div>
-</div>
-<div class="w-full lg:w-1/3 p-4">
-<div class="w-full h-full min-h-[200px] rounded-lg bg-surface-variant bg-cover bg-center" data-alt="Map view of Cabecera district in Bucaramanga, Colombia. Clean layout showing streets and topography lines, minimalist light mode aesthetic with brand blue accents." data-location="Calle 52 # 31-15, Bucaramanga, Colombia" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBF34UyiARahR93Rmu52xyjWp20Omf_mRgEuP-t8JI31NVhLoH9-98JE3hdtAqyI_XeQIir7YOMl-Gd0-cHnNbf15mWwaFuqAQl9waB0F60FtB1HL2do4Q4fqUNA58ALFK0ebi73CB5Akrvnt2E0wxXx9xB6jhIWOFRhO3wadcisYh0vWwbdQeWRbRKJ9uYLpNEzl3jYcLv1pQrFh7A2BtcpcPcs0CECBGdcuGvgpSa2blAw6w4p3O8TA')"></div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<script>
-        document.getElementById('searchInput').addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            const cards = document.querySelectorAll('.location-card');
-            
-            cards.forEach(card => {
-                const textContent = card.innerText.toLowerCase();
-                if(textContent.includes(searchTerm)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
+<!doctype html>
+<html lang="en" style="">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <style>
+      @layer base {
+        html,
+        body {
+          margin: 0;
+          padding: 0;
+        }
+        body {
+          overscroll-behavior: none;
+        }
+        main > :first-child {
+          margin-top: 0 !important;
+        }
+        main > :last-child {
+          margin-bottom: 0 !important;
+        }
+      }
+      ::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "outline-variant": "#c2c7ce",
+              "surface-tint": "#3c6184",
+              "medical-error": "#EF4444",
+              error: "#ba1a1a",
+              "error-container": "#ffdad6",
+              "on-primary-container": "#92b8de",
+              "primary-fixed-dim": "#a5caf1",
+              "tertiary-fixed": "#dbe1ff",
+              "surface-variant": "#e4e1e6",
+              "on-tertiary-fixed": "#00184a",
+              "primary-fixed": "#cee5ff",
+              "surface-container-lowest": "#ffffff",
+              "secondary-container": "#fdb318",
+              "surface-white": "#FFFFFF",
+              "on-secondary": "#ffffff",
+              "on-secondary-container": "#6a4800",
+              "on-background": "#1b1b1e",
+              tertiary: "#002a75",
+              "on-tertiary": "#ffffff",
+              "on-error-container": "#93000a",
+              "surface-container-highest": "#e4e1e6",
+              "surface-bright": "#fbf8fc",
+              "primary-container": "#21496a",
+              "inverse-surface": "#303033",
+              secondary: "#7e5700",
+              "medical-success": "#10B981",
+              surface: "#fbf8fc",
+              "tertiary-fixed-dim": "#b3c5ff",
+              "inverse-on-surface": "#f3f0f4",
+              "on-primary-fixed": "#001d33",
+              "on-surface": "#1b1b1e",
+              "on-secondary-fixed": "#281900",
+              "on-surface-variant": "#42474e",
+              "inverse-primary": "#a5caf1",
+              "on-error": "#ffffff",
+              "on-primary": "#ffffff",
+              "surface-container-low": "#f6f2f7",
+              "surface-container": "#f0edf1",
+              "surface-container-high": "#eae7eb",
+              "on-secondary-fixed-variant": "#604100",
+              background: "#fbf8fc",
+              "secondary-fixed-dim": "#ffba39",
+              "surface-dim": "#dcd9dd",
+              "on-tertiary-container": "#98b2ff",
+              "secondary-fixed": "#ffdead",
+              "tertiary-container": "#003ea4",
+              "on-tertiary-fixed-variant": "#003fa5",
+              "on-primary-fixed-variant": "#224a6b",
+              "border-muted": "#E4E4E7",
+              outline: "#72777e",
+              "background-subtle": "#F9FAFB",
+              primary: "#013252",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "margin-mobile": "16px",
+              unit: "4px",
+              "margin-desktop": "64px",
+              "container-max": "1280px",
+              "bento-gap": "16px",
+              gutter: "24px",
+            },
+            fontFamily: {
+              "label-md": ["Inter"],
+              "display-lg": ["Hanken Grotesk"],
+              "body-md": ["Inter"],
+              "headline-md": ["Hanken Grotesk"],
+              "headline-lg": ["Hanken Grotesk"],
+              "headline-lg-mobile": ["Hanken Grotesk"],
+              "body-lg": ["Inter"],
+              caption: ["Inter"],
+            },
+            fontSize: {
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "500",
+                },
+              ],
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "56px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              "headline-md": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+              "headline-lg": [
+                "32px",
+                { lineHeight: "40px", fontWeight: "600" },
+              ],
+              "headline-lg-mobile": [
+                "28px",
+                { lineHeight: "36px", fontWeight: "600" },
+              ],
+              "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+              caption: ["12px", { lineHeight: "16px", fontWeight: "400" }],
+            },
+          },
+        },
+      };
     </script>
-</div></main><footer class="w-full bg-primary-container py-12 text-on-primary"><div class="max-w-container-max mx-auto px-margin-mobile lg:px-margin-desktop"><div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-12"><div class="col-span-1 md:col-span-1"><div class="flex items-center gap-2 mb-4 text-surface-white"><img alt="logo-kenko.jpg" class="h-8 w-auto brightness-0 invert" src="https://lh3.googleusercontent.com/aida/AEtjO1UfwoHUJu43IWjjUVT-sxfNg4oefpw9A3VqExdk4vi0nfQwdGqXWmSJ8rw3yZz30deUTAVMhZ3C6UL9qOe7xkmY079Gd3xBI3MRw70a4vWjdaECYQTrQCBSexe99eFegAG5GrVVIUOHQq5WNw_BGXITmqhJLk93-N3ythL4FxWCA-AE1Zf_qXL-2ssx1wLe7MG3uwT-iGMk4NQcicrD_-W-bO6eRnKWo7n21EjrS-MdsrR7eBjaCPl1PuU6u0z_202H8EFaqA_ZZhU">Kenko EPS</div><p class="font-caption text-caption text-on-primary-container">Líderes en salud integral y bienestar clínico para tu familia.</p></div><div><h4 class="font-label-md text-label-md mb-4 text-surface-white uppercase tracking-wider">Servicios</h4><ul class="space-y-2 text-on-primary-container font-caption text-caption"><li><a class="hover:text-surface-white" href="#">Citas Médicas</a></li><li><a class="hover:text-surface-white" href="#">Urgencias</a></li><li><a class="hover:text-surface-white" href="#">Farmacia</a></li></ul></div><div><h4 class="font-label-md text-label-md mb-4 text-surface-white uppercase tracking-wider">Compañía</h4><ul class="space-y-2 text-on-primary-container font-caption text-caption"><li><a class="hover:text-surface-white" href="#">Nosotros</a></li><li><a class="hover:text-surface-white" href="#">Sedes y Horarios</a></li><li><a class="hover:text-surface-white" href="#">Trabaja con nosotros</a></li></ul></div><div><h4 class="font-label-md text-label-md mb-4 text-surface-white uppercase tracking-wider">Legal</h4><ul class="space-y-2 text-on-primary-container font-caption text-caption"><li><a class="hover:text-surface-white" href="#">Política de Privacidad</a></li><li><a class="hover:text-surface-white" href="#">Términos y Condiciones</a></li><li><a class="hover:text-surface-white" href="#">Derechos del Paciente</a></li></ul></div></div><div class="pt-8 border-t border-on-primary-container/20 flex flex-col md:flex-row justify-between items-center gap-4 text-on-primary-container font-caption text-caption"><p>© 2024 Kenko EPS. Todos los derechos reservados.</p><div class="flex gap-6"><span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">call</span> 01-8000-KENKO</span><span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">location_on</span> Bogotá, Colombia</span></div></div></div></footer></body></html>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700&amp;family=Inter:wght@400;500&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/symbols/outlined"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="font-body-md text-on-surface bg-background">
+    <header
+      class="bg-surface/90 fixed top-0 z-50 w-full shadow-[0_1px_8px_rgba(0,0,0,0.04)] backdrop-blur-md"
+    >
+      <div
+        class="max-w-container-max px-margin-mobile lg:px-margin-desktop mx-auto flex h-20 items-center justify-between"
+      >
+        <div class="flex items-center gap-4">
+          <img
+            alt="logo-kenko.jpg"
+            class="h-10 w-auto object-contain"
+            src="https://lh3.googleusercontent.com/aida/AEtjO1UfwoHUJu43IWjjUVT-sxfNg4oefpw9A3VqExdk4vi0nfQwdGqXWmSJ8rw3yZz30deUTAVMhZ3C6UL9qOe7xkmY079Gd3xBI3MRw70a4vWjdaECYQTrQCBSexe99eFegAG5GrVVIUOHQq5WNw_BGXITmqhJLk93-N3ythL4FxWCA-AE1Zf_qXL-2ssx1wLe7MG3uwT-iGMk4NQcicrD_-W-bO6eRnKWo7n21EjrS-MdsrR7eBjaCPl1PuU6u0z_202H8EFaqA_ZZhU"
+          /><span
+            class="font-headline-md text-headline-md tracking-tight text-primary"
+            >Kenko EPS</span
+          >
+        </div>
+        <nav
+          class="gap-gutter hidden items-center md:flex"
+          data-active-classes="text-primary font-semibold"
+        >
+          <a
+            class="font-label-md text-label-md text-on-surface-variant transition-colors hover:text-primary"
+            data-path="afiliados"
+            href="#"
+            >Afiliados</a
+          ><a
+            class="font-label-md text-label-md text-on-surface-variant transition-colors hover:text-primary"
+            data-path="nosotros"
+            href="#"
+            >Nosotros</a
+          ><a
+            class="font-label-md text-label-md hover:bg-primary-container inline-flex items-center justify-center rounded-lg bg-primary px-6 py-2.5 text-on-primary transition-all"
+            data-path="login"
+            href="#"
+            >Acceso</a
+          >
+          <div
+            class="ml-4 flex h-8 w-8 items-center justify-center rounded-full bg-primary"
+          >
+            <span class="material-symbols-outlined text-[18px] text-on-primary"
+              >person</span
+            >
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main class="w-full bg-background pt-20">
+      <div class="bg-background-subtle flex w-full flex-col">
+        <!-- Hero / Header Section -->
+        <section
+          class="bg-surface-white border-border-muted w-full border-b pt-12 pb-16"
+        >
+          <div
+            class="max-w-container-max px-margin-mobile lg:px-margin-desktop mx-auto"
+          >
+            <div class="max-w-2xl">
+              <span
+                class="font-label-md text-label-md mb-4 inline-flex items-center gap-2 tracking-wider text-primary uppercase"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >location_on</span
+                >
+                Nuestra Red
+              </span>
+              <h1
+                class="font-display-lg text-display-lg text-on-background mb-4"
+              >
+                Puntos de Atención
+              </h1>
+              <p class="font-body-lg text-body-lg text-on-surface-variant mb-8">
+                Encuentra el centro médico Kenko más cercano a ti. Ofrecemos
+                instalaciones modernas y atención integral en las principales
+                ciudades de Colombia.
+              </p>
+              <!-- Search & Filter -->
+              <div class="relative flex w-full flex-col gap-4 md:flex-row">
+                <div class="relative flex-grow">
+                  <span
+                    class="material-symbols-outlined text-outline absolute top-1/2 left-4 -translate-y-1/2"
+                    >search</span
+                  >
+                  <input
+                    class="bg-surface-container-lowest border-border-muted font-body-md text-body-md text-on-surface h-12 w-full rounded-lg border pr-4 pl-12 transition-colors focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none"
+                    id="searchInput"
+                    placeholder="Buscar por ciudad o sede..."
+                    type="text"
+                  />
+                </div>
+                <button
+                  class="font-label-md text-label-md hover:bg-primary-container flex h-12 items-center justify-center gap-2 rounded-lg bg-primary px-6 whitespace-nowrap text-on-primary transition-all"
+                >
+                  <span class="material-symbols-outlined text-[18px]"
+                    >filter_list</span
+                  >
+                  Filtros
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Main Content -->
+        <section class="w-full py-16">
+          <div
+            class="max-w-container-max px-margin-mobile lg:px-margin-desktop mx-auto"
+          >
+            <div class="flex flex-col gap-12" id="locationsContainer">
+              <!-- Bogotá -->
+              <div
+                class="location-card bg-surface-container-lowest border-border-muted group flex flex-col gap-8 overflow-hidden rounded-xl border shadow-sm transition-all duration-300 hover:border-primary hover:shadow-md lg:flex-row"
+              >
+                <!-- Image -->
+                <div
+                  class="relative min-h-[240px] w-full overflow-hidden lg:w-1/3"
+                >
+                  <img
+                    alt="Bogotá Medical Center"
+                    class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6pDV6C7k6MZhOtNIDhzr4CjKE5MH7LzA1958ZUYuSGgFpPd4wLDRMHAJErhtusVYbs4dgdmlZ4FXCgN9rcBxf64SIyusLhaXBlkon-V7Fa5Yt4CNsWJOXjXRK6zIyez2Zcphu1e12m1oqAHuMNwLm40j6sM4UQ-svCEemVZU6v1R5KvDWUudK9SYMsNlmsrtdEOyA6tq2ftk4nlazSQOv6ybscbdPW45AgRA8_lNeC5qTg0odpgLQKA"
+                  />
+                  <div class="absolute top-4 left-4">
+                    <span
+                      class="bg-surface-white/90 font-label-md text-caption flex items-center gap-1 rounded-full px-3 py-1 text-primary backdrop-blur-sm"
+                    >
+                      <span class="material-symbols-outlined text-[14px]"
+                        >medical_services</span
+                      >
+                      Sede Principal
+                    </span>
+                  </div>
+                </div>
+                <!-- Content -->
+                <div class="flex w-full flex-col justify-center p-6 lg:w-1/3">
+                  <h2
+                    class="font-headline-lg text-headline-lg text-on-background mb-4"
+                  >
+                    Bogotá
+                  </h2>
+                  <div class="space-y-4">
+                    <div class="flex items-start gap-3">
+                      <span class="material-symbols-outlined mt-1 text-primary"
+                        >pin_drop</span
+                      >
+                      <div>
+                        <p class="font-label-md text-label-md text-on-surface">
+                          Centro Médico Kenko Chicó
+                        </p>
+                        <p
+                          class="font-body-md text-body-md text-on-surface-variant"
+                        >
+                          Cra. 11 # 94-05, Edificio Kenko Tower
+                        </p>
+                      </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                      <span class="material-symbols-outlined mt-1 text-primary"
+                        >schedule</span
+                      >
+                      <div>
+                        <p
+                          class="font-body-md text-body-md text-on-surface-variant"
+                        >
+                          Lunes a Viernes: 6:00 AM - 8:00 PM
+                        </p>
+                        <p
+                          class="font-body-md text-body-md text-on-surface-variant"
+                        >
+                          Sábados: 7:00 AM - 2:00 PM
+                        </p>
+                        <p class="font-body-md text-body-md text-medical-error">
+                          Urgencias 24/7
+                        </p>
+                      </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                      <span class="material-symbols-outlined mt-1 text-primary"
+                        >call</span
+                      >
+                      <p
+                        class="font-body-md text-body-md text-on-surface-variant"
+                      >
+                        (601) 345 6789
+                      </p>
+                    </div>
+                  </div>
+                  <div class="mt-8 flex gap-3">
+                    <button
+                      class="bg-secondary-container text-on-secondary-container font-label-md text-label-md hover:bg-secondary-fixed-dim rounded-lg px-6 py-2.5 transition-all"
+                    >
+                      Agendar Cita
+                    </button>
+                  </div>
+                </div>
+                <!-- Map -->
+                <div class="w-full p-4 lg:w-1/3">
+                  <div
+                    class="bg-surface-variant h-full min-h-[200px] w-full rounded-lg bg-cover bg-center"
+                    data-alt="A detailed map view of northern Bogota, showing streets and blocks, clean modern map styling, light mode colors with blue accents for roads, professional cartography aesthetic."
+                    data-location="Cra. 11 # 94-05, Bogota, Colombia"
+                    style="
+                      background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBdI68Cqy7xjIk9ufBNiv3zR-29lFfU3nFbGjcp2MoJ77dFQ1y4ZNqY1tUW8IYoe8ktoJd0majnEo1pxyKAB8FCQO1nciLtwUzw4P5Z7jsIQ6YhRN_K2VLX_hvLDQrAjV39s77STrkFpeLiiAeTT98o9gezq4CJ6N0BbeLsI8xz2BfTLhVEDPvG9UVdm7u8eRI5IIEnycUotQV1rof45y5kRlTE_xhkrDrs3mbHiNQhS0oOvXfWNgzRyw&quot;);
+                    "
+                  ></div>
+                </div>
+              </div>
+              <!-- Medellín -->
+              <div
+                class="location-card bg-surface-container-lowest border-border-muted group flex flex-col gap-8 overflow-hidden rounded-xl border shadow-sm transition-all duration-300 hover:border-primary hover:shadow-md lg:flex-row"
+              >
+                <div
+                  class="relative min-h-[240px] w-full overflow-hidden lg:w-1/3"
+                >
+                  <img
+                    alt="Medellín Medical Center"
+                    class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHkZixQirQtYF_UdZ3F2QaB3de-zJkJ6eJfy9LpXdpHSCcw_e2MeaUSJfPOyw3g22-1WQlHaxbM8Im9TdITV2uyVAgc6tUEMbqXkK1TS65cF5n3b0s4F5oTKzjxBP0K3fFFJB0viPifBGw8lQP1mgrU3cOpoCCeCIdqlY7T6FD0MkXNflyIa8oXk8-Fa6S1rkJ6qbFeaNd9h4nNOsy3MNB74pgASXWazAfDXXXUIaknc06tHr4JV7UAw"
+                  />
+                </div>
+                <div class="flex w-full flex-col justify-center p-6 lg:w-1/3">
+                  <h2
+                    class="font-headline-lg text-headline-lg text-on-background mb-4"
+                  >
+                    Medellín
+                  </h2>
+                  <div class="space-y-4">
+                    <div class="flex items-start gap-3">
+                      <span class="material-symbols-outlined mt-1 text-primary"
+                        >pin_drop</span
+                      >
+                      <div>
+                        <p class="font-label-md text-label-md text-on-surface">
+                          Clínica Kenko Poblado
+                        </p>
+                        <p
+                          class="font-body-md text-body-md text-on-surface-variant"
+                        >
+                          Cra. 43A # 1-50, San Fernando Plaza
+                        </p>
+                      </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                      <span class="material-symbols-outlined mt-1 text-primary"
+                        >schedule</span
+                      >
+                      <div>
+                        <p
+                          class="font-body-md text-body-md text-on-surface-variant"
+                        >
+                          Lunes a Viernes: 7:00 AM - 7:00 PM
+                        </p>
+                        <p
+                          class="font-body-md text-body-md text-on-surface-variant"
+                        >
+                          Sábados: 8:00 AM - 1:00 PM
+                        </p>
+                      </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                      <span class="material-symbols-outlined mt-1 text-primary"
+                        >call</span
+                      >
+                      <p
+                        class="font-body-md text-body-md text-on-surface-variant"
+                      >
+                        (604) 444 1234
+                      </p>
+                    </div>
+                  </div>
+                  <div class="mt-8 flex gap-3">
+                    <button
+                      class="bg-secondary-container text-on-secondary-container font-label-md text-label-md hover:bg-secondary-fixed-dim rounded-lg px-6 py-2.5 transition-all"
+                    >
+                      Ver Detalles
+                    </button>
+                  </div>
+                </div>
+                <div class="w-full p-4 lg:w-1/3">
+                  <div
+                    class="bg-surface-variant h-full min-h-[200px] w-full rounded-lg bg-cover bg-center"
+                    data-alt="A clean modern map view of the Poblado neighborhood in Medellin, Colombia, showing main avenues and green areas, light mode map styling with blue accents."
+                    data-location="San Fernando Plaza, Medellin, Colombia"
+                    style="
+                      background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuCJB4JaSw18kTOIWY3r7jGf39LtYu2NHg2k2QImVaIn6C55hlccy7Aql_hHORscbuwCu2kRiHhXyap17xSH4V18rnHxOvs8qzH6uH6-aMkaDEAZcPhTGAiEjVnR0ZE3Qh7NfTSRDLAt0U2hGtB7nz11x3AMLuOVQjk8QCjIlYjeu_3mSlnH1OfCFiZpLlUwOWxvylxSeHxfq_4ZFSKgAK1sfCvzaAx57JJhVji1irBkxvPxLpsBhyPYgw&quot;);
+                    "
+                  ></div>
+                </div>
+              </div>
+              <!-- Cali -->
+              <div
+                class="location-card bg-surface-container-lowest border-border-muted group flex flex-col gap-8 overflow-hidden rounded-xl border shadow-sm transition-all duration-300 hover:border-primary hover:shadow-md lg:flex-row"
+              >
+                <div
+                  class="relative min-h-[240px] w-full overflow-hidden lg:w-1/3"
+                >
+                  <img
+                    alt="Cali Medical Center"
+                    class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-ckeMrSpZRmb00RQX-24D25JIiG-jAoRPO6tYCKNv_pD1qYr0sz4EAgYILl2896TPAl0u57irEIqi3cwiS0gW1WZP_hUR8YauEL_xS0B0kEJIhiMZ5ABiCWKcxh78aQLTvtkgiGQyJqJVcJhFrMs1-jl_hF_bqX5JtcEgucwqwpicLY-NEYzgiQaBXqdb-_l8-dkScGqSanvIHxpbA1bgeenWoEmhsPF0kW8kH5YwI9Pxv494yJbkRQ"
+                  />
+                </div>
+                <div class="flex w-full flex-col justify-center p-6 lg:w-1/3">
+                  <h2
+                    class="font-headline-lg text-headline-lg text-on-background mb-4"
+                  >
+                    Cali
+                  </h2>
+                  <div class="space-y-4">
+                    <div class="flex items-start gap-3">
+                      <span class="material-symbols-outlined mt-1 text-primary"
+                        >pin_drop</span
+                      >
+                      <div>
+                        <p class="font-label-md text-label-md text-on-surface">
+                          Centro de Especialistas Kenko
+                        </p>
+                        <p
+                          class="font-body-md text-body-md text-on-surface-variant"
+                        >
+                          Calle 5 # 38-12, Imbanaco
+                        </p>
+                      </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                      <span class="material-symbols-outlined mt-1 text-primary"
+                        >schedule</span
+                      >
+                      <div>
+                        <p
+                          class="font-body-md text-body-md text-on-surface-variant"
+                        >
+                          Lunes a Viernes: 7:00 AM - 6:00 PM
+                        </p>
+                        <p
+                          class="font-body-md text-body-md text-on-surface-variant"
+                        >
+                          Sábados: 8:00 AM - 12:00 PM
+                        </p>
+                      </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                      <span class="material-symbols-outlined mt-1 text-primary"
+                        >call</span
+                      >
+                      <p
+                        class="font-body-md text-body-md text-on-surface-variant"
+                      >
+                        (602) 888 5678
+                      </p>
+                    </div>
+                  </div>
+                  <div class="mt-8 flex gap-3">
+                    <button
+                      class="bg-secondary-container text-on-secondary-container font-label-md text-label-md hover:bg-secondary-fixed-dim rounded-lg px-6 py-2.5 transition-all"
+                    >
+                      Ver Detalles
+                    </button>
+                  </div>
+                </div>
+                <div class="w-full p-4 lg:w-1/3">
+                  <div
+                    class="bg-surface-variant h-full min-h-[200px] w-full rounded-lg bg-cover bg-center"
+                    data-alt="A clean, professional map view of southern Cali near Imbanaco, showing the layout of streets, parks, light mode with subtle blue highlights for key routes."
+                    data-location="Calle 5 # 38-12, Cali, Colombia"
+                    style="
+                      background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBk_XCvP8BO6aFOubC95Krz-ldigYYw7N9ff--JmjV6lEWjUXI9VlSDSse2w2734NpL8DvhL6yWYK5rtcOA58XzyerGbugBTek7rVhNEWmXbnJAc78G1yUFALNu2qpJx5zd7JtJYAD3hAkEnrFMLD38_Qn6cV8oYsBsOz1asps8CwanfcmxH3kdWiSo0ElgHJkHzj7iUSDLFYT8uubpQHuTz4E8ITNJ4-AyNcdzYeqqAM7000yt8a-_rQ&quot;);
+                    "
+                  ></div>
+                </div>
+              </div>
+              <!-- Barranquilla -->
+              <div
+                class="location-card bg-surface-container-lowest border-border-muted group flex flex-col gap-8 overflow-hidden rounded-xl border shadow-sm transition-all duration-300 hover:border-primary hover:shadow-md lg:flex-row"
+              >
+                <div
+                  class="relative min-h-[240px] w-full overflow-hidden lg:w-1/3"
+                >
+                  <img
+                    alt="Barranquilla Medical Center"
+                    class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiXSREqs1UZyJF49emSWKdQKhynmj5VNFmqhwH7IOR4dZ7vjITSaleODQBXayBIHYzadqDMyusSBJJSympKcYdIsqKxUD1st4NAZt-KHC3He1ZKOgETkCxzTIGFuLg3NLIejslL_-q0qRiKCSxaqyRJ6OJl32uUtH-2pMGnbmt8oS0md1nmfWNQPpry8fiqtkt4L2JoSZAy4mjqI7_vgl5rBQ-5wP_H_a_kW_kHtQsj7nsy7xIU99HTw"
+                  />
+                </div>
+                <div class="flex w-full flex-col justify-center p-6 lg:w-1/3">
+                  <h2
+                    class="font-headline-lg text-headline-lg text-on-background mb-4"
+                  >
+                    Barranquilla
+                  </h2>
+                  <div class="space-y-4">
+                    <div class="flex items-start gap-3">
+                      <span class="material-symbols-outlined mt-1 text-primary"
+                        >pin_drop</span
+                      >
+                      <div>
+                        <p class="font-label-md text-label-md text-on-surface">
+                          Sede Médica Buenavista
+                        </p>
+                        <p
+                          class="font-body-md text-body-md text-on-surface-variant"
+                        >
+                          Cra. 53 # 99-80, Norte-Centro Histórico
+                        </p>
+                      </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                      <span class="material-symbols-outlined mt-1 text-primary"
+                        >schedule</span
+                      >
+                      <div>
+                        <p
+                          class="font-body-md text-body-md text-on-surface-variant"
+                        >
+                          Lunes a Viernes: 7:00 AM - 7:00 PM
+                        </p>
+                        <p
+                          class="font-body-md text-body-md text-on-surface-variant"
+                        >
+                          Sábados: 8:00 AM - 1:00 PM
+                        </p>
+                      </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                      <span class="material-symbols-outlined mt-1 text-primary"
+                        >call</span
+                      >
+                      <p
+                        class="font-body-md text-body-md text-on-surface-variant"
+                      >
+                        (605) 333 9012
+                      </p>
+                    </div>
+                  </div>
+                  <div class="mt-8 flex gap-3">
+                    <button
+                      class="bg-secondary-container text-on-secondary-container font-label-md text-label-md hover:bg-secondary-fixed-dim rounded-lg px-6 py-2.5 transition-all"
+                    >
+                      Ver Detalles
+                    </button>
+                  </div>
+                </div>
+                <div class="w-full p-4 lg:w-1/3">
+                  <div
+                    class="bg-surface-variant h-full min-h-[200px] w-full rounded-lg bg-cover bg-center"
+                    data-alt="Map view of northern Barranquilla near Buenavista, clear modern cartography, light gray and blue tones, showing major roads and nearby blocks."
+                    data-location="Cra. 53 # 99-80, Barranquilla, Colombia"
+                    style="
+                      background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuCvtw0zpu-ksQy6tFMIva3nYuvlicBHuxumjRid8bea6YrAoBtjENcnI5ZCFpACPvovYqx9R8wPG8dTBv00FGNvqth1Thp8Ww7-2-WjfY84sHnRobnANpR-MtqJdAyhxhXy7XIArE4UAFa96CbKUXwqrFXGT5-UsusJWYbVP0a-KXcZybp2yHHk8no9KFxb-SH4z2rqWe7zpVf6TO-8OcNnDMROKyvSICUlWxyVT_s1CJUznIrhbu93VQ&quot;);
+                    "
+                  ></div>
+                </div>
+              </div>
+              <!-- Bucaramanga -->
+              <div
+                class="location-card bg-surface-container-lowest border-border-muted group flex flex-col gap-8 overflow-hidden rounded-xl border shadow-sm transition-all duration-300 hover:border-primary hover:shadow-md lg:flex-row"
+              >
+                <div
+                  class="relative min-h-[240px] w-full overflow-hidden lg:w-1/3"
+                >
+                  <img
+                    alt="Bucaramanga Medical Center"
+                    class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZ-37UKIOmV2Tvin4XB2BjiOhFbB0D6s7A_DJazjl16FqHr7RuT3B8P4mcV84z1AA3avsmotpWX_RtkvmWkmbXyxMlMP-6PR0-OE2ZCu_t_ZkYZvzYR6LYnEZ2oHXnw5hyPIJtxM6bxI4nQMuUFGhfSbbTqzZbMnBn_tASMejcwTDXuMZExvZyqaNzc6we18-7fBuf4OXGGAK4hIOQi54jAoTtuxjGaEVin2YmnvRUhpnW4nzmfnh17A"
+                  />
+                </div>
+                <div class="flex w-full flex-col justify-center p-6 lg:w-1/3">
+                  <h2
+                    class="font-headline-lg text-headline-lg text-on-background mb-4"
+                  >
+                    Bucaramanga
+                  </h2>
+                  <div class="space-y-4">
+                    <div class="flex items-start gap-3">
+                      <span class="material-symbols-outlined mt-1 text-primary"
+                        >pin_drop</span
+                      >
+                      <div>
+                        <p class="font-label-md text-label-md text-on-surface">
+                          Centro Integral Kenko
+                        </p>
+                        <p
+                          class="font-body-md text-body-md text-on-surface-variant"
+                        >
+                          Calle 52 # 31-15, Cabecera
+                        </p>
+                      </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                      <span class="material-symbols-outlined mt-1 text-primary"
+                        >schedule</span
+                      >
+                      <div>
+                        <p
+                          class="font-body-md text-body-md text-on-surface-variant"
+                        >
+                          Lunes a Viernes: 7:00 AM - 6:00 PM
+                        </p>
+                        <p
+                          class="font-body-md text-body-md text-on-surface-variant"
+                        >
+                          Sábados: 8:00 AM - 12:00 PM
+                        </p>
+                      </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                      <span class="material-symbols-outlined mt-1 text-primary"
+                        >call</span
+                      >
+                      <p
+                        class="font-body-md text-body-md text-on-surface-variant"
+                      >
+                        (607) 645 2345
+                      </p>
+                    </div>
+                  </div>
+                  <div class="mt-8 flex gap-3">
+                    <button
+                      class="bg-secondary-container text-on-secondary-container font-label-md text-label-md hover:bg-secondary-fixed-dim rounded-lg px-6 py-2.5 transition-all"
+                    >
+                      Ver Detalles
+                    </button>
+                  </div>
+                </div>
+                <div class="w-full p-4 lg:w-1/3">
+                  <div
+                    class="bg-surface-variant h-full min-h-[200px] w-full rounded-lg bg-cover bg-center"
+                    data-alt="Map view of Cabecera district in Bucaramanga, Colombia. Clean layout showing streets and topography lines, minimalist light mode aesthetic with brand blue accents."
+                    data-location="Calle 52 # 31-15, Bucaramanga, Colombia"
+                    style="
+                      background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBF34UyiARahR93Rmu52xyjWp20Omf_mRgEuP-t8JI31NVhLoH9-98JE3hdtAqyI_XeQIir7YOMl-Gd0-cHnNbf15mWwaFuqAQl9waB0F60FtB1HL2do4Q4fqUNA58ALFK0ebi73CB5Akrvnt2E0wxXx9xB6jhIWOFRhO3wadcisYh0vWwbdQeWRbRKJ9uYLpNEzl3jYcLv1pQrFh7A2BtcpcPcs0CECBGdcuGvgpSa2blAw6w4p3O8TA&quot;);
+                    "
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <script>
+          document
+            .getElementById("searchInput")
+            .addEventListener("input", function (e) {
+              const searchTerm = e.target.value.toLowerCase();
+              const cards = document.querySelectorAll(".location-card");
+
+              cards.forEach((card) => {
+                const textContent = card.innerText.toLowerCase();
+                if (textContent.includes(searchTerm)) {
+                  card.style.display = "flex";
+                } else {
+                  card.style.display = "none";
+                }
+              });
+            });
+        </script>
+      </div>
+    </main>
+    <footer class="bg-primary-container w-full py-12 text-on-primary">
+      <div
+        class="max-w-container-max px-margin-mobile lg:px-margin-desktop mx-auto"
+      >
+        <div class="gap-gutter mb-12 grid grid-cols-1 md:grid-cols-4">
+          <div class="col-span-1 md:col-span-1">
+            <div class="text-surface-white mb-4 flex items-center gap-2">
+              <img
+                alt="logo-kenko.jpg"
+                class="h-8 w-auto brightness-0 invert"
+                src="https://lh3.googleusercontent.com/aida/AEtjO1UfwoHUJu43IWjjUVT-sxfNg4oefpw9A3VqExdk4vi0nfQwdGqXWmSJ8rw3yZz30deUTAVMhZ3C6UL9qOe7xkmY079Gd3xBI3MRw70a4vWjdaECYQTrQCBSexe99eFegAG5GrVVIUOHQq5WNw_BGXITmqhJLk93-N3ythL4FxWCA-AE1Zf_qXL-2ssx1wLe7MG3uwT-iGMk4NQcicrD_-W-bO6eRnKWo7n21EjrS-MdsrR7eBjaCPl1PuU6u0z_202H8EFaqA_ZZhU"
+              />Kenko EPS
+            </div>
+            <p class="font-caption text-caption text-on-primary-container">
+              Líderes en salud integral y bienestar clínico para tu familia.
+            </p>
+          </div>
+          <div>
+            <h4
+              class="font-label-md text-label-md text-surface-white mb-4 tracking-wider uppercase"
+            >
+              Servicios
+            </h4>
+            <ul
+              class="text-on-primary-container font-caption text-caption space-y-2"
+            >
+              <li>
+                <a class="hover:text-surface-white" href="#">Citas Médicas</a>
+              </li>
+              <li>
+                <a class="hover:text-surface-white" href="#">Urgencias</a>
+              </li>
+              <li><a class="hover:text-surface-white" href="#">Farmacia</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4
+              class="font-label-md text-label-md text-surface-white mb-4 tracking-wider uppercase"
+            >
+              Compañía
+            </h4>
+            <ul
+              class="text-on-primary-container font-caption text-caption space-y-2"
+            >
+              <li><a class="hover:text-surface-white" href="#">Nosotros</a></li>
+              <li>
+                <a class="hover:text-surface-white" href="#"
+                  >Sedes y Horarios</a
+                >
+              </li>
+              <li>
+                <a class="hover:text-surface-white" href="#"
+                  >Trabaja con nosotros</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4
+              class="font-label-md text-label-md text-surface-white mb-4 tracking-wider uppercase"
+            >
+              Legal
+            </h4>
+            <ul
+              class="text-on-primary-container font-caption text-caption space-y-2"
+            >
+              <li>
+                <a class="hover:text-surface-white" href="#"
+                  >Política de Privacidad</a
+                >
+              </li>
+              <li>
+                <a class="hover:text-surface-white" href="#"
+                  >Términos y Condiciones</a
+                >
+              </li>
+              <li>
+                <a class="hover:text-surface-white" href="#"
+                  >Derechos del Paciente</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="border-on-primary-container/20 text-on-primary-container font-caption text-caption flex flex-col items-center justify-between gap-4 border-t pt-8 md:flex-row"
+        >
+          <p>© 2024 Kenko EPS. Todos los derechos reservados.</p>
+          <div class="flex gap-6">
+            <span class="flex items-center gap-1"
+              ><span class="material-symbols-outlined text-[16px]">call</span>
+              01-8000-KENKO</span
+            ><span class="flex items-center gap-1"
+              ><span class="material-symbols-outlined text-[16px]"
+                >location_on</span
+              >
+              Bogotá, Colombia</span
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
