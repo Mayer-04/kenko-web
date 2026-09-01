@@ -86,4 +86,53 @@ Consulta general, el paciente debe ser atendido el mismo día.
     );
     expect(levels[0]?.symptoms).toContain("Dificultad para respirar.");
   });
+
+  it("consume el formato real del markdown de triage con guiones y textos en cursiva", () => {
+    const markdown = `## Triage
+
+**¿Qué es el triage?**
+
+Es el nombre que recibe la clasificación ...
+
+_La clasificación se realiza de la siguiente manera:_
+
+### Triage 1: rojo
+
+_Tiempo de espera:_
+
+Emergencia, el paciente requiere atención inmediata.
+
+_Síntomas_
+
+- Dificultad para respirar por cualquier causa, sensación de ahogo, agitación o piel morada.
+- Pérdida del conocimiento o convulsión.
+- Paro cardíaco o respiratorio.
+- Heridas, fracturas o golpes múltiples y severos en cualquier parte del cuerpo.
+
+### Triage 2: amarillo
+
+_Tiempo de espera:_
+
+Urgencia, alrededor de 15 minutos.
+
+_Síntomas_
+
+- Dolor en el pecho con signos vitales alterados.
+- Sangrado abundante de cualquier origen.
+
+## Preguntas frecuentes`;
+
+    const levels = parseTriageDefinitions(markdown);
+
+    expect(levels).toHaveLength(2);
+    expect(levels[0]?.subtitle).toBe(
+      "Emergencia, el paciente requiere atención inmediata.",
+    );
+    expect(levels[0]?.symptoms).toEqual([
+      "Dificultad para respirar por cualquier causa, sensación de ahogo, agitación o piel morada.",
+      "Pérdida del conocimiento o convulsión.",
+      "Paro cardíaco o respiratorio.",
+      "Heridas, fracturas o golpes múltiples y severos en cualquier parte del cuerpo.",
+    ]);
+  });
 });
