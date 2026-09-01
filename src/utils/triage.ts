@@ -78,21 +78,57 @@ export function parseTriageDefinitions(markdown: string): TriageLevel[] {
     }
 
     const block = current.join("\n");
-    const subtitleMatch = block.match(
-      /\*Tiempo de espera:\*\s*\n\s*([\s\S]*?)(?=\n\s*\*Síntomas\*)/i,
-    );
-    const subtitle = subtitleMatch
-      ? normalizeWhitespace(stripMarkdownFormatting(subtitleMatch[1]))
-      : "";
+    const subtitleLines: string[] = [];
+    const symptoms: string[] = [];
+    let collectingSubtitle = false;
+    let collectingSymptoms = false;
 
-    const symptoms = Array.from(block.matchAll(/^\s*\*\s*(.+)$/gm))
-      .map((item) => normalizeWhitespace(stripMarkdownFormatting(item[1])))
-      .filter(
-        (symptom) =>
-          symptom &&
-          !/^Tiempo de espera:?$/i.test(symptom) &&
-          !/^Síntomas?$/i.test(symptom),
-      );
+    for (const line of block.split(/\r?\n/)) {
+      const trimmed = line.trim();
+
+      if (!trimmed || /^###\s*Triage\s+\d+:/i.test(trimmed)) {
+        continue;
+      }
+
+      if (/^[_*]*Tiempo de espera:[_*]*\s*$/i.test(trimmed)) {
+        collectingSubtitle = true;
+        collectingSymptoms = false;
+        continue;
+      }
+
+      if (/^[_*]*Síntomas?[_*]*\s*$/i.test(trimmed)) {
+        collectingSubtitle = false;
+        collectingSymptoms = true;
+        continue;
+      }
+
+      if (collectingSubtitle) {
+        if (!trimmed) {
+          continue;
+        }
+
+        subtitleLines.push(trimmed);
+        continue;
+      }
+
+      if (collectingSymptoms) {
+        const bulletMatch = trimmed.match(/^[-*]\s*(.+)$/);
+
+        if (bulletMatch) {
+          const symptom = normalizeWhitespace(
+            stripMarkdownFormatting(bulletMatch[1]),
+          );
+
+          if (symptom) {
+            symptoms.push(symptom);
+          }
+        }
+      }
+    }
+
+    const subtitle = normalizeWhitespace(
+      stripMarkdownFormatting(subtitleLines.join("\n")),
+    );
 
     levels.push({
       level: currentLevel,
