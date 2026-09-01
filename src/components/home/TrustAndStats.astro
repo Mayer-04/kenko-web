@@ -11,7 +11,7 @@ const stats = [
     description: "Familias que confían en nuestros servicios.",
   },
   {
-    value: "50+",
+    value: "5",
     label: "Sedes",
     description: "Cobertura nacional para estar siempre cerca.",
   },
@@ -19,21 +19,21 @@ const stats = [
 ---
 
 <section
-  class="bg-primary py-16 text-on-primary sm:py-20"
+  class="bg-secondary py-16 text-on-secondary sm:py-20"
   aria-label="Indicadores de confianza de Kenko EPS"
 >
-  <div class="mx-auto w-full max-w-[1280px] px-6 lg:px-8">
+  <div class="mx-auto w-full max-w-7xl px-6 lg:px-8">
     <ul class="grid gap-12 text-center md:grid-cols-3 md:gap-8" role="list">
       {
         stats.map((stat) => (
           <li class="mx-auto flex max-w-xs flex-col items-center">
-            <p class="font-display text-5xl font-bold tracking-tight text-secondary sm:text-6xl">
+            <p class="font-display text-5xl font-bold tracking-tight text-primary sm:text-6xl">
               {stat.value}
             </p>
-            <h2 class="mt-2 font-display text-xl font-semibold text-on-primary">
+            <h2 class="mt-2 font-display text-xl font-semibold text-on-secondary">
               {stat.label}
             </h2>
-            <p class="mt-2 font-body text-sm leading-6 text-on-primary/75">
+            <p class="mt-2 font-body text-sm leading-6 text-on-secondary/75">
               {stat.description}
             </p>
           </li>
