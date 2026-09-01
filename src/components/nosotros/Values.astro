@@ -1,0 +1,95 @@
+---
+const valores = [
+  {
+    titulo: "Respeto",
+    descripcion:
+      "Reconocemos el valor y la dignidad de cada persona. Escuchamos, comprendemos y actuamos respetando los derechos, las decisiones y las necesidades de nuestros afiliados.",
+  },
+  {
+    titulo: "Equidad",
+    descripcion:
+      "Trabajamos para que todas las personas tengan las mismas oportunidades de acceder a servicios de salud oportunos y de calidad, sin importar sus condiciones o circunstancias.",
+  },
+  {
+    titulo: "Transparencia",
+    descripcion:
+      "Actuamos con honestidad y claridad en cada una de nuestras decisiones. Comunicamos de manera responsable lo que hacemos y asumimos con apertura los resultados de nuestra gestión.",
+  },
+  {
+    titulo: "Cercanía",
+    descripcion:
+      "Queremos estar presentes cuando nuestros afiliados más nos necesitan. Acompañamos cada etapa de su camino en salud, brindando una atención humana, sencilla y accesible.",
+  },
+  {
+    titulo: "Responsabilidad",
+    descripcion:
+      "Entendemos que cuidar la salud es una gran responsabilidad. Por eso utilizamos nuestros recursos de manera consciente, cumplimos nuestros compromisos y tomamos decisiones pensando siempre en el bienestar de las personas.",
+  },
+];
+---
+
+<section
+  class="relative overflow-hidden bg-about-primary py-16 text-on-about-primary sm:py-20 lg:py-24"
+  aria-labelledby="valores-title"
+>
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(255,255,255,0.07),_transparent_60%)]"
+  >
+  </div>
+  <div class="relative mx-auto w-full max-w-[1280px] px-6 lg:px-8">
+    <header class="max-w-3xl">
+      <p
+        class="font-body text-[11px] font-semibold tracking-[0.2em] text-on-about-primary/70 uppercase"
+      >
+        Principios — Cómo nos comportamos
+      </p>
+      <h2
+        id="valores-title"
+        class="mt-4 font-display text-3xl font-bold tracking-tight sm:text-4xl"
+      >
+        Valores
+      </h2>
+      <p
+        class="mt-3 max-w-2xl font-body text-sm leading-6 text-on-about-primary/70"
+      >
+        Cinco principios que guían cada decisión y sostienen la confianza de
+        quienes nos eligen.
+      </p>
+    </header>
+
+    <div class="mt-10 flex max-w-3xl gap-6 sm:gap-8">
+      <div
+        aria-hidden="true"
+        class="relative hidden w-px shrink-0 self-stretch bg-white/12 sm:block"
+      >
+        <span
+          class="absolute top-0 left-1/2 size-1.5 -translate-x-1/2 rounded-full bg-secondary"
+        ></span>
+        <span
+          class="absolute bottom-0 left-1/2 size-1 -translate-x-1/2 rounded-full bg-white/15"
+        ></span>
+      </div>
+
+      <dl class="min-w-0 flex-1 divide-y divide-white/10">
+        {
+          valores.map((valor, i) => (
+            <div class="flex flex-col gap-3 py-7 first:pt-0 last:pb-0 sm:flex-row sm:gap-6 sm:py-8">
+              <dt class="flex shrink-0 items-baseline gap-3 sm:w-40 sm:flex-col sm:gap-1">
+                <span class="font-display text-lg font-semibold tracking-tight text-on-about-primary sm:text-xl">
+                  {valor.titulo}
+                </span>
+                <span class="font-body text-[11px] font-semibold tracking-[0.18em] text-on-about-primary/55">
+                  0{i + 1}
+                </span>
+              </dt>
+              <dd class="flex-1 font-body text-[15px] leading-6 text-on-about-primary/85">
+                {valor.descripcion}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </div>
+</section>

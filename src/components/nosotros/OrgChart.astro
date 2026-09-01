@@ -1,0 +1,92 @@
+---
+import { Image } from "astro:assets";
+import JDR from "@assets/images/organigrama/JDR.avif";
+import Mayer from "@assets/images/organigrama/Mayer.avif";
+import JPR from "@assets/images/organigrama/JPR.avif";
+
+const lideres = [
+  {
+    nombre: "Mayer Andrés Chaves",
+    cargo: "CTO",
+    imagen: Mayer,
+    alt: "Retrato de Mayer Andrés Chaves, CTO de Kenko EPS",
+    linkedin: "https://www.linkedin.com/in/mayer-chaves/",
+    accent: "border-t-[#466883]",
+  },
+  {
+    nombre: "José Daniel Rodríguez",
+    cargo: "CEO",
+    imagen: JDR,
+    alt: "Retrato de José Daniel Rodríguez, CEO de Kenko EPS",
+    linkedin: "https://www.linkedin.com/in/josedanrodrod98/",
+    accent: "border-t-[#dbbc78]",
+  },
+  {
+    nombre: "Juan Pablo Rojas",
+    cargo: "COO",
+    imagen: JPR,
+    alt: "Retrato de Juan Pablo Rojas, COO de Kenko EPS",
+    linkedin:
+      "https://www.linkedin.com/in/juan-pablo-rojas-quintero-90442130b/",
+    accent: "border-t-[#6386cd]",
+  },
+];
+---
+
+<ul
+  class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+  role="list"
+  aria-label="Equipo directivo de Kenko EPS"
+>
+  {
+    lideres.map((lider) => (
+      <li role="listitem">
+        <a
+          href={lider.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          class={`group flex h-full flex-col rounded-[28px] border border-on-about-secondary/10 bg-white p-7 text-center no-underline shadow-[0_8px_30px_rgba(24,24,27,0.08)] transition hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-on-about-secondary ${lider.accent} border-t-[3px]`}
+          aria-label={`Perfil de LinkedIn de ${lider.nombre} — ${lider.cargo} en LinkedIn (se abre en pestaña nueva)`}
+        >
+          <article
+            class="relative flex flex-1 flex-col items-center pt-2"
+            aria-labelledby={`lider-${lider.cargo.toLowerCase()}`}
+          >
+            <div class="relative size-28 shrink-0 overflow-hidden rounded-full border-4 border-white bg-white shadow-lg ring-1 shadow-on-about-secondary/15 ring-on-about-secondary/10 transition group-hover:shadow-xl sm:size-32">
+              <Image
+                src={lider.imagen}
+                alt={lider.alt}
+                class="size-full object-cover transition duration-300 group-hover:scale-[1.03]"
+                widths={[144, 288]}
+                sizes="(min-width: 640px) 128px, 112px"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <p
+              id={`lider-${lider.cargo.toLowerCase()}`}
+              class="mt-5 font-display text-lg font-bold tracking-tight text-on-about-secondary sm:text-xl"
+            >
+              {lider.nombre}
+            </p>
+            <p class="mt-1.5 inline-flex items-center rounded-full bg-on-about-secondary px-3 py-1 font-body text-[11px] font-semibold tracking-[0.14em] text-white uppercase">
+              {lider.cargo}
+            </p>
+            <p class="mt-4 font-body text-sm leading-6 text-on-about-secondary/65">
+              {lider.cargo === "CEO" &&
+                "Dirección general y visión estratégica."}
+              {lider.cargo === "CTO" && "Tecnología, producto e innovación."}
+              {lider.cargo === "COO" && "Operación, red y experiencia."}
+            </p>
+            <span class="mt-6 inline-flex items-center gap-1.5 rounded-full border border-on-about-secondary/15 bg-white px-3.5 py-1.5 font-body text-xs font-semibold text-on-about-secondary transition group-hover:border-on-about-secondary/25 group-hover:bg-on-about-secondary group-hover:text-white">
+              Ver LinkedIn
+              <span aria-hidden="true" class="text-[11px]">
+                ↗
+              </span>
+            </span>
+          </article>
+        </a>
+      </li>
+    ))
+  }
+</ul>
