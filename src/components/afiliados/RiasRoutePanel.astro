@@ -224,70 +224,89 @@ const {
 </div>
 
 <script>
-  const panels = document.querySelectorAll<HTMLElement>("[data-rias-panel]");
+  const initializeRoutePanels = () => {
+    const panels = document.querySelectorAll<HTMLElement>("[data-rias-panel]");
 
-  panels.forEach((panel: HTMLElement) => {
-    const buttons = panel.querySelectorAll<HTMLButtonElement>("[data-route-trigger]");
-    const sections = panel.querySelectorAll<HTMLElement>("[data-route-panel]");
+    panels.forEach((panel) => {
+      if (panel.dataset.routePanelInitialized === "true") {
+        return;
+      }
 
-    const setActiveRoute = (routeId: string) => {
-      buttons.forEach((button: HTMLButtonElement) => {
-        const isActive = button.dataset.routeId === routeId;
-        button.setAttribute("aria-selected", String(isActive));
-        button.setAttribute("tabindex", isActive ? "0" : "-1");
-        button.classList.toggle("bg-primary", isActive);
-        button.classList.toggle("text-on-primary", isActive);
-        button.classList.toggle("text-content/80", !isActive);
-        button.classList.toggle("hover:bg-content/5", !isActive);
-      });
+      const buttons = panel.querySelectorAll<HTMLButtonElement>("[data-route-trigger]");
+      const sections = panel.querySelectorAll<HTMLElement>("[data-route-panel]");
 
-      sections.forEach((section: HTMLElement) => {
-        const isActive = section.dataset.routeId === routeId;
-        section.hidden = !isActive;
-        section.setAttribute("aria-hidden", String(!isActive));
-      });
-    };
+      if (buttons.length === 0 || sections.length === 0) {
+        return;
+      }
 
-    buttons.forEach((button: HTMLButtonElement) => {
-      button.addEventListener("click", () => {
-        setActiveRoute(button.dataset.routeId ?? "");
-      });
+      panel.dataset.routePanelInitialized = "true";
 
-      button.addEventListener("keydown", (event: KeyboardEvent) => {
-        if (!["ArrowDown", "ArrowUp", "Home", "End", "ArrowRight", "ArrowLeft"].includes(event.key)) {
-          return;
-        }
+      const setActiveRoute = (routeId: string) => {
+        buttons.forEach((button) => {
+          const isActive = button.dataset.routeId === routeId;
+          button.setAttribute("aria-selected", String(isActive));
+          button.setAttribute("tabindex", isActive ? "0" : "-1");
+          button.classList.toggle("bg-primary", isActive);
+          button.classList.toggle("text-on-primary", isActive);
+          button.classList.toggle("text-content/80", !isActive);
+          button.classList.toggle("hover:bg-content/5", !isActive);
+        });
 
-        event.preventDefault();
+        sections.forEach((section) => {
+          const isActive = section.dataset.routeId === routeId;
+          section.hidden = !isActive;
+          section.setAttribute("aria-hidden", String(!isActive));
+        });
+      };
 
-        const items = Array.from(buttons);
-        const currentIndex = items.indexOf(button);
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          setActiveRoute(button.dataset.routeId ?? "");
+        });
 
-        let nextIndex = currentIndex;
+        button.addEventListener("keydown", (event: KeyboardEvent) => {
+          if (!["ArrowDown", "ArrowUp", "Home", "End", "ArrowRight", "ArrowLeft"].includes(event.key)) {
+            return;
+          }
 
-        if (event.key === "ArrowDown" || event.key === "ArrowRight") {
-          nextIndex = (currentIndex + 1) % items.length;
-        }
+          event.preventDefault();
 
-        if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
-          nextIndex = (currentIndex - 1 + items.length) % items.length;
-        }
+          const items = Array.from(buttons);
+          const currentIndex = items.indexOf(button);
+          let nextIndex = currentIndex;
 
-        if (event.key === "Home") {
-          nextIndex = 0;
-        }
+          if (event.key === "ArrowDown" || event.key === "ArrowRight") {
+            nextIndex = (currentIndex + 1) % items.length;
+          }
 
-        if (event.key === "End") {
-          nextIndex = items.length - 1;
-        }
+          if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
+            nextIndex = (currentIndex - 1 + items.length) % items.length;
+          }
 
-        const nextButton = items[nextIndex];
-        nextButton?.focus();
+          if (event.key === "Home") {
+            nextIndex = 0;
+          }
 
-        if (nextButton?.dataset.routeId) {
-          setActiveRoute(nextButton.dataset.routeId);
-        }
+          if (event.key === "End") {
+            nextIndex = items.length - 1;
+          }
+
+          const nextButton = items[nextIndex];
+          nextButton?.focus();
+
+          if (nextButton?.dataset.routeId) {
+            setActiveRoute(nextButton.dataset.routeId);
+          }
+        });
       });
     });
-  });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeRoutePanels, { once: true });
+  } else {
+    initializeRoutePanels();
+  }
+
+  document.addEventListener("astro:page-load", initializeRoutePanels);
 </script>
