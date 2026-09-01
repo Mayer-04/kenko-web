@@ -1,4 +1,6 @@
 ---
+import Organigrama from "@components/nosotros/Organigrama.astro";
+
 const valores = [
   {
     titulo: "Calidez humana",
@@ -202,14 +204,6 @@ const valores = [
       Conoce la estructura organizacional de Kenko EPS y cómo trabajamos de
       manera coordinada para brindarte la mejor atención.
     </p>
-    <div
-      class="mt-10 flex min-h-64 items-center justify-center rounded-2xl border-2 border-dashed border-on-about-secondary/30 bg-white/10 p-8 backdrop-blur-sm"
-      role="img"
-      aria-label="Organigrama de Kenko EPS - Próximamente"
-    >
-      <p class="font-display text-lg font-semibold text-on-about-secondary/60">
-        Próximamente
-      </p>
-    </div>
+    <Organigrama />
   </div>
 </section>
