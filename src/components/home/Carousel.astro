@@ -1,6 +1,9 @@
 ---
 import ArrowBack from "@assets/icons/home/arrow back.svg";
 import ArrowForward from "@assets/icons/home/arrow forward.svg";
+import hospitalImg from "@assets/images/Carousel/hospital.avif";
+import hospitalBedImg from "@assets/images/Carousel/hospital-bed.avif";
+import doctorsImg from "@assets/images/Carousel/doctors.avif";
 
 interface CarouselAction {
   label: string;
@@ -10,7 +13,7 @@ interface CarouselAction {
 interface CarouselSlide {
   title: string;
   description: string;
-  image: string;
+  image: ImageMetadata;
   alt: string;
   action: CarouselAction;
 }
@@ -20,8 +23,7 @@ const slides: CarouselSlide[] = [
     title: "Nuestros puntos de atención",
     description:
       "Encuentra la sede más cercana a ti con infraestructura de vanguardia.",
-    image:
-      "https://lh3.googleusercontent.com/aida/AEtjO1WbLWEUtwhBMZR0usW5zAOpXl8LVEp47yIlQBVSyyM23NsZjfFM6jJqfp03Ps2atmewlrHRZNPP3SgvTOlM3BiMORk7IZAu-RpEvHBCBDmL8GbbxAWjILRl_H_TKZdJKmfvmY5zCX5a9G0I3fFJbgbFsgejXHv8kKfdcaL_rncOyNk7nVfUEHrM9Se6ALj0c2zU01cJpwoAXUlipQZdrDXad6z4vf3Mk7IeYZFmv7yRPzi5n6CKxobRoeI",
+    image: hospitalImg,
     alt: "Centro médico de Kenko EPS en Bogotá",
     action: {
       label: "Ver sedes",
@@ -32,8 +34,7 @@ const slides: CarouselSlide[] = [
     title: "Líderes en atención inclusiva",
     description:
       "Respetamos y somos líderes en atención a la mujer y población LGBTI con un enfoque humano.",
-    image:
-      "https://lh3.googleusercontent.com/aida/AEtjO1Wo_KEuU7kI8tEyEmX2buWW3fQGv5TdovHSEIt06e7EVt52y-S1tDNsShPTll5XfN9Sw0fqC7vZ13lle6mUKFVPAO6buandMXQQ9t_RPrgWRtDVG8HNWP-Mi2VwSyBwqG9JHhhtze3WY0Pp4apdUUmeK6WrEYfJxt36nhU80R2DtTKToKPZG_LCq-FgGSoPxdHosxeZH2DVMUpVHmSjWGWTsnlf2jX0gbHj1pmKdb-iSPtZbzJtnd7XiZOd",
+    image: hospitalBedImg,
     alt: "Profesional de salud brindando atención inclusiva",
     action: {
       label: "Saber más",
@@ -43,8 +44,7 @@ const slides: CarouselSlide[] = [
     title: "La segunda EPS preferida por los colombianos",
     description:
       "Comprometidos con la salud y el bienestar de millones de familias en todo el país.",
-    image:
-      "https://lh3.googleusercontent.com/aida/AEtjO1WFFkIvEfLGQGlph-rEDxVlVM7p9Od3lJaZCUZ7Ldv1Fw32zmmmWDoajIhIdxxHjcBdyngU-DBJrRWjJ-kIqoxbSD5-x5h_6bG_iyTi_vB34Pi2Xy4z4VYA3VcCN5lGRR19roDjldKkd1NuN-CofdpWotfCtnOrWPQOzjhUCnd1cPL7rHjaQqTkP3Xj9XBdrepQ0reS_l6kDKicW5YhzUaux2YyySIFco-YXd4zXvLqXM2RmK0X8A9Evw6d",
+    image: doctorsImg,
     alt: "Familia colombiana compartiendo un momento de bienestar",
     action: {
       label: "Afíliate ya",
@@ -92,7 +92,7 @@ const carouselId = "inicio-carousel";
                 decoding={isActive ? "sync" : "async"}
                 fetchpriority={isActive ? "high" : "low"}
                 loading={isActive ? "eager" : "lazy"}
-                src={slide.image}
+                src={slide.image.src}
               />
               <div
                 class="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/65 to-primary/10 sm:via-primary/55 sm:to-transparent"

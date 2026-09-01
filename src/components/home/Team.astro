@@ -1,6 +1,5 @@
 ---
-const teamImage =
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuDqlXO4s9R73_U-nHueNSEuu6M9J64BhugU569Inq6mHQe-09sKmQr8668Q-Bf6wJOAmLZcsyzGrRu9Nhh2mQaxgqr92BKwwg1V1TqZqlqgjDXcCV3Hn40kY9iAxJ5SVnhRhave2ly8lADND7EsUqSA7bAULOGNiVmUK4OrPeUUpp9rX90tfseCv3bkuKM7xluPIBsu0aQYZZnQxo6193Q9dFgx9wPS6Uk4GfVvppBcYA3CY5UgDyMrAA";
+import teamImage from "@assets/images/Team/doctors-office.avif";
 ---
 
 <section
@@ -16,7 +15,7 @@ const teamImage =
         class="aspect-4/3 h-full w-full object-cover"
         decoding="async"
         loading="lazy"
-        src={teamImage}
+        src={teamImage.src}
       />
     </div>
 
@@ -32,12 +31,6 @@ const teamImage =
         bienestar. Brindamos una atención personalizada, apoyada en la mejor
         evidencia científica y tecnología de vanguardia.
       </p>
-      <a
-        class="mt-8 inline-flex min-h-12 items-center justify-center rounded-lg bg-secondary px-6 py-3 font-display font-semibold text-on-secondary transition hover:bg-secondary/90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
-        href="/nosotros/organigrama"
-      >
-        Conoce nuestro organigrama
-      </a>
     </div>
   </div>
 </section>
