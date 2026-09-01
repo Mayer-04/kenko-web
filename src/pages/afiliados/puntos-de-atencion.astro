@@ -1,7 +1,11 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import LocationsContent from "@components/afiliados/LocationsContent.astro";
-import LocationsMap from "@components/afiliados/LocationsMap.astro";
+import bogotaImg from "@assets/images/Locations/Bogota.avif";
+import medellinImg from "@assets/images/Locations/Medellin.avif";
+import caliImg from "@assets/images/Locations/Cali.avif";
+import barranquillaImg from "@assets/images/Locations/Barranquilla.avif";
+import bucaramangaImg from "@assets/images/Locations/Bucaramanga.avif";
 
 const title = "Puntos de Atención | Kenko EPS";
 const description =
@@ -13,8 +17,7 @@ const locations = [
     name: "Centro Médico Kenko Chicó",
     address: "Cra. 11 # 94-05, Edificio Kenko Tower",
     phone: "(601) 345 6789",
-    image:
-      "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=1200&q=80",
+    image: bogotaImg,
     imageAlt: "Centro médico Kenko en Bogotá con fachada moderna.",
     mapImage:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuBdI68Cqy7xjIk9ufBNiv3zR-29lFfU3nFbGjcp2MoJ77dFQ1y4ZNqY1tUW8IYoe8ktoJd0majnEo1pxyKAB8FCQO1nciLtwUzw4P5Z7jsIQ6YhRN_K2VLX_hvLDQrAjV39s77STrkFpeLiiAeTT98o9gezq4CJ6N0BbeLsI8xz2BfTLhVEDPvG9UVdm7u8eRI5IIEnycUotQV1rof45y5kRlTE_xhkrDrs3mbHiNQhS0oOvXfWNgzRyw",
@@ -34,8 +37,7 @@ const locations = [
     name: "Clínica Kenko Poblado",
     address: "Cra. 43A # 1-50, San Fernando Plaza",
     phone: "(604) 444 1234",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDHkZixQirQtYF_UdZ3F2QaB3de-zJkJ6eJfy9LpXdpHSCcw_e2MeaUSJfPOyw3g22-1WQlHaxbM8Im9TdITV2uyVAgc6tUEMbqXkK1TS65cF5n3b0s4F5oTKzjxBP0K3fFFJB0viPifBGw8lQP1mgrU3cOpoCCeCIdqlY7T6FD0MkXNflyIa8oXk8-Fa6S1rkJ6qbFeaNd9h4nNOsy3MNB74pgASXWazAfDXXXUIaknc06tHr4JV7UAw",
+    image: medellinImg,
     imageAlt: "Centro médico Kenko en Medellín con ambiente moderno.",
     mapImage:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuCJB4JaSw18kTOIWY3r7jGf39LtYu2NHg2k2QImVaIn6C55hlccy7Aql_hHORscbuwCu2kRiHhXyap17xSH4V18rnHxOvs8qzH6uH6-aMkaDEAZcPhTGAiEjVnR0ZE3Qh7NfTSRDLAt0U2hGtB7nz11x3AMLuOVQjk8QCjIlYjeu_3mSlnH1OfCFiZpLlUwOWxvylxSeHxfq_4ZFSKgAK1sfCvzaAx57JJhVji1irBkxvPxLpsBhyPYgw",
@@ -52,8 +54,7 @@ const locations = [
     name: "Centro de Especialistas Kenko",
     address: "Calle 5 # 38-12, Imbanaco",
     phone: "(602) 888 5678",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuB-ckeMrSpZRmb00RQX-24D25JIiG-jAoRPO6tYCKNv_pD1qYr0sz4EAgYILl2896TPAl0u57irEIqi3cwiS0gW1WZP_hUR8YauEL_xS0B0kEJIhiMZ5ABiCWKcxh78aQLTvtkgiGQyJqJVcJhFrMs1-jl_hF_bqX5JtcEgucwqwpicLY-NEYzgiQaBXqdb-_l8-dkScGqSanvIHxpbA1bgeenWoEmhsPF0kW8kH5YwI9Pxv494yJbkRQ",
+    image: caliImg,
     imageAlt: "Centro de especialistas Kenko en Cali.",
     mapImage:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuBk_XCvP8BO6aFOubC95Krz-ldigYYw7N9ff--JmjV6lEWjUXI9VlSDSse2w2734NpL8DvhL6yWYK5rtcOA58XzyerGbugBTek7rVhNEWmXbnJAc78G1yUFALNu2qpJx5zd7JtJYAD3hAkEnrFMLD38_Qn6cV8oYsBsOz1asps8CwanfcmxH3kdWiSo0ElgHJkHzj7iUSDLFYT8uubpQHuTz4E8ITNJ4-AyNcdzYeqqAM7000yt8a-_rQ",
@@ -70,8 +71,7 @@ const locations = [
     name: "Sede Médica Buenavista",
     address: "Cra. 53 # 99-80, Norte-Centro Histórico",
     phone: "(605) 333 9012",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuAiXSREqs1UZyJF49emSWKdQKhynmj5VNFmqhwH7IOR4dZ7vjITSaleODQBXayBIHYzadqDMyusSBJJSympKcYdIsqKxUD1st4NAZt-KHC3He1ZKOgETkCxzTIGFuLg3NLIejslL_-q0qRiKCSxaqyRJ6OJl32uUtH-2pMGnbmt8oS0md1nmfWNQPpry8fiqtkt4L2JoSZAy4mjqI7_vgl5rBQ-5wP_H_a_kW_kHtQsj7nsy7xIU99HTw",
+    image: barranquillaImg,
     imageAlt: "Sede médica Kenko en Barranquilla.",
     mapImage:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuCvtw0zpu-ksQy6tFMIva3nYuvlicBHuxumjRid8bea6YrAoBtjENcnI5ZCFpACPvovYqx9R8wPG8dTBv00FGNvqth1Thp8Ww7-2-WjfY84sHnRobnANpR-MtqJdAyhxhXy7XIArE4UAFa96CbKUXwqrFXGT5-UsusJWYbVP0a-KXcZybp2yHHk8no9KFxb-SH4z2rqWe7zpVf6TO-8OcNnDMROKyvSICUlWxyVT_s1CJUznIrhbu93VQ",
@@ -88,8 +88,7 @@ const locations = [
     name: "Centro Integral Kenko",
     address: "Calle 52 # 31-15, Cabecera",
     phone: "(607) 645 2345",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBZ-37UKIOmV2Tvin4XB2BjiOhFbB0D6s7A_DJazjl16FqHr7RuT3B8P4mcV84z1AA3avsmotpWX_RtkvmWkmbXyxMlMP-6PR0-OE2ZCu_t_ZkYZvzYR6LYnEZ2oHXnw5hyPIJtxM6bxI4nQMuUFGhfSbbTqzZbMnBn_tASMejcwTDXuMZExvZyqaNzc6we18-7fBuf4OXGGAK4hIOQi54jAoTtuxjGaEVin2YmnvRUhpnW4nzmfnh17A",
+    image: bucaramangaImg,
     imageAlt: "Centro integral Kenko en Bucaramanga.",
     mapImage:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuBF34UyiARahR93Rmu52xyjWp20Omf_mRgEuP-t8JI31NVhLoH9-98JE3hdtAqyI_XeQIir7YOMl-Gd0-cHnNbf15mWwaFuqAQl9waB0F60FtB1HL2do4Q4fqUNA58ALFK0ebi73CB5Akrvnt2E0wxXx9xB6jhIWOFRhO3wadcisYh0vWwbdQeWRbRKJ9uYLpNEzl3jYcLv1pQrFh7A2BtcpcPcs0CECBGdcuGvgpSa2blAw6w4p3O8TA",
