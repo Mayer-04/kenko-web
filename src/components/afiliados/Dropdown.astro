@@ -9,6 +9,7 @@ interface Props extends HTMLAttributes<"div"> {
   chevronIcon?: any;
   defaultOpen?: boolean;
   iconStyle?: string;
+  iconClass?: string;
 }
 
 const {
@@ -19,6 +20,7 @@ const {
   chevronIcon: ChevronIcon,
   defaultOpen = false,
   iconStyle = "background-color: var(--primary);",
+  iconClass = "",
   ...rest
 } = Astro.props;
 
@@ -49,7 +51,7 @@ const triggerId = `${id}-trigger`;
               style={iconStyle}
               aria-hidden="true"
             >
-              <Icon class="size-5 md:size-6" />
+              <Icon class:list={["size-5 md:size-6", iconClass]} />
             </span>
           )
         }
@@ -67,7 +69,7 @@ const triggerId = `${id}-trigger`;
       </span>
 
       <span
-        class="flex size-9 shrink-0 items-center justify-center rounded-full border border-content/10 bg-background text-content/60"
+        class="flex size-9 shrink-0 items-center justify-center rounded-full border border-content/10 bg-background text-primary"
         aria-hidden="true"
       >
         {

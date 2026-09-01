@@ -162,13 +162,13 @@ const {
               class:list={[
                 "flex w-full items-center justify-between gap-3 border-b border-content/10 px-4 py-4 text-left text-sm font-semibold transition-colors duration-200 ease-out last:border-b-0 md:px-5 md:text-base",
                 isActive
-                  ? "bg-primary text-on-primary"
+                  ? "bg-secondary text-white"
                   : "text-content/80 hover:bg-content/5 hover:text-content",
               ]}
             >
               <span>{route.label}</span>
               <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-current/20" aria-hidden="true">
-                <ChevronRightIcon class:list={["h-4 w-4 transition-transform duration-200", isActive ? "text-on-primary" : "text-current"]} />
+                <ChevronRightIcon class:list={["h-4 w-4 transition-transform duration-200", isActive ? "text-white" : "text-current"]} />
               </span>
             </button>
           );
@@ -246,8 +246,10 @@ const {
           const isActive = button.dataset.routeId === routeId;
           button.setAttribute("aria-selected", String(isActive));
           button.setAttribute("tabindex", isActive ? "0" : "-1");
-          button.classList.toggle("bg-primary", isActive);
-          button.classList.toggle("text-on-primary", isActive);
+          button.classList.toggle("bg-secondary", isActive);
+          button.classList.toggle("bg-primary", false);
+          button.classList.toggle("text-white", isActive);
+          button.classList.toggle("text-on-primary", false);
           button.classList.toggle("text-content/80", !isActive);
           button.classList.toggle("hover:bg-content/5", !isActive);
         });
