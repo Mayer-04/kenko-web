@@ -312,22 +312,28 @@ const creators = [
         >
           {/* MinSalud: conserva color en pill minimal */}
           <div
-            class="flex h-16 w-44 items-center justify-center rounded-md bg-white px-3 py-2 sm:w-48"
+            class="flex h-12 items-center justify-center rounded-xl bg-white/95 px-4 py-2.5 shadow-[0_2px_16px_rgba(0,0,0,0.12)] backdrop-blur-md transition hover:bg-white sm:h-14 sm:px-5 lg:h-[60px]"
           >
             <Image
               src={minSaludLogo}
               alt="Ministerio de Salud y Protección Social"
-              width={192}
-              class="h-auto max-h-full w-full object-contain"
+              width={180}
+              densities={[1, 2]}
+              class="h-auto max-h-8 w-auto max-w-[160px] object-contain sm:max-h-9 sm:max-w-[176px]"
             />
           </div>
+
+          <div aria-hidden="true" class="hidden h-10 w-px bg-white/10 sm:block">
+          </div>
+
+          {/* Supersalud: invertido sutil */}
           <div
-            class="flex h-16 w-44 items-center justify-center rounded-md bg-white px-3 py-2 sm:w-48"
+            class="flex h-12 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] px-5 py-2.5 backdrop-blur transition hover:border-white/15 hover:bg-white/[0.07] sm:h-14 lg:h-[60px]"
           >
             <SupersaludLogo
               role="img"
               aria-label="Vigilado Superintendencia Nacional de Salud"
-              class="h-auto max-h-full w-full"
+              class="h-8 w-auto max-w-[190px] opacity-[0.9] brightness-0 invert transition group-hover:opacity-100 sm:h-9"
               focusable="false"
             />
           </div>
@@ -335,4 +341,23 @@ const creators = [
       </div>
     </div>
   </div>
+
+  {/* Wordmark gigante textura */}
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center overflow-hidden select-none"
+  >
+    <span
+      class="translate-y-[28%] font-display text-[22vw] leading-none font-black tracking-tighter text-white/[0.028] sm:translate-y-[22%] sm:text-[18vw] lg:translate-y-[20%] lg:text-[15vw]"
+      >KENKO</span
+    >
+  </div>
+
+  <style>
+    @media (prefers-reduced-motion: reduce) {
+      footer a {
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </footer>
