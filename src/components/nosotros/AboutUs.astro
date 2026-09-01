@@ -1,0 +1,209 @@
+---
+import Organigrama from "@components/nosotros/Organigrama.astro";
+
+const valores = [
+  {
+    titulo: "Calidez humana",
+    descripcion:
+      "Brindamos atención cercana y empática, poniendo a las personas en el centro de cada decisión.",
+  },
+  {
+    titulo: "Excelencia",
+    descripcion:
+      "Buscamos la mejora continua en nuestros procesos y servicios para garantizar la mejor atención.",
+  },
+  {
+    titulo: "Integridad",
+    descripcion:
+      "Actuamos con transparencia, ética y responsabilidad en cada acción que realizamos.",
+  },
+  {
+    titulo: "Innovación",
+    descripcion:
+      "Adoptamos tecnologías y metodologías que transforman la experiencia de nuestros afiliados.",
+  },
+  {
+    titulo: "Trabajo en equipo",
+    descripcion:
+      "Fomentamos la colaboración entre profesionales para ofrecer una atención integral y coordinada.",
+  },
+  {
+    titulo: "Compromiso social",
+    descripcion:
+      "Contribuimos activamente al bienestar de las comunidades a las que servimos.",
+  },
+];
+---
+
+<section
+  class="bg-about-primary py-16 text-on-about-primary sm:py-20 lg:py-24"
+  aria-labelledby="historia-title"
+>
+  <div class="mx-auto w-full max-w-[1280px] px-6 lg:px-8">
+    <h2
+      id="historia-title"
+      class="font-display text-3xl font-bold tracking-tight sm:text-4xl"
+    >
+      Historia
+    </h2>
+    <p
+      class="mt-6 max-w-3xl font-body text-lg leading-8 text-on-about-primary/85"
+    >
+      Desde nuestros inicios, Kenko EPS ha trabajado con dedicación para
+      transformar la experiencia en salud de millones de familias colombianas.
+      Conoce aquí nuestra trayectoria, hitos y el compromiso que nos ha
+      convertido en una de las entidades más confiables del país.
+    </p>
+  </div>
+</section>
+
+<section
+  class="bg-about-secondary py-16 text-on-about-secondary sm:py-20 lg:py-24"
+  aria-labelledby="mision-vision-title"
+>
+  <div class="mx-auto w-full max-w-[1280px] px-6 lg:px-8">
+    <h2
+      id="mision-vision-title"
+      class="font-display text-3xl font-bold tracking-tight sm:text-4xl"
+    >
+      Misión y Visión
+    </h2>
+    <div class="mt-10 grid gap-10 md:grid-cols-2 lg:gap-16">
+      <article aria-labelledby="mision-title">
+        <h3
+          id="mision-title"
+          class="font-display text-xl font-semibold tracking-tight"
+        >
+          Misión
+        </h3>
+        <p
+          class="mt-4 font-body text-base leading-7 text-on-about-secondary/80"
+        >
+          Ofrecer servicios de salud integrales y de alta calidad a nuestros
+          afiliados, con un enfoque humano, accesible y centrado en el bienestar
+          de cada persona y su familia.
+        </p>
+      </article>
+      <article aria-labelledby="vision-title">
+        <h3
+          id="vision-title"
+          class="font-display text-xl font-semibold tracking-tight"
+        >
+          Visión
+        </h3>
+        <p
+          class="mt-4 font-body text-base leading-7 text-on-about-secondary/80"
+        >
+          Ser reconocidos como la EPS líder en atención integral en salud,
+          innovación y satisfacción del usuario, contribuyendo a una sociedad
+          más sana y equitativa.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section
+  class="bg-about-accent py-16 text-on-about-accent sm:py-20 lg:py-24"
+  aria-labelledby="objetivos-title"
+>
+  <div class="mx-auto w-full max-w-[1280px] px-6 lg:px-8">
+    <h2
+      id="objetivos-title"
+      class="font-display text-3xl font-bold tracking-tight sm:text-4xl"
+    >
+      Objetivos Estratégicos
+    </h2>
+    <ul class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" role="list">
+      <li class="rounded-2xl bg-white/10 p-6 backdrop-blur-sm">
+        <p class="font-display text-lg font-semibold">Cobertura nacional</p>
+        <p class="mt-2 font-body text-sm leading-6 text-on-about-accent/80">
+          Ampliar nuestra red de puntos de atención para llegar a más
+          colombianos en todo el territorio.
+        </p>
+      </li>
+      <li class="rounded-2xl bg-white/10 p-6 backdrop-blur-sm">
+        <p class="font-display text-lg font-semibold">Calidad certificada</p>
+        <p class="mt-2 font-body text-sm leading-6 text-on-about-accent/80">
+          Mantener y superar los estándares de calidad en atención reconocidos a
+          nivel internacional.
+        </p>
+      </li>
+      <li class="rounded-2xl bg-white/10 p-6 backdrop-blur-sm">
+        <p class="font-display text-lg font-semibold">Innovación digital</p>
+        <p class="mt-2 font-body text-sm leading-6 text-on-about-accent/80">
+          Implementar soluciones tecnológicas que mejoren la experiencia y el
+          acceso a los servicios de salud.
+        </p>
+      </li>
+      <li class="rounded-2xl bg-white/10 p-6 backdrop-blur-sm">
+        <p class="font-display text-lg font-semibold">Prevención y bienestar</p>
+        <p class="mt-2 font-body text-sm leading-6 text-on-about-accent/80">
+          Promover hábitos de vida saludables y programas preventivos para
+          reducir la carga de enfermedad.
+        </p>
+      </li>
+      <li class="rounded-2xl bg-white/10 p-6 backdrop-blur-sm">
+        <p class="font-display text-lg font-semibold">Sostenibilidad</p>
+        <p class="mt-2 font-body text-sm leading-6 text-on-about-accent/80">
+          Garantizar la viabilidad financiera y operativa de largo plazo para
+          seguir sirviendo a nuestros afiliados.
+        </p>
+      </li>
+      <li class="rounded-2xl bg-white/10 p-6 backdrop-blur-sm">
+        <p class="font-display text-lg font-semibold">Talento humano</p>
+        <p class="mt-2 font-body text-sm leading-6 text-on-about-accent/80">
+          Atraer, desarrollar y retener al mejor talento comprometido con la
+          salud de los colombianos.
+        </p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section
+  class="bg-about-primary py-16 text-on-about-primary sm:py-20 lg:py-24"
+  aria-labelledby="valores-title"
+>
+  <div class="mx-auto w-full max-w-[1280px] px-6 lg:px-8">
+    <h2
+      id="valores-title"
+      class="font-display text-3xl font-bold tracking-tight sm:text-4xl"
+    >
+      Valores
+    </h2>
+    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        valores.map((valor) => (
+          <article class="rounded-2xl bg-white/10 p-6 backdrop-blur-sm">
+            <h3 class="font-display text-lg font-semibold">{valor.titulo}</h3>
+            <p class="mt-2 font-body text-sm leading-6 text-on-about-primary/80">
+              {valor.descripcion}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<section
+  class="bg-about-secondary py-16 text-on-about-secondary sm:py-20 lg:py-24"
+  aria-labelledby="organigrama-title"
+>
+  <div class="mx-auto w-full max-w-[1280px] px-6 lg:px-8">
+    <h2
+      id="organigrama-title"
+      class="font-display text-3xl font-bold tracking-tight sm:text-4xl"
+    >
+      Organigrama
+    </h2>
+    <p
+      class="mt-6 max-w-3xl font-body text-lg leading-8 text-on-about-secondary/80"
+    >
+      Conoce la estructura organizacional de Kenko EPS y cómo trabajamos de
+      manera coordinada para brindarte la mejor atención.
+    </p>
+    <Organigrama />
+  </div>
+</section>
