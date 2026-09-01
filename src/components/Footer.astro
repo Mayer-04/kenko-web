@@ -34,50 +34,134 @@ const creators = [
 >
   {/* Fondo degradado + meshes */}
   <div
-    class="mx-auto max-w-[1280px] rounded-[1.75rem] border border-content/80 bg-linear-to-br from-primary to-[#193a56] px-6 py-8 text-on-primary sm:px-10 sm:py-10 lg:px-12 lg:py-12"
+    aria-hidden="true"
+    class="absolute inset-0 bg-linear-to-br from-primary via-[#1c3f5c] to-[#0d2136]"
   >
-    <div
-      class="grid gap-10 md:grid-cols-[minmax(11rem,1fr)_minmax(13rem,1fr)_minmax(22rem,2fr)] md:gap-8 lg:gap-12"
-    >
-      <a
-        href="/"
-        class="flex w-fit items-center rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary"
-        aria-label="Kenko EPS, inicio"
-      >
-        <Logo
-          class="h-auto w-44 max-w-full"
-          aria-hidden="true"
-          focusable="false"
-        />
-      </a>
+  </div>
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute -top-28 -left-28 h-[560px] w-[560px] rounded-full bg-[radial-gradient(circle_at_center,rgba(30,91,215,0.18),transparent_70%)] blur-[0.5px]"
+  >
+  </div>
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute -right-40 -bottom-40 h-[720px] w-[720px] rounded-full bg-[radial-gradient(circle_at_center,rgba(255,181,27,0.07),transparent_70%)]"
+  >
+  </div>
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-0 opacity-[0.035]"
+    style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 28px 28px;"
+  >
+  </div>
 
-      <nav aria-labelledby="footer-affiliates-title">
-        <h2
-          id="footer-affiliates-title"
-          class="font-display text-sm font-bold tracking-[0.14em] text-secondary uppercase"
+  {/* Hairline superior + acento secundario */}
+  <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-white/10">
+  </div>
+  <div
+    aria-hidden="true"
+    class="absolute top-0 left-6 h-px w-24 bg-secondary sm:left-8"
+  >
+  </div>
+
+  <div
+    class="relative mx-auto max-w-[1280px] px-6 py-12 sm:px-8 sm:py-14 lg:px-8 lg:py-16"
+  >
+    <h2 id="footer-title" class="sr-only">Pie de página Kenko EPS</h2>
+
+    {/* Grid principal: marca + navegación */}
+    <div class="grid gap-10 lg:grid-cols-12 lg:gap-8">
+      {/* Marca - solo identidad */}
+      <div class="lg:col-span-4">
+        <a
+          href="/"
+          class="inline-flex rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary"
+          aria-label="Kenko EPS, inicio"
         >
-          Afiliados
-        </h2>
-        <ul class="mt-4 space-y-1">
-          {
-            affiliateItems.map((item) => (
-              <li>
-                <a
-                  href={item.href}
-                  class="flex min-h-11 items-center rounded-lg px-3 py-2 font-body text-sm leading-5 text-on-primary/85 transition hover:bg-white/10 hover:text-on-primary focus-visible:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
+          <KenkoLimpio
+            class="h-auto w-40 max-w-full brightness-0 invert"
+            aria-hidden="true"
+            focusable="false"
+          />
+        </a>
+        <p
+          class="mt-4 max-w-[32ch] font-body text-[15px] leading-6 text-white/70"
+        >
+          Cuidado que se siente. Salud que te acompaña en cada etapa, con
+          cercanía, confianza y cobertura nacional.
+        </p>
+      </div>
 
-      <nav aria-labelledby="footer-about-title">
-        <h2
-          id="footer-about-title"
-          class="font-display text-sm font-bold tracking-[0.14em] text-secondary uppercase"
+      {/* Navegación distribuida: Afiliados 4 + Explorar 2 + Contacto 2 = 8 */}
+      <div
+        class="grid gap-10 sm:grid-cols-2 lg:col-span-8 lg:grid-cols-8 lg:gap-6"
+      >
+        <nav
+          aria-labelledby="footer-affiliates-title"
+          class="sm:col-span-1 lg:col-span-4"
+        >
+          <h2
+            id="footer-affiliates-title"
+            class="font-display text-[11px] font-bold tracking-[0.16em] text-secondary uppercase"
+          >
+            Afiliados
+          </h2>
+          <ul class="mt-4 space-y-1">
+            {
+              affiliateItems.map((item) => (
+                <li>
+                  <a
+                    href={item.href}
+                    class="group flex min-h-10 items-center gap-2 rounded-lg px-3 py-2 font-body text-sm leading-5 text-white/75 transition hover:bg-white/[0.06] hover:text-white focus-visible:bg-white/[0.06] focus-visible:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+                  >
+                    <span class="h-px w-0 bg-secondary/70 transition-all duration-300 group-hover:w-3" />
+                    <span>{item.label}</span>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+
+        <nav
+          aria-labelledby="footer-explore-title"
+          class="sm:col-span-1 lg:col-span-2"
+        >
+          <h2
+            id="footer-explore-title"
+            class="font-display text-[11px] font-bold tracking-[0.16em] text-secondary uppercase"
+          >
+            Explorar
+          </h2>
+          <ul class="mt-4 space-y-1">
+            <li>
+              <a
+                href="/"
+                class="group flex min-h-10 items-center gap-2 rounded-lg px-3 py-2 font-body text-sm leading-5 text-white/75 transition hover:bg-white/[0.06] hover:text-white focus-visible:bg-white/[0.06] focus-visible:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+              >
+                <span
+                  class="h-px w-0 bg-secondary/70 transition-all duration-300 group-hover:w-3"
+                ></span>
+                <span>Inicio</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/nosotros"
+                class="group flex min-h-10 items-center gap-2 rounded-lg px-3 py-2 font-body text-sm leading-5 text-white/75 transition hover:bg-white/[0.06] hover:text-white focus-visible:bg-white/[0.06] focus-visible:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+              >
+                <span
+                  class="h-px w-0 bg-secondary/70 transition-all duration-300 group-hover:w-3"
+                ></span>
+                <span>Nosotros</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div
+          class="sm:col-span-2 lg:col-span-2"
+          aria-labelledby="footer-contact-title"
         >
           Nosotros
         </h2>
