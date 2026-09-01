@@ -1,0 +1,755 @@
+---
+import ChevronDown from "@assets/icons/chevron-down.svg";
+import Logo from "@assets/icons/kenko_limpio.svg";
+import { affiliateItems } from "./navigation";
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = Astro.url.pathname } = Astro.props;
+
+const isActive = (href: string) =>
+  currentPath === href || (href !== "/" && currentPath.startsWith(href));
+---
+
+<kenko-navbar class="contents">
+  <div
+    data-kenko-navbar
+    class="flex w-full items-center justify-between gap-6 lg:gap-8"
+  >
+    {/* Logo */}
+    <a
+      href="/"
+      aria-label="Kenko EPS, inicio"
+      class="shrink-0 rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary"
+    >
+      <Logo
+        class="h-auto w-[100px] text-primary"
+        aria-hidden="true"
+        focusable="false"
+      />
+    </a>
+
+    {/* Desktop navigation — sin huecos excesivos */}
+    <nav aria-label="Navegación principal" class="hidden items-center md:flex">
+      <ul class="flex items-center gap-1 lg:gap-2">
+        <li>
+          <a
+            href="/"
+            aria-current={isActive("/") ? "page" : undefined}
+            class:list={[
+              "inline-flex min-h-11 cursor-pointer items-center rounded-xl px-3.5 py-2 font-display text-[17px] font-semibold tracking-tight transition focus-visible:ring-2 focus-visible:ring-primary/15 focus-visible:ring-offset-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary lg:px-4 lg:text-[18px]",
+              isActive("/")
+                ? "bg-primary/5 text-primary"
+                : "text-content hover:bg-primary/[0.06] hover:text-primary",
+            ]}
+          >
+            Inicio
+          </a>
+        </li>
+        <li class="relative" data-desktop-dropdown>
+          <button
+            type="button"
+            data-afiliados-trigger
+            aria-expanded="false"
+            aria-haspopup="menu"
+            aria-controls="afiliados-desktop-panel"
+            class="group inline-flex min-h-11 cursor-pointer items-center gap-1.5 rounded-xl px-3.5 py-2 font-display text-[17px] font-semibold tracking-tight text-content transition hover:bg-primary/[0.06] hover:text-primary focus-visible:bg-primary/[0.06] focus-visible:ring-2 focus-visible:ring-primary/15 focus-visible:ring-offset-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary data-[open=true]:bg-primary/[0.06] data-[open=true]:text-primary lg:px-4 lg:text-[18px]"
+          >
+            <span class="relative">
+              Afiliados
+              <span
+                aria-hidden="true"
+                class="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-primary/40 transition-transform duration-200 group-hover:scale-x-100 group-focus-visible:scale-x-100"
+              ></span>
+            </span>
+            <ChevronDown
+              class="size-5 shrink-0 text-content group-hover:text-primary group-aria-expanded:rotate-180 group-data-[open=true]:text-primary"
+              aria-hidden="true"
+              focusable="false"
+              data-chevron
+            />
+          </button>
+
+          {/* Dropdown desktop — hover sutil + accesible */}
+          <div
+            id="afiliados-desktop-panel"
+            data-afiliados-panel
+            hidden
+            inert
+            aria-label="Opciones de Afiliados"
+            class="absolute top-[calc(100%+14px)] left-1/2 z-50 w-[22rem] -translate-x-1/2 rounded-2xl border border-black/5 bg-white p-4 shadow-[0_16px_40px_rgba(33,73,106,0.12)]"
+          >
+            <p
+              class="font-body text-xs font-semibold tracking-wide text-content/60"
+            >
+              Atención en salud
+            </p>
+            <div class="mt-2 h-px bg-black/5" aria-hidden="true"></div>
+            <p class="mt-3 font-body text-sm leading-5 text-content/70">
+              Puntos de atención y servicios médicos directos
+            </p>
+            <ul class="mt-4 space-y-0">
+              {
+                affiliateItems.map((item) => (
+                  <li class="border-t border-black/5 first:border-t-0">
+                    <a
+                      href={item.href}
+                      class="flex min-h-11 cursor-pointer items-center rounded-lg border border-transparent px-2 py-2.5 font-body text-sm font-medium text-content transition hover:border-primary/15 hover:bg-primary/[0.08] hover:text-primary hover:shadow-sm focus-visible:border-primary/15 focus-visible:bg-primary/[0.08] focus-visible:text-primary focus-visible:shadow-sm focus-visible:ring-2 focus-visible:ring-primary/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </li>
+
+        <li>
+          <a
+            href="/nosotros"
+            aria-current={isActive("/nosotros") ? "page" : undefined}
+            class:list={[
+              "inline-flex min-h-11 cursor-pointer items-center rounded-xl px-3.5 py-2 font-display text-[17px] font-semibold tracking-tight transition focus-visible:ring-2 focus-visible:ring-primary/15 focus-visible:ring-offset-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary lg:px-4 lg:text-[18px]",
+              isActive("/nosotros")
+                ? "bg-primary/5 text-primary"
+                : "text-content hover:bg-primary/[0.06] hover:text-primary",
+            ]}
+          >
+            Nosotros
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    {/* Right — CTA + mobile toggle */}
+    <div class="flex items-center gap-2 lg:gap-3">
+      <a
+        href="/ingreso-virtual"
+        class="group relative hidden min-h-11 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-primary via-[#244f75] to-accent px-6 py-2.5 font-display text-[16px] font-semibold tracking-tight text-on-primary shadow-[0_2px_10px_rgba(30,91,215,0.22)] transition-all duration-200 hover:-translate-y-px hover:shadow-[0_6px_20px_rgba(30,91,215,0.28)] hover:brightness-[1.04] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary active:translate-y-0 active:shadow-[0_2px_10px_rgba(30,91,215,0.22)] active:brightness-100 md:inline-flex lg:text-[17px]"
+      >
+        {/* subtle highlight */}
+        <span
+          aria-hidden="true"
+          class="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/12 to-transparent opacity-60"
+        ></span>
+        <span class="relative">Ingreso Virtual</span>
+      </a>
+
+      <button
+        type="button"
+        data-mobile-toggle
+        aria-expanded="false"
+        aria-controls="mobile-panel"
+        aria-label="Abrir menú"
+        class="group inline-flex cursor-pointer items-center gap-2 rounded-xl transition focus-visible:ring-2 focus-visible:ring-primary/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary md:hidden"
+      >
+        <span
+          data-close-label
+          hidden
+          aria-hidden="true"
+          class="hidden text-[11px] font-semibold tracking-[0.14em] text-content/60 uppercase transition-opacity duration-200"
+          >Cerrar</span
+        >
+        <span
+          class="flex size-11 items-center justify-center rounded-xl border border-black/10 bg-white text-content shadow-sm transition group-hover:border-black/15 group-hover:bg-black/[0.04] group-focus-visible:border-black/15 active:bg-black/[0.06]"
+        >
+          <svg
+            data-icon-open
+            class="size-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M4 7h16M4 12h16M4 17h16"></path>
+          </svg>
+          <svg
+            data-icon-close
+            hidden
+            class="size-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M6 6l12 12M18 6L6 18"></path>
+          </svg>
+        </span>
+      </button>
+    </div>
+  </div>
+
+  {/* Mobile panel — posicionado respecto al header full-width */}
+  <div
+    id="mobile-panel"
+    data-mobile-panel
+    hidden
+    inert
+    class="absolute inset-x-3 top-[calc(100%+1px)] z-50 overflow-hidden rounded-2xl border border-black/5 bg-white p-2 shadow-[0_16px_40px_rgba(33,73,106,0.12)] sm:inset-x-4 md:hidden"
+  >
+    <nav aria-label="Navegación móvil">
+      <ul class="flex flex-col">
+        <li class="border-b border-black/5">
+          <a
+            href="/"
+            aria-current={isActive("/") ? "page" : undefined}
+            class:list={[
+              "flex min-h-12 cursor-pointer items-center rounded-xl px-3 py-3 font-display text-[17px] font-semibold transition focus-visible:ring-2 focus-visible:ring-primary/15 focus-visible:ring-offset-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary",
+              isActive("/")
+                ? "bg-primary/5 text-primary"
+                : "text-content hover:bg-primary/[0.06] hover:text-primary",
+            ]}
+          >
+            Inicio
+          </a>
+        </li>
+        <li class="border-b border-black/5">
+          <button
+            type="button"
+            data-mobile-afiliados-trigger
+            aria-expanded="false"
+            aria-controls="mobile-afiliados-panel"
+            class="group flex min-h-12 w-full cursor-pointer items-center justify-between rounded-xl px-3 py-3 font-display text-[17px] font-semibold text-content transition hover:bg-primary/[0.06] hover:text-primary focus-visible:bg-primary/[0.06] focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-primary/15 focus-visible:ring-offset-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+          >
+            <span>Afiliados</span>
+            <span
+              class="flex size-8 items-center justify-center rounded-full border border-black/10 bg-white shadow-sm transition-colors duration-200 group-hover:border-black/15 group-hover:shadow"
+            >
+              <ChevronDown
+                class="size-4 text-content/70 transition-transform duration-200"
+                aria-hidden="true"
+                focusable="false"
+                data-mobile-chevron
+              />
+            </span>
+          </button>
+          <div
+            id="mobile-afiliados-panel"
+            data-mobile-afiliados-panel
+            hidden
+            inert
+            class="px-1 pb-2"
+          >
+            <ul
+              class="overflow-hidden rounded-xl bg-primary/[0.04] p-1"
+              aria-label="Opciones de Afiliados"
+            >
+              {
+                affiliateItems.map((item) => (
+                  <li>
+                    <a
+                      href={item.href}
+                      class="flex min-h-11 cursor-pointer items-center rounded-lg border border-transparent px-3 py-2.5 font-body text-sm font-medium text-content transition hover:border-primary/15 hover:bg-primary/[0.08] hover:text-primary hover:shadow-sm focus-visible:border-primary/15 focus-visible:bg-primary/[0.08] focus-visible:text-primary focus-visible:shadow-sm focus-visible:ring-2 focus-visible:ring-primary/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </li>
+        <li class="border-b border-black/5">
+          <a
+            href="/nosotros"
+            aria-current={isActive("/nosotros") ? "page" : undefined}
+            class:list={[
+              "flex min-h-12 cursor-pointer items-center rounded-xl px-3 py-3 font-display text-[17px] font-semibold transition focus-visible:ring-2 focus-visible:ring-primary/15 focus-visible:ring-offset-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary",
+              isActive("/nosotros")
+                ? "bg-primary/5 text-primary"
+                : "text-content hover:bg-primary/[0.06] hover:text-primary",
+            ]}
+          >
+            Nosotros
+          </a>
+        </li>
+        <li class="pt-2">
+          <a
+            href="/ingreso-virtual"
+            class="flex min-h-12 w-full cursor-pointer items-center justify-center rounded-xl bg-gradient-to-br from-primary via-[#244f75] to-accent px-5 py-3 font-display text-[17px] font-semibold text-on-primary shadow-[0_2px_10px_rgba(30,91,215,0.22)] transition hover:brightness-[1.04] focus-visible:ring-2 focus-visible:ring-primary/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+          >
+            Ingreso Virtual
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</kenko-navbar>
+
+<style>
+  /* Desktop dropdown — transición sutil y accesible (hover + teclado) */
+  [data-afiliados-panel] {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-0.375rem);
+    visibility: hidden;
+    transition:
+      opacity 220ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 260ms cubic-bezier(0.16, 1, 0.3, 1),
+      visibility 0s linear 260ms;
+  }
+
+  [data-afiliados-panel][data-open="true"] {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    visibility: visible;
+    transition:
+      opacity 200ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 240ms cubic-bezier(0.16, 1, 0.3, 1),
+      visibility 0s linear 0s;
+  }
+
+  /* Chevron — rotación fluida y sutil, no brusca */
+  [data-chevron] {
+    transition:
+      transform 340ms cubic-bezier(0.16, 1, 0.3, 1),
+      color 200ms ease;
+    will-change: transform;
+  }
+
+  [data-desktop-dropdown][data-open="true"] [data-chevron] {
+    transform: rotate(180deg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-afiliados-panel],
+    [data-afiliados-panel][data-open="true"] {
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Mobile panel animation */
+  [data-mobile-panel][data-open="true"] {
+    animation: kenko-mobile-in 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes kenko-mobile-in {
+    from {
+      opacity: 0;
+      transform: translateY(-6px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  [data-mobile-afiliados-panel][data-open="true"] {
+    animation: kenko-submenu-in 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes kenko-submenu-in {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    kenko-navbar *,
+    kenko-navbar *::before,
+    kenko-navbar *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
+
+<script>
+  // Patrón Astro docs: Web Component + astro:page-load (https://docs.astro.build/en/guides/client-side-scripts/#web-components-with-custom-elements)
+  class KenkoNavbar extends HTMLElement {
+    private toggle: HTMLButtonElement | null = null;
+    private panel: HTMLElement | null = null;
+    private openIcon: SVGElement | null = null;
+    private closeIcon: SVGElement | null = null;
+    private closeLabel: HTMLElement | null = null;
+    private afiliadosTrigger: HTMLButtonElement | null = null;
+    private afiliadosPanel: HTMLElement | null = null;
+    private mobileChevron: Element | null = null;
+    private onDocumentClick: ((e: MouseEvent) => void) | null = null;
+    private onDocumentKeydown: ((e: KeyboardEvent) => void) | null = null;
+    private onBreakpointChange: ((e: MediaQueryListEvent) => void) | null =
+      null;
+    private mql: MediaQueryList | null = null;
+
+    // Desktop dropdown
+    private desktopDropdown: HTMLElement | null = null;
+    private desktopTrigger: HTMLButtonElement | null = null;
+    private desktopPanel: HTMLElement | null = null;
+    private desktopCloseTimeout: number | null = null;
+    private desktopOpenTimeout: number | null = null;
+    private isPointerDown = false;
+    private pointerDownTimeout: number | null = null;
+    private boundDesktopDocumentClick: ((e: MouseEvent) => void) | null = null;
+    private boundDesktopKeydown: ((e: KeyboardEvent) => void) | null = null;
+
+    connectedCallback() {
+      if (this.dataset.ready === "true") return;
+      this.dataset.ready = "true";
+
+      this.toggle = this.querySelector<HTMLButtonElement>(
+        "[data-mobile-toggle]",
+      );
+      this.panel = this.querySelector<HTMLElement>("[data-mobile-panel]");
+      this.openIcon = this.querySelector<SVGElement>("[data-icon-open]");
+      this.closeIcon = this.querySelector<SVGElement>("[data-icon-close]");
+      this.closeLabel = this.querySelector<HTMLElement>("[data-close-label]");
+      this.afiliadosTrigger = this.querySelector<HTMLButtonElement>(
+        "[data-mobile-afiliados-trigger]",
+      );
+      this.afiliadosPanel = this.querySelector<HTMLElement>(
+        "[data-mobile-afiliados-panel]",
+      );
+      this.mobileChevron = this.querySelector("[data-mobile-chevron]");
+
+      // Setup desktop dropdown (no bloquea mobile si falta)
+      this.desktopDropdown = this.querySelector<HTMLElement>(
+        "[data-desktop-dropdown]",
+      );
+      this.desktopTrigger = this.querySelector<HTMLButtonElement>(
+        "[data-afiliados-trigger]",
+      );
+      this.desktopPanel = this.querySelector<HTMLElement>(
+        "[data-afiliados-panel]",
+      );
+
+      if (this.desktopDropdown && this.desktopTrigger && this.desktopPanel) {
+        this.initDesktopDropdown();
+      }
+
+      if (
+        !this.toggle ||
+        !this.panel ||
+        !this.openIcon ||
+        !this.closeIcon ||
+        !this.closeLabel ||
+        !this.afiliadosTrigger ||
+        !this.afiliadosPanel
+      ) {
+        return;
+      }
+
+      // Usar this.querySelector (scoped) en lugar de document — recomendado por docs
+      this.toggle.addEventListener("click", () =>
+        this.setMobileOpen(
+          this.toggle!.getAttribute("aria-expanded") !== "true",
+        ),
+      );
+      this.afiliadosTrigger.addEventListener("click", () =>
+        this.setAfiliadosOpen(
+          this.afiliadosTrigger!.getAttribute("aria-expanded") !== "true",
+        ),
+      );
+
+      this.onDocumentClick = (event: MouseEvent) => {
+        if (this.panel!.hasAttribute("hidden")) return;
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        // Cerrar si click fuera del custom element (header completo)
+        const rootHeader = this.closest<HTMLElement>("[data-kenko-header]");
+        const clickInside = rootHeader
+          ? rootHeader.contains(target)
+          : this.contains(target);
+        if (!clickInside) this.setMobileOpen(false);
+      };
+      document.addEventListener("click", this.onDocumentClick);
+
+      this.onDocumentKeydown = (event: KeyboardEvent) => {
+        if (event.key === "Escape" && !this.panel!.hasAttribute("hidden")) {
+          this.setMobileOpen(false);
+          this.toggle!.focus();
+        }
+      };
+      document.addEventListener("keydown", this.onDocumentKeydown);
+
+      this.addEventListener("keydown", (event: KeyboardEvent) => {
+        if (event.key === "Escape") {
+          if (!this.panel!.hasAttribute("hidden")) {
+            event.preventDefault();
+            this.setMobileOpen(false);
+            this.toggle!.focus();
+          } else if (this.afiliadosPanel!.dataset.open === "true") {
+            event.preventDefault();
+            this.setAfiliadosOpen(false);
+            this.afiliadosTrigger!.focus();
+          }
+        }
+      });
+
+      this.panel
+        .querySelectorAll("a[href]")
+        .forEach((link) =>
+          link.addEventListener("click", () => this.setMobileOpen(false)),
+        );
+
+      this.mql = window.matchMedia("(min-width: 768px)");
+      this.onBreakpointChange = (e: MediaQueryListEvent) => {
+        if (e.matches && !this.panel!.hasAttribute("hidden")) {
+          this.setMobileOpen(false);
+        }
+        // En desktop, cierra dropdown si se pasa a mobile y viceversa
+        if (!e.matches) this.setDesktopOpen(false);
+      };
+      if (this.mql.addEventListener) {
+        this.mql.addEventListener("change", this.onBreakpointChange);
+      } else {
+        // Safari fallback
+        // @ts-expect-error Safari fallback
+        this.mql.addListener(this.onBreakpointChange);
+      }
+
+      // Re-inicializar correctamente tras navegación View Transitions (docs: astro:page-load)
+      document.addEventListener("astro:page-load", () => {
+        this.setMobileOpen(false);
+        this.setAfiliadosOpen(false);
+        this.setDesktopOpen(false);
+      });
+
+      this.setMobileOpen(false);
+      this.setAfiliadosOpen(false);
+      this.setDesktopOpen(false);
+    }
+
+    disconnectedCallback() {
+      if (this.onDocumentClick)
+        document.removeEventListener("click", this.onDocumentClick);
+      if (this.onDocumentKeydown)
+        document.removeEventListener("keydown", this.onDocumentKeydown);
+      if (this.mql && this.onBreakpointChange) {
+        if (this.mql.removeEventListener) {
+          this.mql.removeEventListener("change", this.onBreakpointChange);
+        } else {
+          // @ts-expect-error Safari fallback
+          this.mql.removeListener(this.onBreakpointChange);
+        }
+      }
+      this.clearDesktopTimers();
+      if (this.pointerDownTimeout !== null) {
+        window.clearTimeout(this.pointerDownTimeout);
+      }
+      if (this.boundDesktopDocumentClick) {
+        document.removeEventListener("click", this.boundDesktopDocumentClick);
+      }
+      if (this.boundDesktopKeydown) {
+        document.removeEventListener("keydown", this.boundDesktopKeydown);
+      }
+    }
+
+    // — Desktop dropdown sutil y accesible (hover con delay + teclado) —
+    private initDesktopDropdown() {
+      const dropdown = this.desktopDropdown!;
+      const trigger = this.desktopTrigger!;
+      const panel = this.desktopPanel!;
+
+      trigger.addEventListener("pointerdown", () => {
+        this.isPointerDown = true;
+        if (this.pointerDownTimeout !== null)
+          window.clearTimeout(this.pointerDownTimeout);
+        this.pointerDownTimeout = window.setTimeout(() => {
+          this.isPointerDown = false;
+        }, 300);
+      });
+
+      trigger.addEventListener("click", () => {
+        this.clearDesktopTimers();
+        const isOpen = dropdown.dataset.open === "true";
+        this.setDesktopOpen(!isOpen);
+      });
+
+      dropdown.addEventListener("mouseenter", () => {
+        this.clearDesktopTimers();
+        this.desktopOpenTimeout = window.setTimeout(
+          () => this.setDesktopOpen(true),
+          90,
+        );
+      });
+
+      dropdown.addEventListener("mouseleave", () => {
+        this.clearDesktopTimers();
+        this.desktopCloseTimeout = window.setTimeout(
+          () => this.setDesktopOpen(false),
+          160,
+        );
+      });
+
+      trigger.addEventListener("focus", () => {
+        if (this.isPointerDown) return;
+        this.clearDesktopTimers();
+        this.setDesktopOpen(true);
+      });
+
+      dropdown.addEventListener("focusin", () => {
+        this.clearDesktopTimers();
+      });
+
+      dropdown.addEventListener("focusout", (event: FocusEvent) => {
+        const related = event.relatedTarget as Element | null;
+        if (related && dropdown.contains(related)) return;
+        this.clearDesktopTimers();
+        this.desktopCloseTimeout = window.setTimeout(() => {
+          if (!dropdown.contains(document.activeElement)) {
+            this.setDesktopOpen(false);
+          }
+        }, 120);
+      });
+
+      trigger.addEventListener("keydown", (event: KeyboardEvent) => {
+        if (event.key === "ArrowDown") {
+          event.preventDefault();
+          this.setDesktopOpen(true);
+          const firstLink = panel.querySelector<HTMLAnchorElement>("a[href]");
+          firstLink?.focus();
+        } else if (event.key === " " || event.key === "Spacebar") {
+          event.preventDefault();
+          this.setDesktopOpen(trigger.getAttribute("aria-expanded") !== "true");
+        } else if (event.key === "Escape") {
+          event.preventDefault();
+          this.setDesktopOpen(false);
+          trigger.focus();
+        }
+      });
+
+      panel.addEventListener("keydown", (event: KeyboardEvent) => {
+        if (event.key === "Escape") {
+          event.preventDefault();
+          this.setDesktopOpen(false);
+          trigger.focus();
+        }
+      });
+
+      this.boundDesktopDocumentClick = (event: MouseEvent) => {
+        const target = event.target as Element | null;
+        if (!target) return;
+        if (!dropdown.contains(target)) this.setDesktopOpen(false);
+      };
+      document.addEventListener("click", this.boundDesktopDocumentClick);
+
+      this.boundDesktopKeydown = (event: KeyboardEvent) => {
+        if (
+          event.key === "Escape" &&
+          dropdown.dataset.open === "true" &&
+          !this.panel?.contains(document.activeElement)
+        ) {
+          this.setDesktopOpen(false);
+          trigger.focus();
+        }
+      };
+      document.addEventListener("keydown", this.boundDesktopKeydown);
+    }
+
+    private clearDesktopTimers() {
+      if (this.desktopCloseTimeout !== null) {
+        window.clearTimeout(this.desktopCloseTimeout);
+        this.desktopCloseTimeout = null;
+      }
+      if (this.desktopOpenTimeout !== null) {
+        window.clearTimeout(this.desktopOpenTimeout);
+        this.desktopOpenTimeout = null;
+      }
+    }
+
+    private setDesktopOpen(open: boolean) {
+      if (!this.desktopDropdown || !this.desktopTrigger || !this.desktopPanel)
+        return;
+      const dropdown = this.desktopDropdown;
+      const trigger = this.desktopTrigger;
+      const panel = this.desktopPanel;
+      if (open) {
+        dropdown.dataset.open = "true";
+        trigger.dataset.open = "true";
+        trigger.setAttribute("aria-expanded", "true");
+        panel.dataset.open = "true";
+        panel.setAttribute("aria-hidden", "false");
+        panel.removeAttribute("inert");
+        panel.removeAttribute("hidden");
+      } else {
+        dropdown.dataset.open = "false";
+        trigger.dataset.open = "false";
+        trigger.setAttribute("aria-expanded", "false");
+        panel.dataset.open = "false";
+        panel.setAttribute("aria-hidden", "true");
+        panel.setAttribute("inert", "");
+        // Mantener hidden para SEO/crawl hiding pero con transición: re-aplicar tras animación
+        // Usamos pequeño delay para permitir que la transición de salida se vea
+        window.setTimeout(() => {
+          if (panel.dataset.open === "false") panel.setAttribute("hidden", "");
+        }, 280);
+      }
+    }
+
+    private setMobileOpen(open: boolean) {
+      if (
+        !this.toggle ||
+        !this.panel ||
+        !this.openIcon ||
+        !this.closeIcon ||
+        !this.closeLabel
+      )
+        return;
+      this.toggle.setAttribute("aria-expanded", String(open));
+      this.toggle.setAttribute(
+        "aria-label",
+        open ? "Cerrar menú" : "Abrir menú",
+      );
+      if (open) {
+        this.panel.removeAttribute("hidden");
+        this.panel.removeAttribute("inert");
+        this.panel.dataset.open = "true";
+        this.openIcon.setAttribute("hidden", "");
+        this.closeIcon.removeAttribute("hidden");
+        this.closeLabel.removeAttribute("hidden");
+        this.closeLabel.setAttribute("aria-hidden", "false");
+        // Hace visible el label para sighted users; mantiene hidden=false para animación sutil
+        this.closeLabel.style.display = "";
+        this.setAttribute("data-mobile-open", "true");
+        // Cierra desktop al abrir móvil para evitar solapamiento
+        this.setDesktopOpen(false);
+      } else {
+        this.panel.setAttribute("hidden", "");
+        this.panel.setAttribute("inert", "");
+        delete this.panel.dataset.open;
+        this.openIcon.removeAttribute("hidden");
+        this.closeIcon.setAttribute("hidden", "");
+        this.closeLabel.setAttribute("hidden", "");
+        this.closeLabel.setAttribute("aria-hidden", "true");
+        this.removeAttribute("data-mobile-open");
+        this.setAfiliadosOpen(false);
+      }
+    }
+
+    private setAfiliadosOpen(open: boolean) {
+      if (!this.afiliadosTrigger || !this.afiliadosPanel || !this.mobileChevron)
+        return;
+      this.afiliadosTrigger.setAttribute("aria-expanded", String(open));
+      if (open) {
+        this.afiliadosPanel.removeAttribute("hidden");
+        this.afiliadosPanel.removeAttribute("inert");
+        this.afiliadosPanel.dataset.open = "true";
+        (this.mobileChevron as HTMLElement).style.transform = "rotate(180deg)";
+      } else {
+        this.afiliadosPanel.setAttribute("hidden", "");
+        this.afiliadosPanel.setAttribute("inert", "");
+        delete this.afiliadosPanel.dataset.open;
+        (this.mobileChevron as HTMLElement).style.transform = "rotate(0deg)";
+      }
+    }
+  }
+
+  if (!customElements.get("kenko-navbar")) {
+    customElements.define("kenko-navbar", KenkoNavbar);
+  }
+</script>

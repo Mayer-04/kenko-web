@@ -1,0 +1,81 @@
+---
+import Navbar from "./Navbar.astro";
+---
+
+<kenko-header>
+  <header
+    data-kenko-header
+    class="sticky top-0 z-40 w-full border-b border-black/5 bg-white/80 shadow-[0_4px_24px_rgba(33,73,106,0.06),0_1px_2px_rgba(0,0,0,0.04)] backdrop-blur-[28px] supports-[backdrop-filter]:bg-white/80"
+    aria-label="Encabezado principal"
+  >
+    <div
+      class="mx-auto flex w-full max-w-[1280px] items-center justify-between gap-6 px-4 py-3 sm:px-6 lg:px-8"
+    >
+      <Navbar />
+    </div>
+  </header>
+</kenko-header>
+
+<style>
+  [data-kenko-header][data-scrolled] {
+    background-color: rgba(255, 255, 255, 0.92);
+    box-shadow:
+      0 8px 32px rgba(33, 73, 106, 0.1),
+      0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-kenko-header] {
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
+
+<script>
+  class KenkoHeader extends HTMLElement {
+    private ticking = false;
+    private onScrollBound: (() => void) | null = null;
+    private header: HTMLElement | null = null;
+
+    connectedCallback() {
+      // Evita doble inicialización (docs: check window state)
+      if (this.dataset.ready === "true") return;
+      this.dataset.ready = "true";
+
+      this.header = this.querySelector<HTMLElement>("[data-kenko-header]");
+      if (!this.header) return;
+
+      this.onScrollBound = this.onScroll.bind(this);
+      window.addEventListener("scroll", this.onScrollBound, { passive: true });
+      this.onScroll();
+
+      // Soporte View Transitions (docs: astro:page-load)
+      document.addEventListener("astro:page-load", this.onScrollBound);
+    }
+
+    disconnectedCallback() {
+      if (this.onScrollBound) {
+        window.removeEventListener("scroll", this.onScrollBound);
+        document.removeEventListener("astro:page-load", this.onScrollBound);
+      }
+    }
+
+    private onScroll() {
+      if (this.ticking || !this.header) return;
+      this.ticking = true;
+      window.requestAnimationFrame(() => {
+        const scrolled = window.scrollY > 10;
+        if (scrolled) {
+          this.header!.setAttribute("data-scrolled", "true");
+        } else {
+          this.header!.removeAttribute("data-scrolled");
+        }
+        this.ticking = false;
+      });
+    }
+  }
+
+  if (!customElements.get("kenko-header")) {
+    customElements.define("kenko-header", KenkoHeader);
+  }
+</script>
