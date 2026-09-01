@@ -1,0 +1,74 @@
+---
+import { Image } from "astro:assets";
+import JDR from "@assets/images/organigrama/JDR.avif";
+import Mayer from "@assets/images/organigrama/Mayer.avif";
+import JPR from "@assets/images/organigrama/JPR.avif";
+
+const lideres = [
+  {
+    nombre: "José Daniel Rodríguez",
+    cargo: "CEO",
+    imagen: JDR,
+    alt: "Retrato de José Daniel Rodríguez, CEO de Kenko EPS",
+    linkedin: "https://www.linkedin.com/in/josedanrodrod98/",
+  },
+  {
+    nombre: "Mayer Andrés Chaves",
+    cargo: "CTO",
+    imagen: Mayer,
+    alt: "Retrato de Mayer Andrés Chaves, CTO de Kenko EPS",
+    linkedin: "https://www.linkedin.com/in/mayer-chaves/",
+  },
+  {
+    nombre: "Juan Pablo Rojas",
+    cargo: "COO",
+    imagen: JPR,
+    alt: "Retrato de Juan Pablo Rojas, COO de Kenko EPS",
+    linkedin: "https://www.linkedin.com/in/juan-pablo-rojas-quintero-90442130b/",
+  },
+];
+
+---
+
+<div
+  class="mt-10 flex flex-col items-center gap-8 sm:flex-row sm:items-start sm:justify-center sm:gap-16 lg:gap-24"
+  role="list"
+  aria-label="Equipo directivo de Kenko EPS"
+>
+  {
+    lideres.map((lider) => (
+      <a
+        href={lider.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group flex flex-col items-center text-center no-underline"
+        aria-label={`Perfil de LinkedIn de ${lider.nombre}`}
+      >
+        <article
+          class="flex flex-col items-center text-center"
+          role="listitem"
+          aria-labelledby={`lider-${lider.cargo.toLowerCase()}`}
+        >
+          <div class="relative size-28 overflow-hidden rounded-full border-4 border-on-about-secondary/30 shadow-lg shadow-on-about-secondary/10 transition group-hover:border-on-about-secondary/60 group-hover:shadow-xl sm:size-36">
+            <Image
+              src={lider.imagen}
+              alt={lider.alt}
+              class="size-full object-cover transition group-hover:scale-105"
+              widths={[144, 288]}
+              sizes="(min-width: 640px) 144px, 112px"
+            />
+          </div>
+          <p
+            id={`lider-${lider.cargo.toLowerCase()}`}
+            class="mt-4 font-display text-lg font-bold tracking-tight transition group-hover:text-on-about-secondary sm:text-xl"
+          >
+            {lider.nombre}
+          </p>
+          <p class="mt-1 font-body text-sm font-semibold uppercase tracking-widest text-on-about-secondary/70">
+            {lider.cargo}
+          </p>
+        </article>
+      </a>
+    ))
+  }
+</div>
