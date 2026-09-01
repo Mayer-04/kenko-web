@@ -1,7 +1,7 @@
 ---
 import MobileNavigationSection from "@components/headers/MobileNavigationSection.astro";
 import PortalAccessCta from "@components/headers/PortalAccessCta.astro";
-import { aboutItems, affiliateItems } from "@components/headers/navigation";
+import { affiliateItems } from "@components/headers/navigation";
 ---
 
 <nav
@@ -26,11 +26,14 @@ import { aboutItems, affiliateItems } from "@components/headers/navigation";
       label="Afiliados"
       items={affiliateItems}
     />
-    <MobileNavigationSection
-      id="nosotros"
-      label="Nosotros"
-      items={aboutItems}
-    />
+    <li class="border-b border-primary/30 py-1">
+      <a
+        class="flex min-h-14 cursor-pointer items-center rounded-xl px-3 py-3 font-display text-xl font-semibold text-content transition hover:bg-primary/5 hover:text-primary focus-visible:bg-primary/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary active:bg-primary/10"
+        href="/nosotros"
+      >
+        Nosotros
+      </a>
+    </li>
   </ul>
   <PortalAccessCta />
 </nav>
