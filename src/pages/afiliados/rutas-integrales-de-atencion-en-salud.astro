@@ -182,12 +182,12 @@ const programs = [
       </h1>
     </header>
 
-    <section class="mb-14 grid gap-8 md:grid-cols-12 md:items-center">
+    <section class="mb-24 grid gap-8 md:grid-cols-12 md:items-center">
       <div class="md:col-span-7">
         <h2 class="mb-4 font-display text-3xl font-bold tracking-[-0.04em] text-primary md:text-4xl">
           ¿Qué son?
         </h2>
-        <p class="mb-4 font-body text-base leading-7 text-content/80 md:text-lg">
+        <p class="mb-4 max-w-[65ch] font-body text-base leading-7 text-content/80 md:text-lg">
           {whatAreRias}
         </p>
       </div>
@@ -203,7 +203,7 @@ const programs = [
       </div>
     </section>
 
-    <section class="mb-14 grid gap-8 md:grid-cols-12 md:items-center">
+    <section class="mb-24 grid gap-8 md:grid-cols-12 md:items-center">
       <div class="md:order-2 md:col-span-5">
         <div class="overflow-hidden rounded-[20px] border border-content/10 bg-background shadow-[0_12px_30px_rgba(24,24,27,0.08)]">
           <img
@@ -218,7 +218,7 @@ const programs = [
         <h2 class="mb-4 font-display text-3xl font-bold tracking-[-0.04em] text-primary md:text-4xl">
           ¿Cómo están constituidas?
         </h2>
-        <ul class="list-disc space-y-3 pl-6 font-body text-base leading-7 text-content/80 md:text-lg">
+        <ul class="max-w-[65ch] list-disc space-y-3 pl-6 font-body text-base leading-7 text-content/80 md:text-lg">
           {
             constitutionItems.map((item) => (
               <li>
@@ -230,11 +230,11 @@ const programs = [
       </div>
     </section>
 
-    <section class="mb-14">
+    <section class="mb-24">
       <h2 class="mb-5 font-display text-3xl font-bold tracking-[-0.04em] text-primary md:text-4xl">
         ¿Cuáles son sus objetivos?
       </h2>
-      <ul class="list-disc space-y-3 pl-6 font-body text-base leading-7 text-content/80 md:text-lg">
+      <ul class="max-w-[65ch] list-disc space-y-3 pl-6 font-body text-base leading-7 text-content/80 md:text-lg">
         <li>Población sana.</li>
         <li>Usuario controlado.</li>
         <li>Reducir prevalencia.</li>
@@ -245,7 +245,7 @@ const programs = [
       </ul>
     </section>
 
-    <section class="mb-14">
+    <section class="mb-24">
       <h2 class="mb-5 font-display text-3xl font-bold tracking-[-0.04em] text-primary md:text-4xl">
         Panel de rutas
       </h2>
@@ -266,8 +266,8 @@ const programs = [
               chevronIcon={ChevronIcon}
               defaultOpen={index === 1}
             >
-              <div class="space-y-3 font-body text-base leading-7 text-content/80 md:text-lg">
-                <p>{program.description}</p>
+              <div class="max-w-[65ch] space-y-3 font-body text-base leading-7 text-content/80 md:text-lg">
+                <p class="max-w-[65ch]">{program.description}</p>
               </div>
             </Dropdown>
           ))
