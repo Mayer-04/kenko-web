@@ -163,22 +163,136 @@ const creators = [
           class="sm:col-span-2 lg:col-span-2"
           aria-labelledby="footer-contact-title"
         >
-          Nosotros
-        </h2>
-        <ul class="mt-4 space-y-1">
-          <li>
-            <a
-              href="/nosotros"
-              class="flex min-h-11 items-center rounded-lg px-3 py-2 font-body text-sm leading-5 text-on-primary/85 transition hover:bg-white/10 hover:text-on-primary focus-visible:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
-            >
-              Nosotros
-            </a>
-          </li>
-        </ul>
-      </nav>
+          <h2
+            id="footer-contact-title"
+            class="font-display text-[11px] font-bold tracking-[0.16em] text-secondary uppercase"
+          >
+            Contacto
+          </h2>
+          <ul class="mt-4 space-y-2.5">
+            <li>
+              <a
+                href="mailto:info@kenkoeps.com"
+                class="group flex items-center gap-2.5 rounded-lg px-3 py-2 font-body text-sm leading-5 text-white/75 transition hover:bg-white/[0.06] hover:text-white focus-visible:bg-white/[0.06] focus-visible:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+              >
+                <span
+                  class="flex size-6 shrink-0 items-center justify-center rounded-full bg-white text-primary shadow-sm"
+                  aria-hidden="true"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="size-3"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path d="M4 6.5h16v11H4z"></path>
+                    <path d="m4 7 8 7 8-7"></path>
+                  </svg>
+                </span>
+                <span class="truncate">info@kenkoeps.com</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="tel:+573177404326"
+                class="group flex items-center gap-2.5 rounded-lg px-3 py-2 font-body text-sm leading-5 text-white/75 transition hover:bg-white/[0.06] hover:text-white focus-visible:bg-white/[0.06] focus-visible:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+              >
+                <span
+                  class="flex size-6 shrink-0 items-center justify-center rounded-full bg-secondary text-content shadow-sm"
+                  aria-hidden="true"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="size-3"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path
+                      d="M6.5 4.5a1 1 0 0 1 1-.5h2.2a1 1 0 0 1 .9.6l1 2.6a1 1 0 0 1-.2 1L9.8 10a12.5 12.5 0 0 0 4.2 4.2l1.8-1.6a1 1 0 0 1 1-.2l2.6 1a1 1 0 0 1 .6.9V17a1 1 0 0 1-.5 1 14.5 14.5 0 0 1-13-13Z"
+                    ></path>
+                  </svg>
+                </span>
+                <span class="whitespace-nowrap">+57 317 740 4326</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
 
-    <div class="mt-12 border-t border-white/30 pt-7 sm:mt-14 sm:pt-8">
+    {/* Sección creadores — creativa y minimal */}
+    <div class="mt-12 border-t border-white/10 pt-10 sm:mt-14">
+      <h2
+        id="footer-creators-title"
+        class="font-display text-[11px] font-bold tracking-[0.16em] text-secondary uppercase"
+      >
+        Equipo creador
+      </h2>
+
+      <ul
+        class="mt-6 grid gap-3 sm:grid-cols-3 sm:gap-4"
+        aria-labelledby="footer-creators-title"
+      >
+        {
+          creators.map((creator) => (
+            <li>
+              <a
+                href={creator.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group relative flex items-center gap-4 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur transition hover:-translate-y-px hover:border-white/15 hover:bg-white/[0.07] hover:shadow-[0_8px_24px_rgba(0,0,0,0.16)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+              >
+                {/* brillo sutil superior */}
+                <span
+                  aria-hidden="true"
+                  class="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/15 to-transparent opacity-60"
+                />
+                <span class="flex size-10 shrink-0 items-center justify-center rounded-full bg-white text-sm font-bold tracking-tight text-primary shadow-sm ring-1 ring-black/5">
+                  {creator.initial}
+                </span>
+                <span class="min-w-0 flex-1">
+                  <span class="block truncate font-display text-sm leading-none font-semibold text-white">
+                    {creator.name}
+                  </span>
+                  <span class="mt-1 block truncate font-body text-xs leading-none text-white/55">
+                    @{creator.handle}
+                  </span>
+                </span>
+                <span class="flex size-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white text-primary shadow-sm ring-1 ring-black/5 transition group-hover:scale-105">
+                  <svg
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    class="size-4"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z"
+                    />
+                  </svg>
+                  <span class="sr-only">GitHub de {creator.name}</span>
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    {/* Barra inferior: legal + vigilados */}
+    <div class="mt-14 border-t border-white/10 pt-10 sm:mt-16 sm:pt-12">
       <div
         class="flex flex-col-reverse items-start gap-7 sm:flex-row sm:items-center sm:justify-between sm:gap-8"
       >
