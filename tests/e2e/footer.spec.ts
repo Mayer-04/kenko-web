@@ -13,7 +13,10 @@ test.describe("footer", () => {
       footer.getByRole("heading", { name: "Afiliados" }),
     ).toBeVisible();
     await expect(
-      footer.getByRole("heading", { name: "Nosotros" }),
+      footer.getByRole("heading", { name: "Explorar" }),
+    ).toBeVisible();
+    await expect(
+      footer.getByRole("heading", { name: "Contacto" }),
     ).toBeVisible();
     await expect(
       footer.getByRole("link", {
@@ -23,14 +26,13 @@ test.describe("footer", () => {
       "href",
       "/afiliados/rutas-integrales-de-atencion-en-salud",
     );
-    await expect(
-      footer.getByRole("link", {
-        name: "Plan de modernización y saneamiento financiero",
-      }),
-    ).toHaveAttribute(
+    await expect(footer.getByRole("link", { name: "Inicio" })).toHaveAttribute(
       "href",
-      "/nosotros/plan-de-modernizacion-y-saneamiento-financiero",
+      "/",
     );
+    await expect(
+      footer.getByRole("link", { name: "Nosotros" }),
+    ).toHaveAttribute("href", "/nosotros");
     await expect(
       footer.getByText("@2026 Kenko EPS. Todos los derechos reservados"),
     ).toBeVisible();
