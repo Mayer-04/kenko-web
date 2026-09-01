@@ -73,9 +73,17 @@ Consulta general, el paciente debe ser atendido el mismo día.
 
     expect(intro).toContain("Es el nombre que recibe la clasificación");
     expect(levels).toHaveLength(5);
-    expect(levels.map((level) => level.level)).toEqual(["1", "2", "3", "4", "5"]);
+    expect(levels.map((level) => level.level)).toEqual([
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+    ]);
     expect(levels[0]?.title).toBe("Triage 1: rojo");
-    expect(levels[0]?.subtitle).toBe("Emergencia, el paciente requiere atención inmediata.");
+    expect(levels[0]?.subtitle).toBe(
+      "Emergencia, el paciente requiere atención inmediata.",
+    );
     expect(levels[0]?.symptoms).toContain("Dificultad para respirar.");
   });
 });

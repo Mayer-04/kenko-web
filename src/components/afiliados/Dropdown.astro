@@ -58,7 +58,10 @@ const initialOpen = false;
         }
 
         <span class="min-w-0">
-          <span class="block font-display text-lg font-semibold text-content md:text-xl">{title}</span>
+          <span
+            class="block font-display text-lg font-semibold text-content md:text-xl"
+            >{title}</span
+          >
           {
             subtitle && (
               <span class="mt-1 block font-body text-sm leading-5 text-content/70 md:text-base">
@@ -90,7 +93,7 @@ const initialOpen = false;
               stroke-linejoin="round"
               data-dropdown-chevron
             >
-              <path d="m6 9 6 6 6-6"></path>
+              <path d="m6 9 6 6 6-6" />
             </svg>
           )
         }
@@ -106,7 +109,7 @@ const initialOpen = false;
   >
     <div class="min-h-0 overflow-hidden px-4 pb-4 md:px-5">
       <div class="border-t border-content/10 pt-4">
-      <slot />
+        <slot />
       </div>
     </div>
   </div>
@@ -123,9 +126,15 @@ const initialOpen = false;
 
       dropdown.dataset.dropdownInitialized = "true";
 
-      const trigger = dropdown.querySelector<HTMLButtonElement>("[data-dropdown-trigger]");
-      const panel = dropdown.querySelector<HTMLElement>("[data-dropdown-panel]");
-      const chevron = dropdown.querySelector<HTMLElement>("[data-dropdown-chevron]");
+      const trigger = dropdown.querySelector<HTMLButtonElement>(
+        "[data-dropdown-trigger]",
+      );
+      const panel = dropdown.querySelector<HTMLElement>(
+        "[data-dropdown-panel]",
+      );
+      const chevron = dropdown.querySelector<HTMLElement>(
+        "[data-dropdown-chevron]",
+      );
 
       if (!trigger || !panel || !chevron) {
         return;
@@ -148,13 +157,20 @@ const initialOpen = false;
 
       trigger.addEventListener("click", () => {
         const isOpen = dropdown.dataset.open === "true";
-        const allOpen = document.querySelectorAll<HTMLElement>("[data-dropdown]");
+        const allOpen =
+          document.querySelectorAll<HTMLElement>("[data-dropdown]");
 
         allOpen.forEach((otherDropdown) => {
           if (otherDropdown !== dropdown) {
-            const otherTrigger = otherDropdown.querySelector<HTMLButtonElement>("[data-dropdown-trigger]");
-            const otherPanel = otherDropdown.querySelector<HTMLElement>("[data-dropdown-panel]");
-            const otherChevron = otherDropdown.querySelector<HTMLElement>("[data-dropdown-chevron]");
+            const otherTrigger = otherDropdown.querySelector<HTMLButtonElement>(
+              "[data-dropdown-trigger]",
+            );
+            const otherPanel = otherDropdown.querySelector<HTMLElement>(
+              "[data-dropdown-panel]",
+            );
+            const otherChevron = otherDropdown.querySelector<HTMLElement>(
+              "[data-dropdown-chevron]",
+            );
 
             if (otherTrigger && otherPanel && otherChevron) {
               otherDropdown.dataset.open = "false";
@@ -175,7 +191,9 @@ const initialOpen = false;
   };
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initializeDropdowns, { once: true });
+    document.addEventListener("DOMContentLoaded", initializeDropdowns, {
+      once: true,
+    });
   } else {
     initializeDropdowns();
   }

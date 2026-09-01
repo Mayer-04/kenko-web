@@ -29,8 +29,7 @@ const {
         "No requieren autorizaciones previas.",
         "Articulación con hospitales de I nivel y entes territoriales.",
       ],
-      note:
-        "Nuestros usuarios diagnosticados con cáncer de mama no deben acudir a medicina general para iniciar tratamiento y cuentan con atención especializada y oportuna.",
+      note: "Nuestros usuarios diagnosticados con cáncer de mama no deben acudir a medicina general para iniciar tratamiento y cuentan con atención especializada y oportuna.",
     },
     {
       id: "vih",
@@ -44,8 +43,7 @@ const {
         "Cuidados paliativos y servicio farmacéutico.",
         "Toma de muestras de laboratorio y telemedicina.",
       ],
-      note:
-        "Los canales de atención están habilitados para acompañar la continuidad del tratamiento y la atención integral.",
+      note: "Los canales de atención están habilitados para acompañar la continuidad del tratamiento y la atención integral.",
     },
     {
       id: "visual",
@@ -59,8 +57,7 @@ const {
         "Cirugía oftalmológica, lentes, monturas y prótesis oculares.",
         "Banco de sangre y tejidos con suministro de hemoderivados.",
       ],
-      note:
-        "La IPS encargada de la atención es por municipio de afiliación del usuario y no por el municipio de residencia. No presta urgencias.",
+      note: "La IPS encargada de la atención es por municipio de afiliación del usuario y no por el municipio de residencia. No presta urgencias.",
     },
     {
       id: "mental",
@@ -74,8 +71,7 @@ const {
         "Laboratorio, ayudas diagnósticas y trabajo social.",
         "Dispensación de medicamentos en Antioquia.",
       ],
-      note:
-        "La ruta incluye criterios de ingreso y coordinación entre el nivel primario y complementario para gestionar el riesgo y lograr resultados en salud mental.",
+      note: "La ruta incluye criterios de ingreso y coordinación entre el nivel primario y complementario para gestionar el riesgo y lograr resultados en salud mental.",
     },
     {
       id: "autoinmune",
@@ -89,8 +85,7 @@ const {
         "Laboratorio, imagenología y albergues.",
         "Terapias biológicas y medicamentos.",
       ],
-      note:
-        "Cuenta con apoyo de personal de salud como fisiatría, fisioterapia, enfermería, psicología, trabajo social y farmacéutico.",
+      note: "Cuenta con apoyo de personal de salud como fisiatría, fisioterapia, enfermería, psicología, trabajo social y farmacéutico.",
     },
     {
       id: "renal",
@@ -104,8 +99,7 @@ const {
         "Médico experto, nefrólogo y psicología.",
         "Endocrinología, nutrición y cirugía vascular.",
       ],
-      note:
-        "La ruta está orientada a tratamiento integral para ERC, hipertensión y diabetes como precursoras de la enfermedad renal.",
+      note: "La ruta está orientada a tratamiento integral para ERC, hipertensión y diabetes como precursoras de la enfermedad renal.",
     },
     {
       id: "hemofilia",
@@ -119,8 +113,7 @@ const {
         "Especialidades complementarias y laboratorio.",
         "Suministro de factor antihemofílico y albergue.",
       ],
-      note:
-        "Sus propósitos superiores incluyen caracterización, intervención individual, seguimiento del riesgo y gestión de eficiencias y gastos evitables.",
+      note: "Sus propósitos superiores incluyen caracterización, intervención individual, seguimiento del riesgo y gestión de eficiencias y gastos evitables.",
     },
     {
       id: "cancer-de-cervix",
@@ -134,17 +127,25 @@ const {
         "Cuidados paliativos y soporte integral.",
         "Seguimiento según el plan del tratamiento.",
       ],
-      note:
-        "El acceso al programa se realiza a partir del diagnóstico, sin trámite adicional, y se recomienda seguir cuidadosamente las indicaciones médicas y de enfermería.",
+      note: "El acceso al programa se realiza a partir del diagnóstico, sin trámite adicional, y se recomienda seguir cuidadosamente las indicaciones médicas y de enfermería.",
     },
   ],
   defaultRouteId = "cancer-de-mama",
 } = Astro.props;
 ---
 
-<div data-rias-panel class="overflow-hidden rounded-[20px] border border-content/10 bg-background shadow-[0_12px_30px_rgba(24,24,27,0.08)]" aria-label="Panel de rutas integrales de atención en salud">
+<div
+  data-rias-panel
+  class="overflow-hidden rounded-[20px] border border-content/10 bg-background shadow-[0_12px_30px_rgba(24,24,27,0.08)]"
+  aria-label="Panel de rutas integrales de atención en salud"
+>
   <div class="flex flex-col md:flex-row">
-    <nav class="w-full md:w-[32%] lg:w-[28%] border-b border-content/10 bg-slate-100/80 md:border-b-0 md:border-r" aria-label="Navegación de rutas" role="tablist" aria-orientation="vertical">
+    <nav
+      class="w-full border-b border-content/10 bg-slate-100/80 md:w-[32%] md:border-r md:border-b-0 lg:w-[28%]"
+      aria-label="Navegación de rutas"
+      role="tablist"
+      aria-orientation="vertical"
+    >
       {
         routes.map((route) => {
           const isActive = route.id === defaultRouteId;
@@ -167,8 +168,16 @@ const {
               ]}
             >
               <span>{route.label}</span>
-              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-current/20" aria-hidden="true">
-                <ChevronRightIcon class:list={["h-4 w-4 cursor-pointer transition-transform duration-200", isActive ? "text-white" : "text-current"]} />
+              <span
+                class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-current/20"
+                aria-hidden="true"
+              >
+                <ChevronRightIcon
+                  class:list={[
+                    "h-4 w-4 cursor-pointer transition-transform duration-200",
+                    isActive ? "text-white" : "text-current",
+                  ]}
+                />
               </span>
             </button>
           );
@@ -196,21 +205,34 @@ const {
                 {route.title}
               </h3>
 
-              <p class="font-body text-base leading-7 text-content/80 md:text-lg">{route.description}</p>
+              <p class="font-body text-base leading-7 text-content/80 md:text-lg">
+                {route.description}
+              </p>
 
               <div>
-                <h4 class="mb-3 font-display text-lg font-semibold text-primary md:text-xl">Intervenciones clave:</h4>
+                <h4 class="mb-3 font-display text-lg font-semibold text-primary md:text-xl">
+                  Intervenciones clave:
+                </h4>
                 <ul class="space-y-2 pl-5 font-body text-base leading-7 text-content/80">
                   {route.interventions.map((intervention) => (
-                    <li class="list-disc marker:text-primary">{intervention}</li>
+                    <li class="list-disc marker:text-primary">
+                      {intervention}
+                    </li>
                   ))}
                 </ul>
               </div>
 
               <div class="mt-6 flex gap-3 rounded-2xl border border-primary/15 bg-primary/5 p-4 text-sm leading-6 text-content/80 md:text-base">
-                <span class="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary text-on-primary" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current" aria-hidden="true">
-                    <path d="M12 2a10 10 0 1 0 10 10A10.01 10.01 0 0 0 12 2Zm1 15h-2v-2h2Zm0-4h-2V7h2Z"/>
+                <span
+                  class="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary text-on-primary"
+                  aria-hidden="true"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    class="h-4 w-4 fill-current"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 2a10 10 0 1 0 10 10A10.01 10.01 0 0 0 12 2Zm1 15h-2v-2h2Zm0-4h-2V7h2Z" />
                   </svg>
                 </span>
                 <p>{route.note}</p>
@@ -232,8 +254,11 @@ const {
         return;
       }
 
-      const buttons = panel.querySelectorAll<HTMLButtonElement>("[data-route-trigger]");
-      const sections = panel.querySelectorAll<HTMLElement>("[data-route-panel]");
+      const buttons = panel.querySelectorAll<HTMLButtonElement>(
+        "[data-route-trigger]",
+      );
+      const sections =
+        panel.querySelectorAll<HTMLElement>("[data-route-panel]");
 
       if (buttons.length === 0 || sections.length === 0) {
         return;
@@ -267,7 +292,16 @@ const {
         });
 
         button.addEventListener("keydown", (event: KeyboardEvent) => {
-          if (!["ArrowDown", "ArrowUp", "Home", "End", "ArrowRight", "ArrowLeft"].includes(event.key)) {
+          if (
+            ![
+              "ArrowDown",
+              "ArrowUp",
+              "Home",
+              "End",
+              "ArrowRight",
+              "ArrowLeft",
+            ].includes(event.key)
+          ) {
             return;
           }
 
@@ -305,7 +339,9 @@ const {
   };
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initializeRoutePanels, { once: true });
+    document.addEventListener("DOMContentLoaded", initializeRoutePanels, {
+      once: true,
+    });
   } else {
     initializeRoutePanels();
   }
