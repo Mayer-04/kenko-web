@@ -58,7 +58,7 @@ const carouselId = "inicio-carousel";
 <home-carousel>
   <section
     id={carouselId}
-    class="group relative isolate min-h-[32rem] overflow-hidden bg-primary sm:min-h-[34rem] lg:h-[600px] lg:min-h-0"
+    class="group relative isolate min-h-128 overflow-hidden bg-primary sm:min-h-136 lg:h-150 lg:min-h-0"
     aria-label="Destacados de Kenko EPS"
     aria-roledescription="carrusel"
     data-carousel
@@ -95,11 +95,11 @@ const carouselId = "inicio-carousel";
                 src={slide.image.src}
               />
               <div
-                class="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/65 to-primary/10 sm:via-primary/55 sm:to-transparent"
+                class="absolute inset-0 bg-linear-to-r from-primary/90 via-primary/65 to-primary/10 sm:via-primary/55 sm:to-transparent"
                 aria-hidden="true"
               />
 
-              <div class="relative z-10 mx-auto w-full max-w-[1280px] px-6 lg:px-8">
+              <div class="relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-8">
                 <div class="max-w-xl text-on-primary">
                   {isActive ? (
                     <h1 class="font-display text-4xl font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl">
