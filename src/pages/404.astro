@@ -1,0 +1,286 @@
+---
+import "../styles/global.css";
+import BaseHead from "@components/BaseHead.astro";
+import KenkoLimpio from "@assets/icons/kenko_limpio.svg";
+
+const title = "Página no encontrada — Kenko EPS";
+const description =
+  "La ruta que buscaste no existe. Te llevamos de vuelta a tu cuidado en Kenko EPS.";
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <BaseHead title={title} description={description} />
+    <meta name="robots" content="noindex, nofollow" />
+  </head>
+  <body
+    class="relative flex min-h-dvh flex-col overflow-x-hidden bg-background text-content antialiased"
+  >
+    <!-- Fondos sutiles sistema -->
+    <div
+      aria-hidden="true"
+      class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(33,73,106,0.07),_transparent_60%)]"
+    >
+    </div>
+    <div
+      aria-hidden="true"
+      class="pointer-events-none absolute inset-0 [background-image:radial-gradient(circle_at_1px_1px,_#18181b_1px,_transparent_0)] [background-size:28px_28px] opacity-[0.03]"
+    >
+    </div>
+    <!-- Watermark KENKO inferior -->
+    <div
+      aria-hidden="true"
+      class="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center overflow-hidden select-none"
+    >
+      <span
+        class="translate-y-[28%] font-display text-[22vw] leading-none font-black tracking-tighter text-primary/[0.04] sm:translate-y-[22%] sm:text-[18vw] lg:text-[14vw]"
+        >KENKO</span
+      >
+    </div>
+
+    <header
+      class="relative mx-auto flex w-full max-w-[1280px] items-center justify-between px-6 py-6 sm:px-8"
+    >
+      <a
+        href="/"
+        class="inline-flex rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary"
+        aria-label="Kenko EPS, volver al inicio"
+      >
+        <KenkoLimpio
+          class="h-auto w-32 max-w-full sm:w-36"
+          aria-hidden="true"
+          focusable="false"
+        />
+      </a>
+      <span
+        class="hidden items-center gap-2 font-body text-xs font-semibold tracking-[0.14em] text-content/40 uppercase sm:inline-flex"
+      >
+        <span class="size-1.5 rounded-full bg-secondary"></span>
+        Error 404
+      </span>
+    </header>
+
+    <main class="relative flex flex-1 items-center py-10 sm:py-14">
+      <div
+        class="mx-auto grid w-full max-w-[1280px] gap-10 px-6 sm:px-8 lg:grid-cols-12 lg:items-center lg:gap-8"
+      >
+        <!-- Col izquierda: señal -->
+        <div class="relative lg:col-span-5">
+          <span
+            aria-hidden="true"
+            class="pointer-events-none absolute -top-10 left-0 hidden font-display text-[clamp(6rem,14vw,12rem)] leading-none font-black tracking-tighter text-transparent select-none sm:block"
+            style="-webkit-text-stroke: 1.5px rgba(33,73,106,0.12);">404</span
+          >
+          <span
+            aria-hidden="true"
+            class="pointer-events-none absolute -top-6 left-0 font-display text-[clamp(5rem,22vw,7rem)] leading-none font-black tracking-tighter text-transparent select-none sm:hidden"
+            style="-webkit-text-stroke: 1.2px rgba(33,73,106,0.11);">404</span
+          >
+          <div class="relative">
+            <p
+              class="inline-flex items-center gap-2 rounded-full border border-primary/10 bg-white px-3 py-1 font-body text-[11px] font-semibold tracking-[0.14em] text-primary uppercase shadow-sm"
+            >
+              <span class="size-1.5 animate-pulse rounded-full bg-secondary"
+              ></span>
+              Ruta no encontrada
+            </p>
+            <h1
+              class="mt-5 font-display text-[30px] leading-[1.05] font-bold tracking-tight text-balance text-primary sm:text-[36px] lg:text-[42px]"
+            >
+              Te desviaste del camino
+              <span class="font-light text-primary/60">hacia tu salud.</span>
+            </h1>
+            <p
+              class="mt-4 max-w-[46ch] font-body text-[15px] leading-6 text-content/70 sm:text-[16px] sm:leading-7"
+            >
+              Parece que esta ruta no existe o fue movida. No te preocupes —
+              <span class="font-medium text-content">te llevamos de vuelta</span
+              >
+              a tu cuidado. Estás a un clic de retomar tu atención.
+            </p>
+            <div
+              class="mt-6 flex items-center gap-3 font-body text-xs text-content/50"
+            >
+              <span aria-hidden="true" class="h-px w-10 bg-content/10 sm:w-14"
+              ></span>
+              <span>Código 404 · Página no disponible</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Col derecha: tarjeta CTAs + brújula logo -->
+        <div class="relative lg:col-span-7">
+          <div
+            class="relative overflow-hidden rounded-[28px] border border-content/10 bg-white p-7 shadow-[0_16px_48px_rgba(24,24,27,0.08)] sm:p-8 lg:p-9"
+          >
+            <div
+              aria-hidden="true"
+              class="pointer-events-none absolute -top-20 -right-20 size-64 rounded-full bg-primary/5 blur-3xl"
+            >
+            </div>
+            <div
+              aria-hidden="true"
+              class="pointer-events-none absolute -bottom-16 -left-16 size-56 rounded-full bg-secondary/8 blur-3xl"
+            >
+            </div>
+
+            <div
+              class="relative flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between"
+            >
+              <div class="flex-1">
+                <h2
+                  class="font-display text-lg font-semibold tracking-tight text-content"
+                >
+                  ¿A dónde quieres volver?
+                </h2>
+                <p
+                  class="mt-2 max-w-[34ch] font-body text-sm leading-6 text-content/60"
+                >
+                  Elige una de estas rutas seguras. Todas te llevan a atención
+                  cercana y humana.
+                </p>
+
+                <nav
+                  aria-label="Destinos sugeridos"
+                  class="mt-6 flex flex-col gap-3"
+                >
+                  <a
+                    href="/"
+                    class="group inline-flex items-center justify-between rounded-2xl bg-primary px-5 py-4 font-body text-sm font-semibold text-on-primary shadow-sm transition hover:bg-primary/90 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary"
+                  >
+                    <span class="flex items-center gap-3">
+                      <span
+                        class="flex size-8 items-center justify-center rounded-full bg-white/15"
+                      >
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.8"
+                          class="size-4"
+                          aria-hidden="true"
+                          focusable="false"
+                          ><path
+                            d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-5H9v5H4a1 1 0 0 1-1-1z"
+                          ></path></svg
+                        >
+                      </span>
+                      Volver al inicio
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      class="transition group-hover:translate-x-0.5">→</span
+                    >
+                  </a>
+
+                  <div class="grid gap-3 sm:grid-cols-2">
+                    <a
+                      href="/afiliados/puntos-de-atencion"
+                      class="group inline-flex items-center justify-between rounded-2xl border border-content/10 bg-white px-5 py-4 font-body text-sm font-semibold text-content shadow-sm transition hover:border-primary/15 hover:bg-background hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary"
+                    >
+                      <span>Puntos de atención</span>
+                      <span
+                        aria-hidden="true"
+                        class="flex size-7 items-center justify-center rounded-full border border-content/10 bg-background text-[11px] transition group-hover:border-primary/20 group-hover:bg-primary group-hover:text-on-primary"
+                        >↗</span
+                      >
+                    </a>
+                    <a
+                      href="/nosotros"
+                      class="group inline-flex items-center justify-between rounded-2xl border border-content/10 bg-white px-5 py-4 font-body text-sm font-semibold text-content shadow-sm transition hover:border-primary/15 hover:bg-background hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary"
+                    >
+                      <span>Nosotros</span>
+                      <span
+                        aria-hidden="true"
+                        class="flex size-7 items-center justify-center rounded-full border border-content/10 bg-background text-[11px] transition group-hover:border-primary/20 group-hover:bg-primary group-hover:text-on-primary"
+                        >↗</span
+                      >
+                    </a>
+                  </div>
+                </nav>
+
+                <p
+                  class="mt-6 flex items-center gap-2 font-body text-xs leading-5 text-content/45"
+                >
+                  <span
+                    class="inline-flex size-6 items-center justify-center rounded-full bg-secondary/15 text-secondary"
+                    aria-hidden="true">✓</span
+                  >
+                  Si llegaste aquí por un enlace, cuéntanos en
+                  <a
+                    href="mailto:info@kenkoeps.com"
+                    class="font-medium text-primary underline decoration-primary/20 underline-offset-4 hover:decoration-primary"
+                    >info@kenkoeps.com</a
+                  >
+                </p>
+              </div>
+
+              <!-- Brújula logo -->
+              <div
+                class="relative flex shrink-0 items-center justify-center sm:w-[148px]"
+                aria-hidden="true"
+              >
+                <div
+                  class="relative flex size-[132px] items-center justify-center rounded-full bg-background p-4 shadow-[0_8px_28px_rgba(33,73,106,0.08)] ring-1 ring-content/5 sm:size-[148px]"
+                >
+                  <div
+                    class="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(33,73,106,0.06),transparent_70%)]"
+                  >
+                  </div>
+                  <KenkoLimpio
+                    class="relative h-auto w-[86%] max-w-[96px] sm:max-w-[106px]"
+                    focusable="false"
+                  />
+                  <span
+                    class="absolute -top-1 -right-1 flex size-7 items-center justify-center rounded-full bg-secondary text-[11px] font-bold text-content shadow-sm ring-4 ring-white"
+                    >?</span
+                  >
+                </div>
+                <div
+                  class="pointer-events-none absolute inset-0 -z-10 rounded-full bg-[conic-gradient(from_0deg,transparent,rgba(33,73,106,0.06),transparent_60%)] opacity-60"
+                >
+                </div>
+              </div>
+            </div>
+
+            <!-- Ruta punteada decorativa -->
+            <div
+              aria-hidden="true"
+              class="pointer-events-none absolute right-7 bottom-7 left-7 hidden h-px bg-[linear-gradient(to_right,#18181b_30%,transparent_30%)] bg-[length:10px_1px] opacity-[0.08] sm:block"
+            >
+            </div>
+          </div>
+
+          <p
+            class="mt-4 text-center font-body text-xs text-content/40 sm:text-right"
+          >
+            Consejo: verifica la URL o usa el menú superior para navegar.
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <footer
+      class="relative mx-auto w-full max-w-[1280px] px-6 py-8 text-center sm:px-8"
+    >
+      <p class="font-body text-xs text-content/40">
+        © 2026 <span class="font-semibold text-primary">Kenko EPS</span> · Cuidado
+        que se siente.
+      </p>
+    </footer>
+
+    <style>
+      @media (prefers-reduced-motion: reduce) {
+        .animate-pulse {
+          animation: none !important;
+        }
+        a {
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </body>
+</html>
