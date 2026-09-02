@@ -15,7 +15,7 @@ When instructions conflict, prioritize the user's request, these guidelines, off
 
 Use the technologies already established in this repository. Exact versions are defined in `package.json`.
 
-- Astro 7 with Vite is the primary framework and build tool; React 19 is available through `@astrojs/react` for interactive islands.
+- Astro 7 with Vite is the primary framework and build tool (static-first, sin runtime de React).
 - TypeScript uses Astro's strict configuration.
 - Tailwind CSS 4 is integrated through `@tailwindcss/vite`.
 - Bun is the package manager and script runner; Node.js `>=22.22.3` is required.
@@ -56,12 +56,6 @@ Always consult the official Astro Images documentation when working with images 
 - Use `<Image />` for optimized images, `<Picture />` for multiple formats or responsive sources, and `getImage()` for optimized URLs outside direct HTML.
 - Use imported SVG files as Astro components when appropriate; use native `<img>` or `<svg>` only when unprocessed output is intentional.
 - Provide meaningful `alt` text for informative images, `alt=""` for decorative images, and preserve dimensions and responsive behavior.
-
-### React Islands
-
-- Use React only for client-side interactivity or framework state.
-- Avoid hydration when Astro or native browser APIs are sufficient; use the least powerful hydration directive needed.
-- Keep data fetching and static content in Astro, keep islands small, and do not render Astro-only components directly inside React.
 
 ## Styling
 

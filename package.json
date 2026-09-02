@@ -20,25 +20,20 @@
     "test:e2e:debug": "bun run build && playwright test --debug",
     "test:e2e:report": "playwright show-report",
     "test:all": "bun run test:unit && bun run test:e2e",
-    "lint": "eslint \"src/**/*.{js,ts,tsx,astro}\" \"tests/**/*.{js,ts,tsx}\" \"playwright.config.ts\"",
-    "lint:fix": "eslint \"src/**/*.{js,ts,tsx,astro}\" \"tests/**/*.{js,ts,tsx}\" \"playwright.config.ts\" --fix",
+    "lint": "eslint \"src/**/*.{js,ts,astro}\" \"tests/**/*.{js,ts}\" \"playwright.config.ts\"",
+    "lint:fix": "eslint \"src/**/*.{js,ts,astro}\" \"tests/**/*.{js,ts}\" \"playwright.config.ts\" --fix",
     "format": "prettier . --write",
     "format:check": "prettier . --check"
   },
   "dependencies": {
-    "@astrojs/react": "6.0.4",
     "@tailwindcss/vite": "4.3.3",
     "astro": "7.2.9",
-    "react": "19.2.8",
-    "react-dom": "19.2.8",
     "tailwindcss": "4.3.3"
   },
   "devDependencies": {
     "@playwright/test": "1.62.1",
     "@testing-library/jest-dom": "7.0.1",
     "@types/node": "26.4.0",
-    "@types/react": "19.2.18",
-    "@types/react-dom": "19.2.5",
     "@vitest/ui": "4.1.11",
     "eslint": "10.9.1",
     "eslint-config-prettier": "10.1.8",

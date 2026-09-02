@@ -7,11 +7,16 @@ describe("puntos de atención page", () => {
       process.cwd(),
       "src/pages/afiliados/puntos-de-atencion.astro",
     );
+    const contentPath = resolve(
+      process.cwd(),
+      "src/components/afiliados/LocationsContent.astro",
+    );
     const page = readFileSync(pagePath, "utf8");
+    const content = readFileSync(contentPath, "utf8");
 
     expect(page).toContain("Puntos de Atención");
     expect(page).toContain("LocationsContent");
-    expect(page).toContain("LocationsMap");
+    expect(content).toContain("LocationsMap");
   });
 
   it("uses google maps embed for location display", () => {

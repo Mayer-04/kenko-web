@@ -8,8 +8,6 @@
       "@layouts/*": ["./src/layouts/*"],
       "@assets/*": ["./src/assets/*"]
     },
-    "jsx": "react-jsx",
-    "jsxImportSource": "react",
     "types": ["vitest/globals", "@testing-library/jest-dom", "node"]
   }
 }
