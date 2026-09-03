@@ -9,7 +9,7 @@ describe("puntos de atención page", () => {
     );
     const contentPath = resolve(
       process.cwd(),
-      "src/components/afiliados/LocationsContent.astro",
+      "src/components/members/LocationsContent.astro",
     );
     const page = readFileSync(pagePath, "utf8");
     const content = readFileSync(contentPath, "utf8");
@@ -22,7 +22,7 @@ describe("puntos de atención page", () => {
   it("uses google maps embed for location display", () => {
     const mapComponentPath = resolve(
       process.cwd(),
-      "src/components/afiliados/LocationsMap.astro",
+      "src/components/members/LocationsMap.astro",
     );
     const mapComponent = readFileSync(mapComponentPath, "utf8");
 
