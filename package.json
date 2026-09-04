@@ -19,11 +19,7 @@
     "test:e2e:ui": "bun run build && playwright test --ui",
     "test:e2e:debug": "bun run build && playwright test --debug",
     "test:e2e:report": "playwright show-report",
-    "test:all": "bun run test:unit && bun run test:e2e",
-    "lint": "eslint \"src/**/*.{js,ts,astro}\" \"tests/**/*.{js,ts}\" \"playwright.config.ts\"",
-    "lint:fix": "eslint \"src/**/*.{js,ts,astro}\" \"tests/**/*.{js,ts}\" \"playwright.config.ts\" --fix",
-    "format": "prettier . --write",
-    "format:check": "prettier . --check"
+    "test:all": "bun run test:unit && bun run test:e2e"
   },
   "dependencies": {
     "@tailwindcss/vite": "4.3.3",
@@ -35,14 +31,7 @@
     "@testing-library/jest-dom": "7.0.1",
     "@types/node": "26.4.1",
     "@vitest/ui": "5.0.0",
-    "eslint": "10.10.0",
-    "eslint-config-prettier": "10.1.8",
-    "eslint-plugin-astro": "3.1.0",
     "jsdom": "30.0.1",
-    "prettier": "3.9.6",
-    "prettier-plugin-astro": "0.14.1",
-    "prettier-plugin-tailwindcss": "0.8.1",
-    "typescript-eslint": "8.69.0",
     "vitest": "5.0.0"
   }
 }

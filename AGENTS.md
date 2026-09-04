@@ -19,7 +19,7 @@ Use the technologies already established in this repository. Exact versions are 
 - TypeScript uses Astro's strict configuration.
 - Tailwind CSS 4 is integrated through `@tailwindcss/vite`.
 - Bun is the package manager and script runner; Node.js `>=22.22.3` is required.
-- ESLint, Prettier, Vitest, JSDOM, Testing Library matchers, and Playwright provide quality and test tooling.
+- Vitest, JSDOM, Testing Library matchers, and Playwright provide quality and test tooling.
 
 ## Project Structure
 
@@ -106,7 +106,6 @@ Skills may be added, removed, renamed, or updated. Do not rely on a fixed list.
 Use Bun instead of npm or npx when an equivalent script exists.
 
 - `bun run dev`, `bun run build`, and `bun run preview` for development and production previews.
-- `bun run lint`, `bun run lint:fix`, `bun run format`, and `bun run format:check` for quality and formatting.
 - `bun run test:unit` for unit and integration tests.
 - `bun run test:e2e`, `bun run test:e2e:ui`, `bun run test:e2e:debug`, and `bun run test:e2e:report` for browser tests.
 - `bun run test:all` for the complete test suite.
@@ -115,7 +114,7 @@ Use Bun instead of npm or npx when an equivalent script exists.
 
 - Use TypeScript and Astro components with two-space indentation, double quotes, and trailing commas.
 - Name components in PascalCase, utilities in concise camelCase, and public routes in lowercase Spanish kebab-case.
-- Prefer configured path aliases and let ESLint and Prettier enforce formatting.
+- Prefer configured path aliases and follow the formatting conventions above.
 - Add focused tests for behavior changes. Name tests `<feature>.test.ts` or `<feature>.spec.ts` and use descriptive Spanish behavior names when appropriate.
 - Prefer Playwright roles, labels, and accessible names over implementation-specific selectors.
 
