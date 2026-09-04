@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "engines": {
-    "node": ">=22.22.3"
+    "node": ">=24"
   },
   "scripts": {
     "dev": "astro dev",
@@ -27,22 +27,22 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "4.3.3",
-    "astro": "7.2.10",
+    "astro": "7.3.1",
     "tailwindcss": "4.3.3"
   },
   "devDependencies": {
     "@playwright/test": "1.62.1",
     "@testing-library/jest-dom": "7.0.1",
-    "@types/node": "26.4.0",
-    "@vitest/ui": "4.1.11",
-    "eslint": "10.9.1",
+    "@types/node": "26.4.1",
+    "@vitest/ui": "5.0.0",
+    "eslint": "10.10.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-astro": "3.1.0",
     "jsdom": "30.0.1",
     "prettier": "3.9.6",
     "prettier-plugin-astro": "0.14.1",
     "prettier-plugin-tailwindcss": "0.8.1",
-    "typescript-eslint": "8.68.0",
-    "vitest": "4.1.11"
+    "typescript-eslint": "8.69.0",
+    "vitest": "5.0.0"
   }
 }
