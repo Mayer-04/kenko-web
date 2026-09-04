@@ -20,6 +20,7 @@ Use the technologies already established in this repository. Exact versions are 
 - Tailwind CSS 4 is integrated through `@tailwindcss/vite`.
 - Bun is the package manager and script runner; Node.js `>=22.22.3` is required.
 - Vitest, JSDOM, Testing Library matchers, and Playwright provide quality and test tooling.
+- Ultracite (Oxlint + Oxfmt) provides linting and formatting; see `oxlint.config.ts` and `oxfmt.config.ts`.
 
 ## Project Structure
 
@@ -106,6 +107,7 @@ Skills may be added, removed, renamed, or updated. Do not rely on a fixed list.
 Use Bun instead of npm or npx when an equivalent script exists.
 
 - `bun run dev`, `bun run build`, and `bun run preview` for development and production previews.
+- `bun run check` and `bun run fix` for Ultracite lint and format.
 - `bun run test:unit` for unit and integration tests.
 - `bun run test:e2e`, `bun run test:e2e:ui`, `bun run test:e2e:debug`, and `bun run test:e2e:report` for browser tests.
 - `bun run test:all` for the complete test suite.

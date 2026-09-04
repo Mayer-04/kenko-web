@@ -1,10 +1,7 @@
 {
   "name": "kenko-web",
-  "type": "module",
   "version": "0.0.1",
-  "engines": {
-    "node": ">=24"
-  },
+  "type": "module",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -19,7 +16,10 @@
     "test:e2e:ui": "bun run build && playwright test --ui",
     "test:e2e:debug": "bun run build && playwright test --debug",
     "test:e2e:report": "playwright show-report",
-    "test:all": "bun run test:unit && bun run test:e2e"
+    "test:all": "bun run test:unit && bun run test:e2e",
+    "check": "ultracite check",
+    "fix": "ultracite fix",
+    "prepare": "husky"
   },
   "dependencies": {
     "@tailwindcss/vite": "4.3.3",
@@ -31,7 +31,15 @@
     "@testing-library/jest-dom": "7.0.1",
     "@types/node": "26.4.1",
     "@vitest/ui": "5.0.0",
+    "eslint-plugin-sonarjs": "4.2.0",
+    "husky": "9.1.7",
     "jsdom": "30.0.1",
+    "oxfmt": "0.66.0",
+    "oxlint": "1.81.0",
+    "ultracite": "7.10.8",
     "vitest": "5.0.0"
+  },
+  "engines": {
+    "node": ">=24"
   }
 }
