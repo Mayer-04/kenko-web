@@ -10,10 +10,10 @@ test("la página de inicio muestra el carrusel principal", async ({ page }) => {
 
   await expect(carousel).toBeVisible();
   await expect(
-    carousel.getByRole("heading", { name: "Nuestros puntos de atención" }),
+    carousel.getByRole("heading", { name: "Nuestros puntos de atención" })
   ).toBeVisible();
   await expect(
-    carousel.getByRole("link", { name: "Ver sedes" }),
+    carousel.getByRole("link", { name: "Ver sedes" })
   ).toHaveAttribute("href", "/afiliados/puntos-de-atencion");
 
   await carousel
@@ -23,12 +23,12 @@ test("la página de inicio muestra el carrusel principal", async ({ page }) => {
   await expect(
     carousel.getByRole("group", {
       name: "Diapositiva 2 de 3: Líderes en atención inclusiva",
-    }),
+    })
   ).toHaveAttribute("aria-hidden", "false");
   await expect(
     carousel.getByRole("button", {
       name: "Mostrar diapositiva 2: Líderes en atención inclusiva",
-    }),
+    })
   ).toHaveAttribute("aria-current", "true");
 
   await carousel.focus();
@@ -37,18 +37,18 @@ test("la página de inicio muestra el carrusel principal", async ({ page }) => {
   await expect(
     carousel.getByRole("group", {
       name: "Diapositiva 3 de 3: La segunda EPS preferida por los colombianos",
-    }),
+    })
   ).toHaveAttribute("aria-hidden", "false");
 
   const services = page.getByRole("region", { name: "Servicios para ti" });
   await expect(services).toBeVisible();
   await expect(
-    services.getByRole("link", { name: /Puntos de atención/ }),
+    services.getByRole("link", { name: /Puntos de atención/u })
   ).toHaveAttribute("href", "/afiliados/puntos-de-atencion");
   await expect(
     services.getByRole("link", {
-      name: /Descubre nuestras rutas de atención/,
-    }),
+      name: /Descubre nuestras rutas de atención/u,
+    })
   ).toHaveAttribute("href", "/afiliados/rutas-integrales-de-atencion-en-salud");
 
   const team = page.getByRole("region", {
@@ -56,7 +56,7 @@ test("la página de inicio muestra el carrusel principal", async ({ page }) => {
   });
   await expect(team).toBeVisible();
   await expect(
-    team.getByRole("link", { name: "Conoce nuestro organigrama" }),
+    team.getByRole("link", { name: "Conoce nuestro organigrama" })
   ).toHaveAttribute("href", "/nosotros/organigrama");
 
   const stats = page.getByRole("region", {

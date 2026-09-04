@@ -11,10 +11,7 @@ import calendarIcon from "../../assets/icons/triage/calendar_month.svg";
 
 const markdownModule =
   await import("../../assets/scrapings-content/Savia-salud Afiliados/afiliados-savia.md?raw");
-const rawMarkdown =
-  typeof markdownModule.default === "string"
-    ? markdownModule.default
-    : String(markdownModule);
+const rawMarkdown: string = markdownModule.default;
 const intro = getTriageIntro(rawMarkdown);
 const triageLevels = parseTriageDefinitions(rawMarkdown);
 

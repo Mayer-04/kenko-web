@@ -1,18 +1,20 @@
 import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
+import path from "node:path";
+
+import { describe, expect, it } from "vitest";
 
 describe("puntos de atención page", () => {
   it("renders the expected page title and route components", () => {
-    const pagePath = resolve(
+    const pagePath = path.resolve(
       process.cwd(),
-      "src/pages/afiliados/puntos-de-atencion.astro",
+      "src/pages/afiliados/puntos-de-atencion.astro"
     );
-    const contentPath = resolve(
+    const contentPath = path.resolve(
       process.cwd(),
-      "src/components/members/LocationsContent.astro",
+      "src/components/members/LocationsContent.astro"
     );
-    const page = readFileSync(pagePath, "utf8");
-    const content = readFileSync(contentPath, "utf8");
+    const page = readFileSync(pagePath, "utf-8");
+    const content = readFileSync(contentPath, "utf-8");
 
     expect(page).toContain("Puntos de Atención");
     expect(page).toContain("LocationsContent");
@@ -20,11 +22,11 @@ describe("puntos de atención page", () => {
   });
 
   it("uses google maps embed for location display", () => {
-    const mapComponentPath = resolve(
+    const mapComponentPath = path.resolve(
       process.cwd(),
-      "src/components/members/LocationsMap.astro",
+      "src/components/members/LocationsMap.astro"
     );
-    const mapComponent = readFileSync(mapComponentPath, "utf8");
+    const mapComponent = readFileSync(mapComponentPath, "utf-8");
 
     expect(mapComponent).toContain("google.com/maps/embed");
     expect(mapComponent).toContain("iframe");

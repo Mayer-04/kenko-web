@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
+
 import { getTriageIntro, parseTriageDefinitions } from "../../src/utils/triage";
 
 describe("triage data parser", () => {
-  it("extrae la introducción y los cinco niveles del contenido markdown", () => {
-    const markdown = `## Triage
+  const markdown = `## Triage
 
 **¿Qué es el triage?**
 
@@ -68,27 +68,33 @@ Consulta general, el paciente debe ser atendido el mismo día.
 
 ## Preguntas frecuentes`;
 
+  it("extrae la introducción y los cinco niveles del contenido markdown", () => {
     const intro = getTriageIntro(markdown);
     const levels = parseTriageDefinitions(markdown);
 
     expect(intro).toContain("Es el nombre que recibe la clasificación");
     expect(levels).toHaveLength(5);
-    expect(levels.map((level) => level.level)).toEqual([
+    expect(levels.map((level) => level.level)).toStrictEqual([
       "1",
       "2",
       "3",
       "4",
       "5",
     ]);
+  });
+
+  it("extrae el detalle del primer nivel de triage", () => {
+    const levels = parseTriageDefinitions(markdown);
+
     expect(levels[0]?.title).toBe("Triage 1: rojo");
     expect(levels[0]?.subtitle).toBe(
-      "Emergencia, el paciente requiere atención inmediata.",
+      "Emergencia, el paciente requiere atención inmediata."
     );
     expect(levels[0]?.symptoms).toContain("Dificultad para respirar.");
   });
 
   it("consume el formato real del markdown de triage con guiones y textos en cursiva", () => {
-    const markdown = `## Triage
+    const realCaseMarkdown = `## Triage
 
 **¿Qué es el triage?**
 
@@ -122,13 +128,13 @@ _Síntomas_
 
 ## Preguntas frecuentes`;
 
-    const levels = parseTriageDefinitions(markdown);
+    const levels = parseTriageDefinitions(realCaseMarkdown);
 
     expect(levels).toHaveLength(2);
     expect(levels[0]?.subtitle).toBe(
-      "Emergencia, el paciente requiere atención inmediata.",
+      "Emergencia, el paciente requiere atención inmediata."
     );
-    expect(levels[0]?.symptoms).toEqual([
+    expect(levels[0]?.symptoms).toStrictEqual([
       "Dificultad para respirar por cualquier causa, sensación de ahogo, agitación o piel morada.",
       "Pérdida del conocimiento o convulsión.",
       "Paro cardíaco o respiratorio.",

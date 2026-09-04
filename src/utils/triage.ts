@@ -7,25 +7,25 @@ export interface TriageLevel {
 
 const normalizeWhitespace = (value: string): string =>
   value
-    .replace(/\r/g, "")
-    .replace(/\u00a0/g, " ")
-    .replace(/\s+/g, " ")
+    .replaceAll("\r", "")
+    .replaceAll("\u00A0", " ")
+    .replaceAll(/\s+/gu, " ")
     .trim();
 
 const stripMarkdownFormatting = (value: string): string =>
   value
-    .replace(/\*\*(.*?)\*\*/g, "$1")
-    .replace(/\*(.*?)\*/g, "$1")
-    .replace(/_(.*?)_/g, "$1")
-    .replace(/`(.*?)`/g, "$1")
-    .replace(/\[(.*?)\]\((.*?)\)/g, "$1")
-    .replace(/\n+/g, " ")
+    .replaceAll(/\*\*(?<bold>.*?)\*\*/gu, "$<bold>")
+    .replaceAll(/\*(?<italic>.*?)\*/gu, "$<italic>")
+    .replaceAll(/_(?<underline>.*?)_/gu, "$<underline>")
+    .replaceAll(/`(?<code>.*?)`/gu, "$<code>")
+    .replaceAll(/\[(?<text>.*?)\]\((?<url>.*?)\)/gu, "$<text>")
+    .replaceAll(/\n+/gu, " ")
     .trim();
 
 const getTriageSection = (markdown: string): string => {
-  const lines = markdown.split(/\r?\n/);
+  const lines = markdown.split(/\r?\n/u);
   const startIndex = lines.findIndex((line) =>
-    /^##\s*Triage\s*$/i.test(line.trim()),
+    /^##\s*Triage\s*$/iu.test(line.trim())
   );
 
   if (startIndex === -1) {
@@ -34,7 +34,7 @@ const getTriageSection = (markdown: string): string => {
 
   const endIndex = lines.findIndex(
     (line, index) =>
-      index > startIndex && /^##\s*Preguntas frecuentes\s*$/i.test(line.trim()),
+      index > startIndex && /^##\s*Preguntas frecuentes\s*$/iu.test(line.trim())
   );
 
   return lines
@@ -43,7 +43,7 @@ const getTriageSection = (markdown: string): string => {
     .trim();
 };
 
-export function getTriageIntro(markdown: string): string {
+export const getTriageIntro = (markdown: string): string => {
   const triageSection = getTriageSection(markdown);
 
   if (!triageSection) {
@@ -51,22 +51,60 @@ export function getTriageIntro(markdown: string): string {
   }
 
   const introBlock = triageSection
-    .split(/^###\s*Triage\s+\d+/im)[0]
-    .replace(/^\*\*¿Qué es el triage\?\*\*\s*/i, "")
-    .replace(/^\*La clasificación se realiza de la siguiente manera:\*\s*/i, "")
+    .split(/^###\s*Triage\s+\d+/imu)[0]
+    .replace(/^\*\*¿Qué es el triage\?\*\*\s*/iu, "")
+    .replace(
+      /^\*La clasificación se realiza de la siguiente manera:\*\s*/iu,
+      ""
+    )
     .trim();
 
   return normalizeWhitespace(stripMarkdownFormatting(introBlock));
-}
+};
 
-export function parseTriageDefinitions(markdown: string): TriageLevel[] {
+type TriageLineAction =
+  | { kind: "content"; text: string }
+  | { kind: "subtitle-header" }
+  | { kind: "symptoms-header" }
+  | { kind: "skip" };
+
+const classifyTriageLine = (trimmed: string): TriageLineAction => {
+  if (!trimmed || /^###\s*Triage\s+\d+:/iu.test(trimmed)) {
+    return { kind: "skip" };
+  }
+
+  if (/^[_*]*Tiempo de espera:[_*]*\s*$/iu.test(trimmed)) {
+    return { kind: "subtitle-header" };
+  }
+
+  if (/^[_*]*Síntomas?[_*]*\s*$/iu.test(trimmed)) {
+    return { kind: "symptoms-header" };
+  }
+
+  return { kind: "content", text: trimmed };
+};
+
+const parseSymptomLine = (trimmed: string): string | null => {
+  const bulletMatch = trimmed.match(/^[-*]\s*(?<content>.+)$/iu);
+
+  if (!bulletMatch) {
+    return null;
+  }
+
+  const { content = "" } = bulletMatch.groups ?? {};
+  const symptom = normalizeWhitespace(stripMarkdownFormatting(content));
+
+  return symptom === "" ? null : symptom;
+};
+
+export const parseTriageDefinitions = (markdown: string): TriageLevel[] => {
   const triageSection = getTriageSection(markdown);
 
   if (!triageSection) {
     return [];
   }
 
-  const lines = triageSection.split(/\r?\n/);
+  const lines = triageSection.split(/\r?\n/u);
   const levels: TriageLevel[] = [];
   let current: string[] = [];
   let currentLevel = "";
@@ -83,41 +121,20 @@ export function parseTriageDefinitions(markdown: string): TriageLevel[] {
     let collectingSubtitle = false;
     let collectingSymptoms = false;
 
-    for (const line of block.split(/\r?\n/)) {
-      const trimmed = line.trim();
+    for (const line of block.split(/\r?\n/u)) {
+      const action = classifyTriageLine(line.trim());
 
-      if (!trimmed || /^###\s*Triage\s+\d+:/i.test(trimmed)) {
-        continue;
-      }
-
-      if (/^[_*]*Tiempo de espera:[_*]*\s*$/i.test(trimmed)) {
+      if (action.kind === "subtitle-header") {
         collectingSubtitle = true;
         collectingSymptoms = false;
-        continue;
-      }
-
-      if (/^[_*]*Síntomas?[_*]*\s*$/i.test(trimmed)) {
+      } else if (action.kind === "symptoms-header") {
         collectingSubtitle = false;
         collectingSymptoms = true;
-        continue;
-      }
-
-      if (collectingSubtitle) {
-        if (!trimmed) {
-          continue;
-        }
-
-        subtitleLines.push(trimmed);
-        continue;
-      }
-
-      if (collectingSymptoms) {
-        const bulletMatch = trimmed.match(/^[-*]\s*(.+)$/);
-
-        if (bulletMatch) {
-          const symptom = normalizeWhitespace(
-            stripMarkdownFormatting(bulletMatch[1]),
-          );
+      } else if (action.kind === "content") {
+        if (collectingSubtitle) {
+          subtitleLines.push(action.text);
+        } else if (collectingSymptoms) {
+          const symptom = parseSymptomLine(action.text);
 
           if (symptom) {
             symptoms.push(symptom);
@@ -127,24 +144,27 @@ export function parseTriageDefinitions(markdown: string): TriageLevel[] {
     }
 
     const subtitle = normalizeWhitespace(
-      stripMarkdownFormatting(subtitleLines.join("\n")),
+      stripMarkdownFormatting(subtitleLines.join("\n"))
     );
 
     levels.push({
       level: currentLevel,
-      title: `Triage ${currentLevel}: ${currentTitle}`,
       subtitle,
       symptoms,
+      title: `Triage ${currentLevel}: ${currentTitle}`,
     });
   };
 
   for (const line of lines) {
-    const headingMatch = line.match(/^###\s*Triage\s+(\d+):\s*(.+?)\s*$/i);
+    const headingMatch = line.match(
+      /^###\s*Triage\s+(?<level>\d+):\s*(?<title>.+?)\s*$/iu
+    );
 
     if (headingMatch) {
       flushCurrent();
-      currentLevel = headingMatch[1];
-      currentTitle = headingMatch[2].trim();
+      const { level = "", title = "" } = headingMatch.groups ?? {};
+      currentLevel = level;
+      currentTitle = title.trim();
       current = [line];
       continue;
     }
@@ -157,4 +177,4 @@ export function parseTriageDefinitions(markdown: string): TriageLevel[] {
   flushCurrent();
 
   return levels;
-}
+};

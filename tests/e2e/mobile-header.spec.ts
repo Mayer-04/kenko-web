@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("header móvil", () => {
-  test.use({ viewport: { width: 375, height: 812 } });
+  test.use({ viewport: { height: 812, width: 375 } });
 
   test("abre el menú y actualiza el control de cierre", async ({ page }) => {
     await page.goto("/");
@@ -23,10 +23,10 @@ test.describe("header móvil", () => {
     await expect(toggle).toHaveCSS("cursor", "pointer");
     await expect(iconContainer).toHaveCSS(
       "border-top-color",
-      "rgba(0, 0, 0, 0)",
+      "rgba(0, 0, 0, 0)"
     );
     await expect(
-      page.getByText("Ingresa a nuestro portal virtual"),
+      page.getByText("Ingresa a nuestro portal virtual")
     ).toHaveCount(0);
     await expect(navigation).toBeHidden();
 
@@ -41,11 +41,11 @@ test.describe("header móvil", () => {
     await expect(closeToggle.locator("[data-menu-close-icon]")).toBeVisible();
     await expect(closeToggle.locator("[data-menu-control-icon]")).toHaveCSS(
       "border-top-color",
-      "rgb(33, 73, 106)",
+      "rgb(33, 73, 106)"
     );
     await expect(navigation).toBeVisible();
     await expect(
-      page.getByRole("link", { name: "Inicio", exact: true }),
+      page.getByRole("link", { exact: true, name: "Inicio" })
     ).toHaveAttribute("href", "/");
 
     await closeToggle.click();
@@ -68,13 +68,13 @@ test.describe("header móvil", () => {
 
     await expect(afiliados).toHaveAttribute("aria-expanded", "true");
     await expect(
-      page.getByRole("link", { name: "Rutas integrales de atención en salud" }),
+      page.getByRole("link", { name: "Rutas integrales de atención en salud" })
     ).toHaveAttribute(
       "href",
-      "/afiliados/rutas-integrales-de-atencion-en-salud",
+      "/afiliados/rutas-integrales-de-atencion-en-salud"
     );
     await expect(
-      page.getByRole("link", { name: "Rutas integrales de atención en salud" }),
+      page.getByRole("link", { name: "Rutas integrales de atención en salud" })
     ).toHaveCSS("cursor", "pointer");
     const affiliateRoute = page.getByRole("link", {
       name: "Rutas integrales de atención en salud",
@@ -83,13 +83,13 @@ test.describe("header móvil", () => {
     await expect
       .poll(() =>
         affiliateRoute.evaluate(
-          (element) => getComputedStyle(element).backgroundColor,
-        ),
+          (element) => getComputedStyle(element).backgroundColor
+        )
       )
       .not.toBe("rgba(0, 0, 0, 0)");
     await expect(page.locator("#afiliados-submenu")).toHaveCSS(
       "background-color",
-      "rgba(0, 0, 0, 0)",
+      "rgba(0, 0, 0, 0)"
     );
 
     const nosotros = page.getByRole("button", { name: "Nosotros" });
@@ -99,20 +99,20 @@ test.describe("header móvil", () => {
     await expect(afiliados).toHaveAttribute("aria-expanded", "false");
     await expect(nosotros).toHaveAttribute("aria-expanded", "true");
     await expect(
-      page.getByRole("link", { name: "Organigrama" }),
+      page.getByRole("link", { name: "Organigrama" })
     ).toHaveAttribute("href", "/nosotros/organigrama");
     await expect(
       page.getByRole("link", {
         name: "Plan de modernización y saneamiento financiero",
-      }),
+      })
     ).toHaveAttribute(
       "href",
-      "/nosotros/plan-de-modernizacion-y-saneamiento-financiero",
+      "/nosotros/plan-de-modernizacion-y-saneamiento-financiero"
     );
     await expect(
       page.getByRole("link", {
         name: "Plan de modernización y saneamiento financiero",
-      }),
+      })
     ).toHaveCSS("cursor", "pointer");
 
     await page.getByRole("button", { name: "Cerrar menú" }).click();
@@ -125,17 +125,17 @@ test.describe("header móvil", () => {
 });
 
 test("el header móvil se oculta desde 768 px", async ({ page }) => {
-  await page.setViewportSize({ width: 768, height: 900 });
+  await page.setViewportSize({ height: 900, width: 768 });
   await page.goto("/");
 
   await expect(
     page.locator("mobile-header").getByRole("banner", {
       name: "Encabezado principal",
-    }),
+    })
   ).toBeHidden();
   await expect(
     page.locator("desktop-header").getByRole("banner", {
       name: "Encabezado principal",
-    }),
+    })
   ).toBeVisible();
 });

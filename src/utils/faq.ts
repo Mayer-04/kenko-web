@@ -10,34 +10,62 @@ export interface FaqSection {
 
 const normalizeWhitespace = (value: string): string =>
   value
-    .replace(/\r/g, "")
-    .replace(/\u00a0/g, " ")
-    .replace(/\s+/g, " ")
+    .replaceAll("\r", "")
+    .replaceAll("\u00A0", " ")
+    .replaceAll(/\s+/gu, " ")
     .trim();
 
 const stripMarkdownFormatting = (value: string): string =>
   value
-    .replace(/\*\*(.*?)\*\*/g, "$1")
-    .replace(/\*(.*?)\*/g, "$1")
-    .replace(/_(.*?)_/g, "$1")
-    .replace(/`(.*?)`/g, "$1")
-    .replace(/\[(.*?)\]\((.*?)\)/g, "$1")
+    .replaceAll(/\*\*(?<bold>.*?)\*\*/gu, "$<bold>")
+    .replaceAll(/\*(?<italic>.*?)\*/gu, "$<italic>")
+    .replaceAll(/_(?<underline>.*?)_/gu, "$<underline>")
+    .replaceAll(/`(?<code>.*?)`/gu, "$<code>")
+    .replaceAll(/\[(?<text>.*?)\]\((?<url>.*?)\)/gu, "$<text>")
     .trim();
 
 const cleanAnswer = (value: string): string =>
   value
-    .split(/\r?\n/)
-    .map((line) => line.replace(/^\s*[-*]\s*/, "- ").trim())
+    .split(/\r?\n/u)
+    .map((line) => line.replace(/^\s*[-*]\s*/u, "- ").trim())
     .filter((line) => line.length > 0)
     .join("\n")
-    .replace(/\n{3,}/g, "\n\n")
+    .replaceAll(/\n{3,}/gu, "\n\n")
     .trim();
 
-export function parseFaqSections(markdown: string): FaqSection[] {
-  const faqStartIndex = markdown.search(/^##\s*Preguntas frecuentes\s*$/m);
+type FaqLineAction =
+  | { kind: "answer"; text: string }
+  | { kind: "question"; question: string }
+  | { kind: "section"; title: string }
+  | { kind: "skip" };
+
+const classifyFaqLine = (line: string): FaqLineAction => {
+  const sectionHeadingMatch = line.match(/^###\s+(?<title>.+?)\s*$/u);
+
+  if (sectionHeadingMatch) {
+    const { title = "" } = sectionHeadingMatch.groups ?? {};
+    return { kind: "section", title: title.trim() };
+  }
+
+  if (/^##\s*Preguntas frecuentes\s*$/iu.test(line.trim())) {
+    return { kind: "skip" };
+  }
+
+  const questionMatch = line.match(/^\*\*(?<question>.+?)\*\*\s*$/u);
+
+  if (questionMatch) {
+    const { question = "" } = questionMatch.groups ?? {};
+    return { kind: "question", question: question.trim() };
+  }
+
+  return { kind: "answer", text: line };
+};
+
+export const parseFaqSections = (markdown: string): FaqSection[] => {
+  const faqStartIndex = markdown.search(/^##\s*Preguntas frecuentes\s*$/mu);
   const content =
     faqStartIndex === -1 ? markdown : markdown.slice(faqStartIndex);
-  const lines = content.split(/\r?\n/);
+  const lines = content.split(/\r?\n/u);
 
   const sections: FaqSection[] = [];
   let currentSectionTitle = "";
@@ -51,13 +79,13 @@ export function parseFaqSections(markdown: string): FaqSection[] {
     }
 
     const answer = cleanAnswer(
-      stripMarkdownFormatting(currentAnswer.join("\n")),
+      stripMarkdownFormatting(currentAnswer.join("\n"))
     );
 
     if (answer) {
       currentQuestions.push({
-        question: normalizeWhitespace(currentQuestion),
         answer,
+        question: normalizeWhitespace(currentQuestion),
       });
     }
 
@@ -71,8 +99,8 @@ export function parseFaqSections(markdown: string): FaqSection[] {
     }
 
     sections.push({
-      title: normalizeWhitespace(currentSectionTitle),
       questions: currentQuestions,
+      title: normalizeWhitespace(currentSectionTitle),
     });
 
     currentSectionTitle = "";
@@ -80,28 +108,17 @@ export function parseFaqSections(markdown: string): FaqSection[] {
   };
 
   for (const line of lines) {
-    const sectionHeadingMatch = line.match(/^###\s+(.+?)\s*$/);
-    if (sectionHeadingMatch) {
+    const action = classifyFaqLine(line);
+
+    if (action.kind === "section") {
       flushQuestion();
       flushSection();
-      currentSectionTitle = sectionHeadingMatch[1].trim();
-      continue;
-    }
-
-    if (/^##\s*Preguntas frecuentes\s*$/i.test(line.trim())) {
-      continue;
-    }
-
-    const questionMatch = line.match(/^\*\*(.+?)\*\*\s*$/);
-
-    if (questionMatch) {
+      currentSectionTitle = action.title;
+    } else if (action.kind === "question") {
       flushQuestion();
-      currentQuestion = questionMatch[1].trim();
-      continue;
-    }
-
-    if (currentQuestion) {
-      currentAnswer.push(line);
+      currentQuestion = action.question;
+    } else if (action.kind === "answer" && currentQuestion) {
+      currentAnswer.push(action.text);
     }
   }
 
@@ -109,4 +126,4 @@ export function parseFaqSections(markdown: string): FaqSection[] {
   flushSection();
 
   return sections.filter((section) => section.questions.length > 0);
-}
+};

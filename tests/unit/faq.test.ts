@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
+
 import { parseFaqSections } from "../../src/utils/faq";
 
 describe("faq parser", () => {
-  it("extrae secciones y preguntas del contenido markdown de afiliados", () => {
-    const markdown = `## Preguntas frecuentes
+  const markdown = `## Preguntas frecuentes
 
 ### Preguntas frecuentes régimen subsidiado
 
@@ -22,10 +22,14 @@ Sí, se puede.
 
 Línea 123.`;
 
-    const sections = parseFaqSections(markdown);
+  const sections = parseFaqSections(markdown);
 
+  it("extrae las secciones con sus títulos", () => {
     expect(sections).toHaveLength(2);
     expect(sections[0]?.title).toBe("Preguntas frecuentes régimen subsidiado");
+  });
+
+  it("extrae las preguntas y respuestas de cada sección", () => {
     expect(sections[0]?.questions[0]?.question).toBe("¿Cuál es el requisito?");
     expect(sections[0]?.questions[0]?.answer).toContain("Uno.");
     expect(sections[0]?.questions[1]?.question).toBe("¿Qué sigue?");
