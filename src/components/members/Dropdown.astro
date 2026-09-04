@@ -1,12 +1,12 @@
 ---
-import type { HTMLAttributes } from "astro/types";
+import type { HTMLAttributes, SvgComponent } from "astro/types";
 
 interface Props extends HTMLAttributes<"div"> {
   id: string;
   title: string;
   subtitle?: string;
-  icon?: any;
-  chevronIcon?: any;
+  icon?: SvgComponent;
+  chevronIcon?: SvgComponent;
   defaultOpen?: boolean;
   iconStyle?: string;
   iconClass?: string;
@@ -119,13 +119,7 @@ const initialOpen = false;
   const initializeDropdowns = () => {
     const dropdowns = document.querySelectorAll<HTMLElement>("[data-dropdown]");
 
-    dropdowns.forEach((dropdown) => {
-      if (dropdown.dataset.dropdownInitialized === "true") {
-        return;
-      }
-
-      dropdown.dataset.dropdownInitialized = "true";
-
+    for (const dropdown of dropdowns) {
       const trigger = dropdown.querySelector<HTMLButtonElement>(
         "[data-dropdown-trigger]",
       );
@@ -136,9 +130,16 @@ const initialOpen = false;
         "[data-dropdown-chevron]",
       );
 
-      if (!trigger || !panel || !chevron) {
-        return;
+      if (
+        dropdown.dataset.dropdownInitialized === "true" ||
+        !trigger ||
+        !panel ||
+        !chevron
+      ) {
+        continue;
       }
+
+      dropdown.dataset.dropdownInitialized = "true";
 
       const syncState = (isOpen: boolean) => {
         const expanded = String(isOpen);
@@ -160,34 +161,36 @@ const initialOpen = false;
         const allOpen =
           document.querySelectorAll<HTMLElement>("[data-dropdown]");
 
-        allOpen.forEach((otherDropdown) => {
-          if (otherDropdown !== dropdown) {
-            const otherTrigger = otherDropdown.querySelector<HTMLButtonElement>(
-              "[data-dropdown-trigger]",
-            );
-            const otherPanel = otherDropdown.querySelector<HTMLElement>(
-              "[data-dropdown-panel]",
-            );
-            const otherChevron = otherDropdown.querySelector<HTMLElement>(
-              "[data-dropdown-chevron]",
-            );
-
-            if (otherTrigger && otherPanel && otherChevron) {
-              otherDropdown.dataset.open = "false";
-              otherDropdown.dataset.dropdownInitialized = "true";
-              otherTrigger.setAttribute("aria-expanded", "false");
-              otherPanel.setAttribute("aria-hidden", "true");
-              otherPanel.inert = true;
-              otherPanel.classList.remove("grid-rows-[1fr]", "opacity-100");
-              otherPanel.classList.add("grid-rows-[0fr]", "opacity-0");
-              otherChevron.style.transform = "rotate(0deg)";
-            }
+        for (const otherDropdown of allOpen) {
+          if (otherDropdown === dropdown) {
+            continue;
           }
-        });
+
+          const otherTrigger = otherDropdown.querySelector<HTMLButtonElement>(
+            "[data-dropdown-trigger]",
+          );
+          const otherPanel = otherDropdown.querySelector<HTMLElement>(
+            "[data-dropdown-panel]",
+          );
+          const otherChevron = otherDropdown.querySelector<HTMLElement>(
+            "[data-dropdown-chevron]",
+          );
+
+          if (otherTrigger && otherPanel && otherChevron) {
+            otherDropdown.dataset.open = "false";
+            otherDropdown.dataset.dropdownInitialized = "true";
+            otherTrigger.setAttribute("aria-expanded", "false");
+            otherPanel.setAttribute("aria-hidden", "true");
+            otherPanel.inert = true;
+            otherPanel.classList.remove("grid-rows-[1fr]", "opacity-100");
+            otherPanel.classList.add("grid-rows-[0fr]", "opacity-0");
+            otherChevron.style.transform = "rotate(0deg)";
+          }
+        }
 
         syncState(!isOpen);
       });
-    });
+    }
   };
 
   if (document.readyState === "loading") {

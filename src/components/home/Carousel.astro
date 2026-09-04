@@ -20,35 +20,35 @@ interface CarouselSlide {
 
 const slides: CarouselSlide[] = [
   {
-    title: "Nuestros puntos de atención",
+    action: {
+      href: "/afiliados/puntos-de-atencion",
+      label: "Ver sedes",
+    },
+    alt: "Centro médico de Kenko EPS en Bogotá",
     description:
       "Encuentra la sede más cercana a ti con infraestructura de vanguardia.",
     image: hospitalImg,
-    alt: "Centro médico de Kenko EPS en Bogotá",
-    action: {
-      label: "Ver sedes",
-      href: "/afiliados/puntos-de-atencion",
-    },
+    title: "Nuestros puntos de atención",
   },
   {
-    title: "Líderes en atención inclusiva",
-    description:
-      "Respetamos y somos líderes en atención a la mujer y población LGBTI con un enfoque humano.",
-    image: hospitalBedImg,
-    alt: "Profesional de salud brindando atención inclusiva",
     action: {
       label: "Saber más",
     },
+    alt: "Profesional de salud brindando atención inclusiva",
+    description:
+      "Respetamos y somos líderes en atención a la mujer y población LGBTI con un enfoque humano.",
+    image: hospitalBedImg,
+    title: "Líderes en atención inclusiva",
   },
   {
-    title: "La segunda EPS preferida por los colombianos",
-    description:
-      "Comprometidos con la salud y el bienestar de millones de familias en todo el país.",
-    image: doctorsImg,
-    alt: "Familia colombiana compartiendo un momento de bienestar",
     action: {
       label: "Afíliate ya",
     },
+    alt: "Familia colombiana compartiendo un momento de bienestar",
+    description:
+      "Comprometidos con la salud y el bienestar de millones de familias en todo el país.",
+    image: doctorsImg,
+    title: "La segunda EPS preferida por los colombianos",
   },
 ];
 
@@ -216,12 +216,12 @@ const carouselId = "inicio-carousel";
     private currentSlide = 0;
 
     connectedCallback() {
-      if (this.dataset.ready === "true") return;
+      if (this.dataset.ready === "true") {return;}
       this.dataset.ready = "true";
 
       this.addEventListener("click", (event) => {
-        const target = event.target as Element | null;
-        if (!target) return;
+        const { target } = event;
+        if (!(target instanceof Element)) {return;}
 
         if (target.closest<HTMLButtonElement>("[data-carousel-previous]")) {
           this.showSlide(this.currentSlide - 1);
@@ -235,7 +235,7 @@ const carouselId = "inicio-carousel";
 
         const dot = target.closest<HTMLButtonElement>("[data-carousel-dot]");
         const slideIndex = dot?.dataset.slideIndex;
-        if (slideIndex !== undefined) this.showSlide(Number(slideIndex));
+        if (slideIndex !== undefined) {this.showSlide(Number(slideIndex));}
       });
 
       this.addEventListener("keydown", (event) => {
@@ -252,12 +252,8 @@ const carouselId = "inicio-carousel";
     }
 
     private showSlide(index: number) {
-      const slides = Array.from(
-        this.querySelectorAll<HTMLElement>("[data-carousel-slide]"),
-      );
-      const dots = Array.from(
-        this.querySelectorAll<HTMLButtonElement>("[data-carousel-dot]"),
-      );
+      const slides = [...this.querySelectorAll<HTMLElement>('[data-carousel-slide]')];
+      const dots = [...this.querySelectorAll<HTMLButtonElement>('[data-carousel-dot]')];
       const status = this.querySelector<HTMLElement>("[data-carousel-status]");
       const previous = this.querySelector<HTMLButtonElement>(
         "[data-carousel-previous]",
@@ -266,11 +262,11 @@ const carouselId = "inicio-carousel";
         "[data-carousel-next]",
       );
 
-      if (slides.length === 0) return;
+      if (slides.length === 0) {return;}
 
       this.currentSlide = (index + slides.length) % slides.length;
 
-      slides.forEach((slide, slideIndex) => {
+      for (const [slideIndex, slide] of slides.entries()) {
         const isActive = slideIndex === this.currentSlide;
         slide.classList.toggle("z-10", isActive);
         slide.classList.toggle("opacity-100", isActive);
@@ -279,9 +275,9 @@ const carouselId = "inicio-carousel";
         slide.classList.toggle("pointer-events-none", !isActive);
         slide.setAttribute("aria-hidden", String(!isActive));
         slide.inert = !isActive;
-      });
+      }
 
-      dots.forEach((dot, dotIndex) => {
+      for (const [dotIndex, dot] of dots.entries()) {
         const isActive = dotIndex === this.currentSlide;
         dot.classList.toggle("bg-secondary", isActive);
         dot.classList.toggle("bg-on-primary/55", !isActive);
@@ -290,11 +286,11 @@ const carouselId = "inicio-carousel";
         } else {
           dot.removeAttribute("aria-current");
         }
-      });
+      }
 
       const activeSlide = slides[this.currentSlide];
       const label = activeSlide.getAttribute("aria-label");
-      if (label && status) status.textContent = label;
+      if (label && status) {status.textContent = label;}
 
       const activeSlideId = activeSlide.id;
       previous?.setAttribute("aria-controls", activeSlideId);

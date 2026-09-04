@@ -39,11 +39,11 @@ import Navbar from "./Navbar.astro";
 
     connectedCallback() {
       // Evita doble inicialización (docs: check window state)
-      if (this.dataset.ready === "true") return;
+      if (this.dataset.ready === "true") {return;}
       this.dataset.ready = "true";
 
       this.header = this.querySelector<HTMLElement>("[data-kenko-header]");
-      if (!this.header) return;
+      if (!this.header) {return;}
 
       this.onScrollBound = this.onScroll.bind(this);
       window.addEventListener("scroll", this.onScrollBound, { passive: true });
@@ -61,14 +61,15 @@ import Navbar from "./Navbar.astro";
     }
 
     private onScroll() {
-      if (this.ticking || !this.header) return;
+      const { header } = this;
+      if (this.ticking || !header) {return;}
       this.ticking = true;
       window.requestAnimationFrame(() => {
         const scrolled = window.scrollY > 10;
         if (scrolled) {
-          this.header!.setAttribute("data-scrolled", "true");
+          header.dataset.scrolled = "true";
         } else {
-          this.header!.removeAttribute("data-scrolled");
+          delete header.dataset.scrolled;
         }
         this.ticking = false;
       });

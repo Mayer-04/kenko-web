@@ -370,6 +370,9 @@ const isActive = (href: string) =>
 
 <script>
   // Patrón Astro docs: Web Component + astro:page-load (https://docs.astro.build/en/guides/client-side-scripts/#web-components-with-custom-elements)
+  const ARIA_EXPANDED = "aria-expanded";
+  const ARIA_HIDDEN = "aria-hidden";
+
   class KenkoNavbar extends HTMLElement {
     private toggle: HTMLButtonElement | null = null;
     private panel: HTMLElement | null = null;
@@ -378,7 +381,7 @@ const isActive = (href: string) =>
     private closeLabel: HTMLElement | null = null;
     private afiliadosTrigger: HTMLButtonElement | null = null;
     private afiliadosPanel: HTMLElement | null = null;
-    private mobileChevron: Element | null = null;
+    private mobileChevron: HTMLElement | null = null;
     private onDocumentClick: ((e: MouseEvent) => void) | null = null;
     private onDocumentKeydown: ((e: KeyboardEvent) => void) | null = null;
     private onBreakpointChange: ((e: MediaQueryListEvent) => void) | null =
@@ -397,7 +400,7 @@ const isActive = (href: string) =>
     private boundDesktopKeydown: ((e: KeyboardEvent) => void) | null = null;
 
     connectedCallback() {
-      if (this.dataset.ready === "true") return;
+      if (this.dataset.ready === "true") {return;}
       this.dataset.ready = "true";
 
       this.toggle = this.querySelector<HTMLButtonElement>(
@@ -413,7 +416,9 @@ const isActive = (href: string) =>
       this.afiliadosPanel = this.querySelector<HTMLElement>(
         "[data-mobile-afiliados-panel]",
       );
-      this.mobileChevron = this.querySelector("[data-mobile-chevron]");
+      this.mobileChevron = this.querySelector<HTMLElement>(
+        "[data-mobile-chevron]",
+      );
 
       // Setup desktop dropdown (no bloquea mobile si falta)
       this.desktopDropdown = this.querySelector<HTMLElement>(
@@ -427,81 +432,87 @@ const isActive = (href: string) =>
       );
 
       if (this.desktopDropdown && this.desktopTrigger && this.desktopPanel) {
-        this.initDesktopDropdown();
+        this.initDesktopDropdown(
+          this.desktopDropdown,
+          this.desktopTrigger,
+          this.desktopPanel,
+        );
       }
 
-      if (
-        !this.toggle ||
-        !this.panel ||
-        !this.openIcon ||
-        !this.closeIcon ||
-        !this.closeLabel ||
-        !this.afiliadosTrigger ||
-        !this.afiliadosPanel
-      ) {
+      const {
+        afiliadosPanel,
+        afiliadosTrigger,
+        closeIcon,
+        closeLabel,
+        openIcon,
+        panel,
+        toggle,
+      } = this;
+
+      if (!toggle || !panel || !openIcon) {
+        return;
+      }
+
+      if (!closeIcon || !closeLabel || !afiliadosTrigger || !afiliadosPanel) {
         return;
       }
 
       // Usar this.querySelector (scoped) en lugar de document — recomendado por docs
-      this.toggle.addEventListener("click", () =>
-        this.setMobileOpen(
-          this.toggle!.getAttribute("aria-expanded") !== "true",
-        ),
+      toggle.addEventListener("click", () =>
+        this.setMobileOpen(toggle.getAttribute(ARIA_EXPANDED) !== "true"),
       );
-      this.afiliadosTrigger.addEventListener("click", () =>
+      afiliadosTrigger.addEventListener("click", () =>
         this.setAfiliadosOpen(
-          this.afiliadosTrigger!.getAttribute("aria-expanded") !== "true",
+          afiliadosTrigger.getAttribute(ARIA_EXPANDED) !== "true",
         ),
       );
 
       this.onDocumentClick = (event: MouseEvent) => {
-        if (this.panel!.hasAttribute("hidden")) return;
-        const target = event.target;
-        if (!(target instanceof Element)) return;
+        if (panel.hasAttribute("hidden")) {return;}
+        const {target} = event;
+        if (!(target instanceof Element)) {return;}
         // Cerrar si click fuera del custom element (header completo)
         const rootHeader = this.closest<HTMLElement>("[data-kenko-header]");
         const clickInside = rootHeader
           ? rootHeader.contains(target)
           : this.contains(target);
-        if (!clickInside) this.setMobileOpen(false);
+        if (!clickInside) {this.setMobileOpen(false);}
       };
       document.addEventListener("click", this.onDocumentClick);
 
       this.onDocumentKeydown = (event: KeyboardEvent) => {
-        if (event.key === "Escape" && !this.panel!.hasAttribute("hidden")) {
+        if (event.key === "Escape" && !panel.hasAttribute("hidden")) {
           this.setMobileOpen(false);
-          this.toggle!.focus();
+          toggle.focus();
         }
       };
       document.addEventListener("keydown", this.onDocumentKeydown);
 
       this.addEventListener("keydown", (event: KeyboardEvent) => {
         if (event.key === "Escape") {
-          if (!this.panel!.hasAttribute("hidden")) {
+          if (!panel.hasAttribute("hidden")) {
             event.preventDefault();
             this.setMobileOpen(false);
-            this.toggle!.focus();
-          } else if (this.afiliadosPanel!.dataset.open === "true") {
+            toggle.focus();
+          } else if (afiliadosPanel.dataset.open === "true") {
             event.preventDefault();
             this.setAfiliadosOpen(false);
-            this.afiliadosTrigger!.focus();
+            afiliadosTrigger.focus();
           }
         }
       });
 
-      this.panel
-        .querySelectorAll("a[href]")
-        .forEach((link) =>
-          link.addEventListener("click", () => this.setMobileOpen(false)),
-        );
+      for (const link of panel.querySelectorAll("a[href]")) {
+        link.addEventListener("click", () => this.setMobileOpen(false));
+      }
 
       this.mql = window.matchMedia("(min-width: 768px)");
       this.onBreakpointChange = (e: MediaQueryListEvent) => {
-        if (e.matches && !this.panel!.hasAttribute("hidden")) {
+        if (e.matches && !panel.hasAttribute("hidden")) {
           this.setMobileOpen(false);
         }
         // En desktop, cierra dropdown si se pasa a mobile y viceversa
-        if (!e.matches) this.setDesktopOpen(false);
+        if (!e.matches) {this.setDesktopOpen(false);}
       };
       this.mql.addEventListener("change", this.onBreakpointChange);
 
@@ -519,9 +530,9 @@ const isActive = (href: string) =>
 
     disconnectedCallback() {
       if (this.onDocumentClick)
-        document.removeEventListener("click", this.onDocumentClick);
+        {document.removeEventListener("click", this.onDocumentClick);}
       if (this.onDocumentKeydown)
-        document.removeEventListener("keydown", this.onDocumentKeydown);
+        {document.removeEventListener("keydown", this.onDocumentKeydown);}
       if (this.mql && this.onBreakpointChange) {
         this.mql.removeEventListener("change", this.onBreakpointChange);
       }
@@ -538,15 +549,16 @@ const isActive = (href: string) =>
     }
 
     // — Desktop dropdown sutil y accesible (hover con delay + teclado) —
-    private initDesktopDropdown() {
-      const dropdown = this.desktopDropdown!;
-      const trigger = this.desktopTrigger!;
-      const panel = this.desktopPanel!;
+    private initDesktopDropdown(
+      dropdown: HTMLElement,
+      trigger: HTMLButtonElement,
+      panel: HTMLElement,
+    ) {
 
       trigger.addEventListener("pointerdown", () => {
         this.isPointerDown = true;
         if (this.pointerDownTimeout !== null)
-          window.clearTimeout(this.pointerDownTimeout);
+          {window.clearTimeout(this.pointerDownTimeout);}
         this.pointerDownTimeout = window.setTimeout(() => {
           this.isPointerDown = false;
         }, 300);
@@ -575,7 +587,7 @@ const isActive = (href: string) =>
       });
 
       trigger.addEventListener("focus", () => {
-        if (this.isPointerDown) return;
+        if (this.isPointerDown) {return;}
         this.clearDesktopTimers();
         this.setDesktopOpen(true);
       });
@@ -585,8 +597,11 @@ const isActive = (href: string) =>
       });
 
       dropdown.addEventListener("focusout", (event: FocusEvent) => {
-        const related = event.relatedTarget as Element | null;
-        if (related && dropdown.contains(related)) return;
+        const { relatedTarget } = event;
+        if (
+          relatedTarget instanceof Element &&
+          dropdown.contains(relatedTarget)
+        ) {return;}
         this.clearDesktopTimers();
         this.desktopCloseTimeout = window.setTimeout(() => {
           if (!dropdown.contains(document.activeElement)) {
@@ -603,7 +618,7 @@ const isActive = (href: string) =>
           firstLink?.focus();
         } else if (event.key === " " || event.key === "Spacebar") {
           event.preventDefault();
-          this.setDesktopOpen(trigger.getAttribute("aria-expanded") !== "true");
+          this.setDesktopOpen(trigger.getAttribute(ARIA_EXPANDED) !== "true");
         } else if (event.key === "Escape") {
           event.preventDefault();
           this.setDesktopOpen(false);
@@ -620,9 +635,9 @@ const isActive = (href: string) =>
       });
 
       this.boundDesktopDocumentClick = (event: MouseEvent) => {
-        const target = event.target as Element | null;
-        if (!target) return;
-        if (!dropdown.contains(target)) this.setDesktopOpen(false);
+        const { target } = event;
+        if (!(target instanceof Element)) {return;}
+        if (!dropdown.contains(target)) {this.setDesktopOpen(false);}
       };
       document.addEventListener("click", this.boundDesktopDocumentClick);
 
@@ -652,43 +667,42 @@ const isActive = (href: string) =>
 
     private setDesktopOpen(open: boolean) {
       if (!this.desktopDropdown || !this.desktopTrigger || !this.desktopPanel)
-        return;
+        {return;}
       const dropdown = this.desktopDropdown;
       const trigger = this.desktopTrigger;
       const panel = this.desktopPanel;
       if (open) {
         dropdown.dataset.open = "true";
         trigger.dataset.open = "true";
-        trigger.setAttribute("aria-expanded", "true");
+        trigger.setAttribute(ARIA_EXPANDED, "true");
         panel.dataset.open = "true";
-        panel.setAttribute("aria-hidden", "false");
+        panel.setAttribute(ARIA_HIDDEN, "false");
         panel.removeAttribute("inert");
         panel.removeAttribute("hidden");
       } else {
         dropdown.dataset.open = "false";
         trigger.dataset.open = "false";
-        trigger.setAttribute("aria-expanded", "false");
+        trigger.setAttribute(ARIA_EXPANDED, "false");
         panel.dataset.open = "false";
-        panel.setAttribute("aria-hidden", "true");
+        panel.setAttribute(ARIA_HIDDEN, "true");
         panel.setAttribute("inert", "");
         // Mantener hidden para SEO/crawl hiding pero con transición: re-aplicar tras animación
         // Usamos pequeño delay para permitir que la transición de salida se vea
         window.setTimeout(() => {
-          if (panel.dataset.open === "false") panel.setAttribute("hidden", "");
+          if (panel.dataset.open === "false") {panel.setAttribute("hidden", "");}
         }, 280);
       }
     }
 
     private setMobileOpen(open: boolean) {
-      if (
-        !this.toggle ||
-        !this.panel ||
-        !this.openIcon ||
-        !this.closeIcon ||
-        !this.closeLabel
-      )
+      if (!this.toggle || !this.panel || !this.openIcon) {
         return;
-      this.toggle.setAttribute("aria-expanded", String(open));
+      }
+
+      if (!this.closeIcon || !this.closeLabel) {
+        return;
+      }
+      this.toggle.setAttribute(ARIA_EXPANDED, String(open));
       this.toggle.setAttribute(
         "aria-label",
         open ? "Cerrar menú" : "Abrir menú",
@@ -700,10 +714,10 @@ const isActive = (href: string) =>
         this.openIcon.classList.add("hidden");
         this.closeIcon.classList.remove("hidden");
         this.closeLabel.removeAttribute("hidden");
-        this.closeLabel.setAttribute("aria-hidden", "false");
+        this.closeLabel.setAttribute(ARIA_HIDDEN, "false");
         // Hace visible el label para sighted users; mantiene hidden=false para animación sutil
         this.closeLabel.style.display = "";
-        this.setAttribute("data-mobile-open", "true");
+        this.dataset.mobileOpen = "true";
         // Cierra desktop al abrir móvil para evitar solapamiento
         this.setDesktopOpen(false);
       } else {
@@ -713,26 +727,26 @@ const isActive = (href: string) =>
         this.openIcon.classList.remove("hidden");
         this.closeIcon.classList.add("hidden");
         this.closeLabel.setAttribute("hidden", "");
-        this.closeLabel.setAttribute("aria-hidden", "true");
-        this.removeAttribute("data-mobile-open");
+        this.closeLabel.setAttribute(ARIA_HIDDEN, "true");
+        delete this.dataset.mobileOpen;
         this.setAfiliadosOpen(false);
       }
     }
 
     private setAfiliadosOpen(open: boolean) {
       if (!this.afiliadosTrigger || !this.afiliadosPanel || !this.mobileChevron)
-        return;
-      this.afiliadosTrigger.setAttribute("aria-expanded", String(open));
+        {return;}
+      this.afiliadosTrigger.setAttribute(ARIA_EXPANDED, String(open));
       if (open) {
         this.afiliadosPanel.removeAttribute("hidden");
         this.afiliadosPanel.removeAttribute("inert");
         this.afiliadosPanel.dataset.open = "true";
-        (this.mobileChevron as HTMLElement).style.transform = "rotate(180deg)";
+        this.mobileChevron.style.transform = "rotate(180deg)";
       } else {
         this.afiliadosPanel.setAttribute("hidden", "");
         this.afiliadosPanel.setAttribute("inert", "");
         delete this.afiliadosPanel.dataset.open;
-        (this.mobileChevron as HTMLElement).style.transform = "rotate(0deg)";
+        this.mobileChevron.style.transform = "rotate(0deg)";
       }
     }
   }
