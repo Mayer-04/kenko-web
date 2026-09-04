@@ -4,22 +4,9 @@ const baseURL = "http://localhost:4321";
 const isCI = Boolean(process.env.CI);
 
 export default defineConfig({
-  testDir: "./tests/e2e",
-  tsconfig: "./tests/tsconfig.json",
-  fullyParallel: true,
   forbidOnly: isCI,
-  retries: isCI ? 2 : 0,
-  workers: isCI ? 1 : undefined,
-  reporter: isCI ? [["line"], ["html", { open: "never" }]] : "html",
+  fullyParallel: true,
   outputDir: "test-results",
-
-  use: {
-    baseURL,
-    trace: "on-first-retry",
-    screenshot: "only-on-failure",
-    video: "retain-on-failure",
-  },
-
   projects: [
     {
       name: "chromium",
@@ -34,14 +21,24 @@ export default defineConfig({
       use: { ...devices["Desktop Safari"] },
     },
   ],
-
+  reporter: isCI ? [["line"], ["html", { open: "never" }]] : "html",
+  retries: isCI ? 2 : 0,
+  testDir: "./tests/e2e",
+  tsconfig: "./tests/tsconfig.json",
+  use: {
+    baseURL,
+    screenshot: "only-on-failure",
+    trace: "on-first-retry",
+    video: "retain-on-failure",
+  },
   webServer: {
     command: "bun run preview",
     env: {
       ASTRO_PREVIEW_BACKGROUND: "0",
     },
-    url: `${baseURL}/`,
-    timeout: 120_000,
     reuseExistingServer: !isCI,
+    timeout: 120_000,
+    url: `${baseURL}/`,
   },
+  workers: isCI ? 1 : undefined,
 });

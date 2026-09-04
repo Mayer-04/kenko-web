@@ -10,24 +10,24 @@ export interface DropdownMeta {
 
 export const affiliateItems: NavigationItem[] = [
   {
-    label: "Rutas integrales de atención en salud",
     href: "/afiliados/rutas-integrales-de-atencion-en-salud",
+    label: "Rutas integrales de atención en salud",
   },
   {
-    label: "Puntos de atención",
     href: "/afiliados/puntos-de-atencion",
+    label: "Puntos de atención",
   },
   {
-    label: "Preguntas frecuentes",
     href: "/afiliados/preguntas-frecuentes",
+    label: "Preguntas frecuentes",
   },
   {
-    label: "Triage",
     href: "/afiliados/triage",
+    label: "Triage",
   },
 ];
 
 export const affiliateMeta: DropdownMeta = {
-  title: "Atención en salud",
   description: "Puntos de atención y servicios médicos directos",
+  title: "Atención en salud",
 };

@@ -1,43 +1,42 @@
+import tailwindcss from "@tailwindcss/vite";
 // @ts-check
 import { defineConfig, fontProviders } from "astro/config";
 
-import tailwindcss from "@tailwindcss/vite";
-
 export default defineConfig({
-  prefetch: true,
-  vite: {
-    plugins: [tailwindcss()],
-  },
   fonts: [
     {
-      provider: fontProviders.local(),
-      name: "Manrope",
       cssVariable: "--font-manrope",
       fallbacks: ["sans-serif"],
+      name: "Manrope",
       options: {
         variants: [
           {
             src: ["./src/assets/fonts/manrope-latin-wght-normal.woff2"],
-            weight: "100 900",
             style: "normal",
+            weight: "100 900",
           },
         ],
       },
+      provider: fontProviders.local(),
     },
     {
-      provider: fontProviders.local(),
-      name: "Figtree",
       cssVariable: "--font-figtree",
       fallbacks: ["sans-serif"],
+      name: "Figtree",
       options: {
         variants: [
           {
             src: ["./src/assets/fonts/figtree/figtree-latin-wght-normal.woff2"],
-            weight: "100 900",
             style: "normal",
+            weight: "100 900",
           },
         ],
       },
+      provider: fontProviders.local(),
     },
   ],
+  prefetch: true,
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });
